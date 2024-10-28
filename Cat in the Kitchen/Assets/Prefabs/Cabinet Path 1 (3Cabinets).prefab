@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1293977769819122710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7071699727281540925}
+  m_Layer: 0
+  m_Name: ObstacleSpawnLocation_Path13
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7071699727281540925
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293977769819122710}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6314182566734831624}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2855750198673226734
 GameObject:
   m_ObjectHideFlags: 0
@@ -15,6 +46,7 @@ GameObject:
   - component: {fileID: 4077966481876633311}
   - component: {fileID: 8574484371944275345}
   - component: {fileID: 8408065050608577493}
+  - component: {fileID: 2560441318310331984}
   m_Layer: 0
   m_Name: Cabinet Path 1 (3Cabinets)
   m_TagString: Untagged
@@ -36,6 +68,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2516620691965242020}
+  - {fileID: 7071699727281540925}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5468664906087704863
@@ -150,6 +183,23 @@ MonoBehaviour:
   - {fileID: 4385853492939910507, guid: 727c2d302425343c1bd71d594161333b, type: 3}
   - {fileID: 7441001505352772423, guid: d1155016c7bbf4be9b4aeb188b312b88, type: 3}
   spawnLocation: {fileID: 2516620691965242020}
+--- !u!114 &2560441318310331984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855750198673226734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfdc72c079a1475fa13a971a3329953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObstaclePrefabs:
+  - {fileID: 6361222465766358312, guid: fb18850f1b15d48649c0f86c0ba4b060, type: 3}
+  - {fileID: 6164114538591958951, guid: 808b30b36826b4be78dbcd25dfcea122, type: 3}
+  - {fileID: 331496177343044671, guid: b0389e2e0f01249a6a133f765f19ebdc, type: 3}
+  spawnLocation: {fileID: 7071699727281540925}
 --- !u!1 &9082768970999161219
 GameObject:
   m_ObjectHideFlags: 0

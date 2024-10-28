@@ -5,11 +5,9 @@ using UnityEngine;
 public class SpawnManager_Food : MonoBehaviour
 {
     private float startDelay = 0f;
-    //private float spawnIntervalRange = 0.4f;
+   
 private float spawnInterval = 0.6f;
-
-   // private float distY = 0.7f;
-    public GameObject[] FoodPrefabs; 
+ public GameObject[] FoodPrefabs; 
     public Transform spawnLocation; 
     // Start is called before the first frame update
     void Start()
