@@ -10,8 +10,9 @@ public class SpawnManager_Path1 : MonoBehaviour
     private float distY = 3.0f;
   private float spawnRangeY = 5f;
   private float startPosY = 10f;
-  private float startDelay = 0.75f;
-  private float spawnInterval = 0.8f;
+  private float startDelay = 0f;
+  private float spawnInterval = 0.6f;
+private float spawnPosX = 40f;
 
   private List<GameObject> spawnedPath = new List<GameObject>();
 
@@ -29,7 +30,7 @@ public class SpawnManager_Path1 : MonoBehaviour
     void SpawnRandomPath()
     {
         int path1PrefabsIndex = Random.Range(0, path1Prefabs.Length);
-        GameObject newPath = Instantiate(path1Prefabs[path1PrefabsIndex], new Vector3(20, Random.Range(startPosY-spawnRangeY, startPosY+ spawnRangeY), 0),
+        GameObject newPath = Instantiate(path1Prefabs[path1PrefabsIndex], new Vector3(spawnPosX, Random.Range(startPosY-spawnRangeY, startPosY+ spawnRangeY), 0),
             path1Prefabs[path1PrefabsIndex].transform.rotation);
 
         spawnedPath.Add(newPath);

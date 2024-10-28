@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 171325828837575454}
   - component: {fileID: 6302003656680512722}
   - component: {fileID: 1968619626146079328}
-  - component: {fileID: 591494166515161413}
   m_Layer: 0
   m_Name: Cabinet Path 2 (0.5Cabinet)
   m_TagString: Untagged
@@ -152,20 +151,6 @@ MonoBehaviour:
   - {fileID: 7441001505352772423, guid: d1155016c7bbf4be9b4aeb188b312b88, type: 3}
   - {fileID: 1683458531359515106, guid: e723af9bf0bde4e28aa25bf611e60629, type: 3}
   spawnLocation: {fileID: 3575378986750158720}
---- !u!114 &591494166515161413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249809364037480320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bfdc72c079a1475fa13a971a3329953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObstaclePrefabs: []
-  spawnLocation: {fileID: 0}
 --- !u!1 &9106918261937752600
 GameObject:
   m_ObjectHideFlags: 0

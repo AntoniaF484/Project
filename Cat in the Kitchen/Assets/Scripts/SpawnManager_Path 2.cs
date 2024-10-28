@@ -8,11 +8,11 @@ public class SpawnManager_Path2 : MonoBehaviour
 public GameObject [] path2Prefabs;
 
 private float spawnRangeX = 7f;
-private float startPosX = 20f;
+private float startPosX = 40f;
 private float spawnRangeY = 7f;
 private float startPosY = 30f;
 private float startDelay = 0.2f;
-private float spawnInterval= 0.6f;
+private float spawnInterval= 0.7f;
 
   
 
