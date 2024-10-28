@@ -6,13 +6,14 @@ public class SpawnManager_Path1 : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject [] path1Prefabs;
-  
+    public GameObject[] FoodPrefabs;
+    private float distY = 3.0f;
   private float spawnRangeY = 5f;
   private float startPosY = 10f;
-  private float startDelay = 2;
-  private float spawnInterval = 1.5f;
+  private float startDelay = 0.75f;
+  private float spawnInterval = 0.8f;
 
-  
+  private List<GameObject> spawnedPath = new List<GameObject>();
 
     void Start()
     {
@@ -22,17 +23,24 @@ public class SpawnManager_Path1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            SpawnRandomPath();
-          
-        }
+      
     }
 
     void SpawnRandomPath()
     {
         int path1PrefabsIndex = Random.Range(0, path1Prefabs.Length);
-        Instantiate(path1Prefabs[path1PrefabsIndex], new Vector3(20, Random.Range(startPosY-spawnRangeY, startPosY+ spawnRangeY), 0),
+        GameObject newPath = Instantiate(path1Prefabs[path1PrefabsIndex], new Vector3(20, Random.Range(startPosY-spawnRangeY, startPosY+ spawnRangeY), 0),
             path1Prefabs[path1PrefabsIndex].transform.rotation);
+
+        spawnedPath.Add(newPath);
+       
+    }
+
+    void SpawnFood(GameObject spawnedPath)
+    {
+        int FoodPrefabsIndex = Random.Range(0, FoodPrefabs.Length);
+        Vector3 spawnPos = spawnedPath.transform.position;
+        Instantiate(FoodPrefabs[FoodPrefabsIndex], new Vector3(spawnPos.x, (spawnPos.y + distY), 0),
+            FoodPrefabs[FoodPrefabsIndex].transform.rotation);
     }
 }
