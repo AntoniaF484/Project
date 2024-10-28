@@ -12,8 +12,9 @@ private float spawnInterval = 0.6f;
     // Start is called before the first frame update
     void Start()
     {
-       // InvokeRepeating("SpawnRandomFood", startDelay, spawnInterval);
-SpawnRandomFood();
+      int RandomNumber = Random.Range(0,100);
+if (RandomNumber <90){
+SpawnRandomFood();}
     }
 
     // Update is called once per frame

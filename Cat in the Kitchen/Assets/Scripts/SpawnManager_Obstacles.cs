@@ -10,8 +10,9 @@ public class SpawnManager_Obstacles : MonoBehaviour
     void Start()
     {
         int RandomNumber = Random.Range(0,100);
+if (RandomNumber <20){
 
-SpawnRandomObstacle();
+SpawnRandomObstacle();}
     }
 
     // Update is called once per frame
