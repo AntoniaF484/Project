@@ -7,7 +7,6 @@ public class SpawnManager_Path1 : MonoBehaviour
     // Start is called before the first frame update
     public GameObject [] path1Prefabs;
     public GameObject[] FoodPrefabs;
-    private float distY = 3.0f;
   private float spawnRangeY = 5f;
   private float startPosY = 10f;
   private float startDelay = 0f;
@@ -37,11 +36,4 @@ private float spawnPosX = 40f;
        
     }
 
-    void SpawnFood(GameObject spawnedPath)
-    {
-        int FoodPrefabsIndex = Random.Range(0, FoodPrefabs.Length);
-        Vector3 spawnPos = spawnedPath.transform.position;
-        Instantiate(FoodPrefabs[FoodPrefabsIndex], new Vector3(spawnPos.x, (spawnPos.y + distY), 0),
-            FoodPrefabs[FoodPrefabsIndex].transform.rotation);
-    }
 }
