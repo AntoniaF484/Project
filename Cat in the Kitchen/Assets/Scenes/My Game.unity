@@ -396,11 +396,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbdb94f38f0cd4c88ab7c381f31b1cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 120
+  jumpForce: 100
   horizontalInput: 0
-  speed: 15
+  speed: 10
   isOnGround: 1
   gravityModifier: 25
+  gameOver: 0
 --- !u!135 &532434011
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -738,9 +739,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path1Prefabs:
-  - {fileID: 1832560921310802879, guid: dc0502c7daca74ca380984989fee22b9, type: 3}
-  - {fileID: 2855750198673226734, guid: 5dd0dd6955c7c4dc7af856f70e20aae3, type: 3}
   - {fileID: 2855750198673226734, guid: 1b1e3b465782c4829ad71600a95ebb5d, type: 3}
+  - {fileID: 2855750198673226734, guid: 5dd0dd6955c7c4dc7af856f70e20aae3, type: 3}
   FoodPrefabs: []
 --- !u!4 &963542021
 Transform:
@@ -1374,7 +1374,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956984607}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
