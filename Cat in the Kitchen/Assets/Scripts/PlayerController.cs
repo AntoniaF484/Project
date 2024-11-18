@@ -10,6 +10,9 @@ private float playerSize = 0.75f;
 public float jumpForce; 
 public float horizontalInput;
 public float speed = 10.0f;
+public float acceleration = 2;
+public float maxAcceleration = 2;
+public float maxXSpeed = 10.0f;
 public bool isOnGround = true;
 public float gravityModifier;
 public bool gameOver = false;
@@ -47,7 +50,16 @@ private void OnCollisionEnter (Collision collision){
 
     if (collision.gameObject.CompareTag("Path"))
     {
+        //float speedRatio = speed.x / maxXSpeed;
+       // acceleration = maxAcceleration * (1 - speedRatio);
         jumpCount = 0;
+       // speed.x += acceleration * Time.deltaTime;
+       // if (speed.x >= maxXSpeed)
+       // {
+      //      speed.x = maxXSpeed;
+       // }
+       
+       
     }
 if (collision.gameObject.CompareTag("Ground")){
 isOnGround=true;

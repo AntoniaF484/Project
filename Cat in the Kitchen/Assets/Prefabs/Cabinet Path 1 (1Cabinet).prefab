@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3000820100823898923}
   - component: {fileID: 283422689183308582}
   - component: {fileID: 513443564001421311}
+  - component: {fileID: 4298959752158890986}
   m_Layer: 0
   m_Name: Cabinet Path 1 (1Cabinet)
   m_TagString: Path
@@ -32,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.2, y: 10, z: 0}
-  m_LocalScale: {x: 6, y: 5, z: 1}
+  m_LocalScale: {x: 89.43001, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2875653160628718975}
@@ -129,7 +130,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832560921310802879}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef486fb5ded78469e911f0546fca8c89, type: 3}
   m_Name: 
@@ -141,7 +142,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832560921310802879}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a80542232a6544e98dfe886d9ed962a, type: 3}
   m_Name: 
@@ -150,6 +151,21 @@ MonoBehaviour:
   - {fileID: 4385853492939910507, guid: 727c2d302425343c1bd71d594161333b, type: 3}
   - {fileID: 7441001505352772423, guid: d1155016c7bbf4be9b4aeb188b312b88, type: 3}
   spawnLocation: {fileID: 2875653160628718975}
+--- !u!114 &4298959752158890986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832560921310802879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab762312ab95243e4ab12938ba61d7ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathHeight: 0
+  pathRight: 0
+  screenRight: 0
 --- !u!1 &8374348577771225423
 GameObject:
   m_ObjectHideFlags: 0
