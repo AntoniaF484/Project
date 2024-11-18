@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,27 +13,30 @@ public float speed = 10.0f;
 public bool isOnGround = true;
 public float gravityModifier;
 public bool gameOver = false;
-  
+public int maxJumps = 2;
+public int jumpCount = 0;
+
+    
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
-    Physics.gravity*=gravityModifier;
-    
+        Physics.gravity*=gravityModifier;
     }
 
     // Update is called once per frame
     void Update()
     {
-       if (Input.GetKeyDown(KeyCode.Space) && !gameOver)
-      {
-          playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-
-        }
-      horizontalInput = Input.GetAxis("Horizontal");
-     transform.Translate(Vector3.right*horizontalInput*Time.deltaTime*speed);
+       if (Input.GetKeyDown(KeyCode.Space) && jumpCount<maxJumps && !gameOver)
+       {
+           playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+           jumpCount++;
+       }
 
       
+      horizontalInput = Input.GetAxis("Horizontal");
+     transform.Translate(Vector3.right*horizontalInput*Time.deltaTime*speed);
+       
       if (transform.position.y <playerSize)
       {
           transform.position = new Vector3(transform.position.x, playerSize, 0);
@@ -40,8 +44,15 @@ public bool gameOver = false;
             
     }
 private void OnCollisionEnter (Collision collision){
+
+    if (collision.gameObject.CompareTag("Path"))
+    {
+        jumpCount = 0;
+    }
 if (collision.gameObject.CompareTag("Ground")){
 isOnGround=true;
 gameOver=true;
 Debug.Log ("Game Over!");}}
+
+
 }

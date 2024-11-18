@@ -49,7 +49,7 @@ GameObject:
   - component: {fileID: 779587369290641167}
   m_Layer: 0
   m_Name: Cabinet Path 1 (2Cabinets)
-  m_TagString: Untagged
+  m_TagString: Path
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
