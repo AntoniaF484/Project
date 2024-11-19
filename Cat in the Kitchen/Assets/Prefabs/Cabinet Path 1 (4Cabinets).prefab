@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3000820100823898923}
   - component: {fileID: 513443564001421311}
   m_Layer: 0
-  m_Name: Cabinet Path 1 (1Cabinet)
+  m_Name: Cabinet Path 1 (4Cabinets)
   m_TagString: Path
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

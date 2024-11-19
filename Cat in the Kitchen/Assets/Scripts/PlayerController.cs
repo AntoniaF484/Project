@@ -9,7 +9,7 @@ private Rigidbody playerRb;
 private float playerSize = 0.75f;
 public float jumpForce; 
 public float horizontalInput;
-public float moveSpeed = 10.0f;
+public float moveSpeed = 20.0f;
 public float acceleration = 2;
 public float maxAcceleration = 2;
 public float maxXSpeed = 10.0f;
