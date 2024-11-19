@@ -16,7 +16,8 @@ public class DestroyOutOfBounds : MonoBehaviour
     {
         if (transform.position.x<DestructionPoint.transform.position.x)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
