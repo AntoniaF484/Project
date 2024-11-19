@@ -18,18 +18,21 @@ public class PathGenerator : MonoBehaviour
         void Start()
         {
             platformWidth = Platform1.GetComponent<Renderer>().bounds.size.x;
-            Debug.Log("Platform Width: " + platformWidth);
+      
         }
 
         // Update is called once per frame
         void Update()
+        
         {
-            while (transform.position.x < generationPoint.position.x)
+         
+            if (transform.position.x < generationPoint.position.x)
             {
                 transform.position = new Vector3(transform.position.x + platformWidth + distanceBetween,
                     transform.position.y, transform.position.z);
 
                 Instantiate(Platform1,transform.position, transform.rotation);
+               
             }
         }
     

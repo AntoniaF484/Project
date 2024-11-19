@@ -9,7 +9,7 @@ private Rigidbody playerRb;
 private float playerSize = 0.75f;
 public float jumpForce; 
 public float horizontalInput;
-public float speed = 10.0f;
+public float moveSpeed = 10.0f;
 public float acceleration = 2;
 public float maxAcceleration = 2;
 public float maxXSpeed = 10.0f;
@@ -36,9 +36,9 @@ public int jumpCount = 0;
            jumpCount++;
        }
 
-      
-      horizontalInput = Input.GetAxis("Horizontal");
-     transform.Translate(Vector3.right*horizontalInput*Time.deltaTime*speed);
+       playerRb.velocity = new Vector3(moveSpeed, playerRb.velocity.y, playerRb.velocity.z); 
+      //horizontalInput = Input.GetAxis("Horizontal");
+     //transform.Translate(Vector3.right*horizontalInput*Time.deltaTime*speed);
        
       if (transform.position.y <playerSize)
       {
@@ -50,16 +50,7 @@ private void OnCollisionEnter (Collision collision){
 
     if (collision.gameObject.CompareTag("Path"))
     {
-        //float speedRatio = speed.x / maxXSpeed;
-       // acceleration = maxAcceleration * (1 - speedRatio);
         jumpCount = 0;
-       // speed.x += acceleration * Time.deltaTime;
-       // if (speed.x >= maxXSpeed)
-       // {
-      //      speed.x = maxXSpeed;
-       // }
-       
-       
     }
 if (collision.gameObject.CompareTag("Ground")){
 isOnGround=true;
