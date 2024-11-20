@@ -10,7 +10,10 @@ private float playerSize = 0.75f;
 public float jumpForce; 
 public float horizontalInput;
 public float moveSpeed = 20.0f;
+public float maxSpeed;
 public float acceleration = 2;
+public float speedIncreasePosition;
+private float speedIncreaseCount;
 public float maxAcceleration = 2;
 public float maxXSpeed = 10.0f;
 public bool isOnGround = true;
@@ -34,6 +37,16 @@ public int jumpCount = 0;
        {
            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
            jumpCount++;
+       }
+
+       if (transform.position.x > speedIncreaseCount)
+       {
+           speedIncreaseCount += speedIncreasePosition;
+           moveSpeed = moveSpeed * acceleration;
+       }
+       else if (moveSpeed > maxSpeed)
+       {
+           moveSpeed = maxSpeed;
        }
 
        playerRb.velocity = new Vector3(moveSpeed, playerRb.velocity.y, playerRb.velocity.z); 
