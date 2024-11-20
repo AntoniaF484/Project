@@ -43,10 +43,6 @@ GameObject:
   - component: {fileID: 5468664906087704863}
   - component: {fileID: 7033547310398310476}
   - component: {fileID: 2051289991760953249}
-  - component: {fileID: 1554674927155733767}
-  - component: {fileID: 5694832727811886252}
-  - component: {fileID: 2242398105184111534}
-  - component: {fileID: 779587369290641167}
   m_Layer: 0
   m_Name: Cabinet Path 1 (2Cabinets)
   m_TagString: Path
@@ -64,7 +60,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.4, y: 10, z: 0}
-  m_LocalScale: {x: 12, y: 5, z: 1}
+  m_LocalScale: {x: 12, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6688923946826623916}
@@ -142,65 +138,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2, y: 1.1163539, z: 1}
   m_Center: {x: 0.0014259617, y: -0.05817628, z: 0}
---- !u!114 &1554674927155733767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2855750198673226734}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c8dc56a6e85142d592401592d1267f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 30
---- !u!114 &5694832727811886252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2855750198673226734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef486fb5ded78469e911f0546fca8c89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DestructionPoint: {fileID: 0}
---- !u!114 &2242398105184111534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2855750198673226734}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a80542232a6544e98dfe886d9ed962a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FoodPrefabs:
-  - {fileID: 4385853492939910507, guid: 727c2d302425343c1bd71d594161333b, type: 3}
-  - {fileID: 7441001505352772423, guid: d1155016c7bbf4be9b4aeb188b312b88, type: 3}
-  spawnLocation: {fileID: 6688923946826623916}
---- !u!114 &779587369290641167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2855750198673226734}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bfdc72c079a1475fa13a971a3329953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObstaclePrefabs:
-  - {fileID: 6361222465766358312, guid: fb18850f1b15d48649c0f86c0ba4b060, type: 3}
-  - {fileID: 6164114538591958951, guid: 808b30b36826b4be78dbcd25dfcea122, type: 3}
-  - {fileID: 331496177343044671, guid: b0389e2e0f01249a6a133f765f19ebdc, type: 3}
-  spawnLocation: {fileID: 7802489917343494281}
 --- !u!1 &3172734948137805861
 GameObject:
   m_ObjectHideFlags: 0

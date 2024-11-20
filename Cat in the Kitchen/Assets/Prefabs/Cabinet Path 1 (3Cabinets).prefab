@@ -43,8 +43,6 @@ GameObject:
   - component: {fileID: 5468664906087704863}
   - component: {fileID: 7033547310398310476}
   - component: {fileID: 2051289991760953249}
-  - component: {fileID: 8408065050608577493}
-  - component: {fileID: 2560441318310331984}
   m_Layer: 0
   m_Name: Cabinet Path 1 (3Cabinets)
   m_TagString: Path
@@ -62,7 +60,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 24.9, y: 10, z: 0}
-  m_LocalScale: {x: 18, y: 5, z: 1}
+  m_LocalScale: {x: 18, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2516620691965242020}
@@ -140,39 +138,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0872952, y: 1.1080269, z: 1}
   m_Center: {x: 0.00000018543668, y: -0.05401335, z: 0}
---- !u!114 &8408065050608577493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2855750198673226734}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a80542232a6544e98dfe886d9ed962a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FoodPrefabs:
-  - {fileID: 4385853492939910507, guid: 727c2d302425343c1bd71d594161333b, type: 3}
-  - {fileID: 7441001505352772423, guid: d1155016c7bbf4be9b4aeb188b312b88, type: 3}
-  spawnLocation: {fileID: 2516620691965242020}
---- !u!114 &2560441318310331984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2855750198673226734}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bfdc72c079a1475fa13a971a3329953, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObstaclePrefabs:
-  - {fileID: 6361222465766358312, guid: fb18850f1b15d48649c0f86c0ba4b060, type: 3}
-  - {fileID: 6164114538591958951, guid: 808b30b36826b4be78dbcd25dfcea122, type: 3}
-  - {fileID: 331496177343044671, guid: b0389e2e0f01249a6a133f765f19ebdc, type: 3}
-  spawnLocation: {fileID: 7071699727281540925}
 --- !u!1 &9082768970999161219
 GameObject:
   m_ObjectHideFlags: 0

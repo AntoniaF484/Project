@@ -40,11 +40,13 @@ private float platformWidth;
 
     public ObjectPooler [] theObjectPoolsPath1;
     public ObjectPooler[] theObjectPoolsPath2;
+
+    private FoodGenerator foodGenerator;
     
     //test
-    public GameObject Platform2;
+    //public GameObject Platform2;
   //  public Transform generationPoint2;
-    public float distanceBetween2;
+  //  public float distanceBetween2;
     private float platformWidth2;
     
     
@@ -73,6 +75,9 @@ private float platformWidth;
          path2Position = new Vector3(transform.position.x, minYpath2, transform.position.z);
          minYpath2 = minYPointPath2.position.y;
          maxYpath2 = maxYPointPath2.position.y;
+
+
+         foodGenerator = FindObjectOfType<FoodGenerator>();
 
          // TEST platformWidth2 = Platform2.GetComponent<Renderer>().bounds.size.x;
         }
@@ -110,7 +115,9 @@ private float platformWidth;
                 newPlatform.transform.position = path1Position;
                 newPlatform.transform.rotation = transform.rotation;
                 newPlatform.SetActive(true);
-              
+                
+              foodGenerator.SpawnFood(new Vector3(path1Position.x,path1Position.y+3f,path1Position.z));
+                
                 path1Position = new Vector3(path1Position.x + (platformWidths1[platformSelector1]/2),
                     path1Position.y, path1Position.z);
 
@@ -133,31 +140,38 @@ private float platformWidth;
             }*/
            // minYpath2 = minYPointPath2.position.y;
            // maxYpath2 = maxYPointPath2.position.y;
-            if (path2Position.x < generationPoint2.position.x)
-            {
-                distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
-                platformSelector2 = Random.Range(0, theObjectPoolsPath2.Length);
-                Path2YChange = path2Position.y + Random.Range(-maxYchangePath2, maxYchangePath2); 
-                if (Path2YChange > maxYpath2)
-                {
-                    Path2YChange = maxYpath2;
-                }
-                
-                else if (Path2YChange < minYpath2)
-                {
-                    Path2YChange = minYpath2;
-                }
-                
-                
-                path2Position = new Vector3(path2Position.x + (platformWidths2[platformSelector2]/2) + distanceBetween,
-                    Path2YChange, path2Position.z);
+           if (path2Position.x < generationPoint2.position.x)
+           {
+               distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
+               platformSelector2 = Random.Range(0, theObjectPoolsPath2.Length);
+               Path2YChange = path2Position.y + Random.Range(-maxYchangePath2, maxYchangePath2);
+               if (Path2YChange > maxYpath2)
+               {
+                   Path2YChange = maxYpath2;
+               }
 
-                GameObject newPlatform = theObjectPoolsPath2 [platformSelector2].GetPooledObject();
-                newPlatform.transform.position = path2Position;
-                newPlatform.transform.rotation = transform.rotation;
-                newPlatform.SetActive(true);
+               else if (Path2YChange < minYpath2)
+               {
+                   Path2YChange = minYpath2;
+               }
 
-                path2Position = new Vector3(path2Position.x + (platformWidths2[platformSelector2]/2),
+
+               path2Position = new Vector3(path2Position.x + (platformWidths2[platformSelector2] / 2) + distanceBetween,
+                   Path2YChange, path2Position.z);
+
+               GameObject newPlatform = theObjectPoolsPath2[platformSelector2].GetPooledObject();
+               newPlatform.transform.position = path2Position;
+               newPlatform.transform.rotation = transform.rotation;
+               newPlatform.SetActive(true);
+
+               int RandomNumber = Random.Range(0, 100);
+               if (RandomNumber < 90)
+               {
+
+               foodGenerator.SpawnFood(new Vector3(path2Position.x, path2Position.y + 3f, path2Position.z));
+                }
+
+           path2Position = new Vector3(path2Position.x + (platformWidths2[platformSelector2]/2),
                     path2Position.y, path2Position.z);
 
             }

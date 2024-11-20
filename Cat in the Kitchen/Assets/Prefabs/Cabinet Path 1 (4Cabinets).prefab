@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 2298600990945046244}
   - component: {fileID: 336829613713873614}
   - component: {fileID: 7989292146386382097}
-  - component: {fileID: 3000820100823898923}
-  - component: {fileID: 513443564001421311}
+  - component: {fileID: 9147982400609456303}
   m_Layer: 0
   m_Name: Cabinet Path 1 (4Cabinets)
   m_TagString: Path
@@ -31,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.2, y: 10, z: 0}
-  m_LocalScale: {x: 24, y: 5, z: 1}
+  m_LocalScale: {x: 24, y: 2.5, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2875653160628718975}
@@ -108,35 +107,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.1136868, y: 1.0682114, z: 1}
   m_Center: {x: 0.0037896633, y: -0.034105446, z: 0}
---- !u!114 &3000820100823898923
+--- !u!114 &9147982400609456303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832560921310802879}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c8dc56a6e85142d592401592d1267f4, type: 3}
+  m_Script: {fileID: 11500000, guid: a56af4e190bb6416d9ddc32643c4656e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
---- !u!114 &513443564001421311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832560921310802879}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a80542232a6544e98dfe886d9ed962a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FoodPrefabs:
-  - {fileID: 4385853492939910507, guid: 727c2d302425343c1bd71d594161333b, type: 3}
-  - {fileID: 7441001505352772423, guid: d1155016c7bbf4be9b4aeb188b312b88, type: 3}
-  spawnLocation: {fileID: 2875653160628718975}
+  foodPool:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &8374348577771225423
 GameObject:
   m_ObjectHideFlags: 0
