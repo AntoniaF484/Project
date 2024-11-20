@@ -659,10 +659,11 @@ MonoBehaviour:
   distanceBetweenMin: 2
   distanceBetweenMax: 4
   maxYPointPath1: {fileID: 828427007}
-  maxYchangePath1: 18
+  maxYchangePath1: 15
   maxYPointPath2: {fileID: 1911386966}
   minYPointPath2: {fileID: 148149255}
-  maxYchangePath2: 20
+  maxYchangePath2: 30
+  path2Position: {x: 0, y: 0, z: 0}
   theObjectPoolsPath1:
   - {fileID: 1322786898}
   - {fileID: 1257520274}
@@ -671,6 +672,8 @@ MonoBehaviour:
   - {fileID: 369965727}
   - {fileID: 1976746312}
   - {fileID: 1127698177}
+  Platform2: {fileID: 0}
+  distanceBetween2: 0
 --- !u!4 &590072912
 Transform:
   m_ObjectHideFlags: 0
@@ -1635,50 +1638,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b1e3b465782c4829ad71600a95ebb5d, type: 3}
---- !u!1 &1660300354
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1660300356}
-  - component: {fileID: 1660300355}
-  m_Layer: 0
-  m_Name: SpawnManager_Food
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1660300355
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660300354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86a68738008ad43a4bb92680a7f3c090, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1660300356
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1660300354}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.1, y: 1.4000001, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1669844767
 GameObject:
   m_ObjectHideFlags: 0
@@ -2039,7 +1998,6 @@ SceneRoots:
   - {fileID: 8028282117079916436}
   - {fileID: 1108107729}
   - {fileID: 1533866922}
-  - {fileID: 1660300356}
   - {fileID: 1956984611}
   - {fileID: 1339882739}
   - {fileID: 330837358}

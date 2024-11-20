@@ -35,6 +35,7 @@ private float platformWidth;
     private float Path2YChange;
     public float maxYchangePath2;
     public Vector3 path2Position;
+    public Vector3 path1Position;
 
     public ObjectPooler [] theObjectPoolsPath1;
     public ObjectPooler[] theObjectPoolsPath2;
@@ -69,8 +70,8 @@ private float platformWidth;
            }
            
          path2Position = new Vector3(transform.position.x, maxYPointPath2.position.y, transform.position.z);
-        // minYpath2 = minYPointPath2.position.y;
-        // maxYpath2 = maxYPointPath2.position.y;
+        minYpath2 = minYPointPath2.position.y;
+        maxYpath2 = maxYPointPath2.position.y;
 
          // TEST platformWidth2 = Platform2.GetComponent<Renderer>().bounds.size.x;
         }
@@ -87,11 +88,11 @@ private float platformWidth;
 
      void GeneratePath1()
        {
-            if (transform.position.x < generationPoint.position.x)
+            if (path1Position.x < generationPoint.position.x)
             {
                 distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
                 platformSelector1 = Random.Range(0, theObjectPoolsPath1.Length);
-                Path1YChange = transform.position.y + Random.Range(-maxYchangePath1, maxYchangePath1);
+                Path1YChange = path1Position.y + Random.Range(-maxYchangePath1, maxYchangePath1);
                 if (Path1YChange > maxYchangePath1)
                 {
                     Path1YChange = maxYpath1;
@@ -100,17 +101,17 @@ private float platformWidth;
                 {
                     Path1YChange = minYPath1;
                 }
-                transform.position = new Vector3(transform.position.x + (platformWidths1[platformSelector1]/2) + distanceBetween,
-                    Path1YChange, transform.position.z);
+                path1Position = new Vector3(path1Position.x + (platformWidths1[platformSelector1]/2) + distanceBetween,
+                    Path1YChange, path1Position.z);
 
                 
                 GameObject newPlatform = theObjectPoolsPath1 [platformSelector1].GetPooledObject();
-                newPlatform.transform.position = transform.position;
+                newPlatform.transform.position = path1Position;
                 newPlatform.transform.rotation = transform.rotation;
                 newPlatform.SetActive(true);
               
-                transform.position = new Vector3(transform.position.x + (platformWidths1[platformSelector1]/2),
-                    transform.position.y, transform.position.z);
+                path1Position = new Vector3(path1Position.x + (platformWidths1[platformSelector1]/2),
+                    path1Position.y, path1Position.z);
 
             }
         }
@@ -124,11 +125,11 @@ private float platformWidth;
 
 
 
-             platformWidths2 = new float [theObjectPoolsPath2.Length];
+         /*    platformWidths2 = new float [theObjectPoolsPath2.Length];
             for (int i = 0; i < theObjectPoolsPath2.Length; i++)
             {
                 platformWidths2[i] = theObjectPoolsPath2[i].pooledObject.GetComponent<Renderer>().bounds.size.x;
-            }
+            }*/
            // minYpath2 = minYPointPath2.position.y;
            // maxYpath2 = maxYPointPath2.position.y;
             if (path2Position.x < generationPoint2.position.x)
@@ -148,12 +149,12 @@ private float platformWidth;
                     Path2YChange, path2Position.z);
 
                 GameObject newPlatform = theObjectPoolsPath2 [platformSelector2].GetPooledObject();
-                newPlatform.transform.position = transform.position;
+                newPlatform.transform.position = path2Position;
                 newPlatform.transform.rotation = transform.rotation;
                 newPlatform.SetActive(true);
 
-                transform.position = new Vector3(transform.position.x + (platformWidths2[platformSelector2]/2),
-                    transform.position.y, transform.position.z);
+                path2Position = new Vector3(path2Position.x + (platformWidths2[platformSelector2]/2),
+                    path2Position.y, path2Position.z);
 
             }
         }
