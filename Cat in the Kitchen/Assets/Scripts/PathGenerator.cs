@@ -69,9 +69,9 @@ private float platformWidth;
                platformWidths2[i] = theObjectPoolsPath2[i].pooledObject.GetComponent<Renderer>().bounds.size.x;
            }
            
-         path2Position = new Vector3(transform.position.x, maxYPointPath2.position.y, transform.position.z);
-        minYpath2 = minYPointPath2.position.y;
-        maxYpath2 = maxYPointPath2.position.y;
+         path2Position = new Vector3(transform.position.x, minYpath2, transform.position.z);
+         minYpath2 = minYPointPath2.position.y;
+         maxYpath2 = maxYPointPath2.position.y;
 
          // TEST platformWidth2 = Platform2.GetComponent<Renderer>().bounds.size.x;
         }
@@ -136,15 +136,18 @@ private float platformWidth;
             {
                 distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
                 platformSelector2 = Random.Range(0, theObjectPoolsPath2.Length);
-                Path2YChange = path2Position.y + Random.Range(-maxYchangePath2, maxYchangePath2);
-                if (Path2YChange > maxYchangePath2)
+                Path2YChange = path2Position.y + Random.Range(-maxYchangePath2, maxYchangePath2); 
+                if (Path2YChange > maxYpath2)
                 {
                     Path2YChange = maxYpath2;
                 }
+                
                 else if (Path2YChange < minYpath2)
                 {
                     Path2YChange = minYpath2;
                 }
+                
+                
                 path2Position = new Vector3(path2Position.x + (platformWidths2[platformSelector2]/2) + distanceBetween,
                     Path2YChange, path2Position.z);
 
