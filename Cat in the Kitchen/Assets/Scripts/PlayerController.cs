@@ -28,6 +28,7 @@ public int jumpCount = 0;
     {
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity*=gravityModifier;
+        speedIncreaseCount = speedIncreasePosition;
     }
 
     // Update is called once per frame
@@ -42,7 +43,7 @@ public int jumpCount = 0;
        if (transform.position.x > speedIncreaseCount)
        {
            speedIncreaseCount += speedIncreasePosition;
-           moveSpeed = moveSpeed * acceleration;
+           moveSpeed *= acceleration;
        }
        else if (moveSpeed > maxSpeed)
        {

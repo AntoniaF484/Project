@@ -24,6 +24,7 @@ public class PathGenerator : MonoBehaviour
 private float platformWidth;
     private float minYPath1;
     public Transform maxYPointPath1;
+    public Transform minYPointPath1;
     private float maxYpath1;
     private float Path1YChange;
     public float maxYchangePath1;
@@ -60,7 +61,7 @@ private float platformWidth;
                platformWidths1[i] = theObjectPoolsPath1[i].pooledObject.GetComponent<Renderer>().bounds.size.x;
            }
 
-           minYPath1 = transform.position.y;
+           minYPath1 = minYPointPath1.position.y;
            maxYpath1 = maxYPointPath1.position.y;
            
         platformWidths2 = new float [theObjectPoolsPath2.Length];
