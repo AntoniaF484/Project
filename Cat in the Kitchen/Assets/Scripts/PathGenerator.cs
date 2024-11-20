@@ -165,7 +165,7 @@ private float platformWidth;
                newPlatform.SetActive(true);
 
                int RandomNumber = Random.Range(0, 100);
-               if (RandomNumber < 90)
+               if (RandomNumber < 70)
                {
 
                foodGenerator.SpawnFood(new Vector3(path2Position.x, path2Position.y + 3f, path2Position.z));

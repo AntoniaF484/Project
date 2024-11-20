@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8732275767290507328}
   - component: {fileID: 1467345569611003504}
   - component: {fileID: 7849842355859327974}
+  - component: {fileID: 3117854954533172552}
   m_Layer: 0
   m_Name: Cabinet Path 2 (0.5Cabinet)
   m_TagString: Path
@@ -106,6 +107,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3117854954533172552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249809364037480320}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a56af4e190bb6416d9ddc32643c4656e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foodPool:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &9106918261937752600
 GameObject:
   m_ObjectHideFlags: 0
