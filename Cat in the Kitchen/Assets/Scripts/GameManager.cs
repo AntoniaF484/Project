@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     private int score;
 
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI gameOverText;
+
+    public bool isGameActive = true;
     //public Transform PathGenerator;
     //private Vector3 pathStartPoint;
 
@@ -17,10 +20,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateScore(0); 
-        
-        // pathStartPoint = PathGenerator.position;
-        // playerStartPoint = Player.transform.position;
+        UpdateScore(0);
+        isGameActive = true;
+
+
     }
 
     // Update is called once per frame
@@ -34,5 +37,11 @@ public class GameManager : MonoBehaviour
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
         
+    }
+
+    public void GameOver()
+    {
+        gameOverText.gameObject.SetActive(true);
+        isGameActive = false;
     }
 }

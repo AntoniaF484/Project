@@ -22,6 +22,8 @@ public bool gameOver = false;
 public int maxJumps = 2;
 public int jumpCount = 0;
 
+private GameManager gameManager;
+
     
     // Start is called before the first frame update
     void Start()
@@ -66,10 +68,11 @@ private void OnCollisionEnter (Collision collision){
     {
         jumpCount = 0;
     }
-if (collision.gameObject.CompareTag("Ground")){
-isOnGround=true;
-gameOver=true;
-Debug.Log ("Game Over!");}}
 
 
 }
+
+}
+
+
+
