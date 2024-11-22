@@ -17,9 +17,9 @@ public class PathGenerator : MonoBehaviour
     private int platformSelector1;
    private int platformSelector2;
     
-    private float distanceBetween;
-    public float distanceBetweenMin;
-    public float distanceBetweenMax;
+    private float distanceBetweenPath1;
+    public float distanceBetweenMinPath1;
+    public float distanceBetweenMaxPath1;
     
 private float platformWidth;
     private float minYPath1;
@@ -37,6 +37,9 @@ private float platformWidth;
     public float maxYchangePath2;
     public Vector3 path2Position;
     public Vector3 path1Position;
+    public float distanceBetweenMinPath2;
+    public float distanceBetweenMaxPath2;
+    private float distanceBetweenPath2;
 
     public ObjectPooler [] theObjectPoolsPath1;
     public ObjectPooler[] theObjectPoolsPath2;
@@ -80,7 +83,7 @@ private float platformWidth;
 
          objGenerator = FindObjectOfType<FoodObstaclePowerupGenerator>();
          
-         int RandomNumber = Random.Range(0, 100);
+         //int RandomNumber = Random.Range(0, 100);
 
          // TEST platformWidth2 = Platform2.GetComponent<Renderer>().bounds.size.x;
         }
@@ -100,7 +103,7 @@ private float platformWidth;
        {
             if (path1Position.x < generationPoint.position.x)
             {
-                distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
+                distanceBetweenPath1 = Random.Range(distanceBetweenMinPath1, distanceBetweenMaxPath1);
                 platformSelector1 = Random.Range(0, theObjectPoolsPath1.Length);
                 Path1YChange = path1Position.y + Random.Range(-maxYchangePath1, maxYchangePath1);
                 if (Path1YChange > maxYchangePath1)
@@ -111,7 +114,7 @@ private float platformWidth;
                 {
                     Path1YChange = minYPath1;
                 }
-                path1Position = new Vector3(path1Position.x + (platformWidths1[platformSelector1]/2) + distanceBetween,
+                path1Position = new Vector3(path1Position.x + (platformWidths1[platformSelector1]/2) + distanceBetweenPath1,
                     Path1YChange, path1Position.z);
 
                 
@@ -162,7 +165,7 @@ private float platformWidth;
            // maxYpath2 = maxYPointPath2.position.y;
            if (path2Position.x < generationPoint2.position.x)
            {
-               distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
+               distanceBetweenPath2 = Random.Range(distanceBetweenMinPath2, distanceBetweenMaxPath2);
                platformSelector2 = Random.Range(0, theObjectPoolsPath2.Length);
                Path2YChange = path2Position.y + Random.Range(-maxYchangePath2, maxYchangePath2);
                if (Path2YChange > maxYpath2)
@@ -176,7 +179,7 @@ private float platformWidth;
                }
 
 
-               path2Position = new Vector3(path2Position.x + (platformWidths2[platformSelector2] / 2) + distanceBetween,
+               path2Position = new Vector3(path2Position.x + (platformWidths2[platformSelector2] / 2) + distanceBetweenPath2,
                    Path2YChange, path2Position.z);
 
                GameObject newPlatform = theObjectPoolsPath2[platformSelector2].GetPooledObject();

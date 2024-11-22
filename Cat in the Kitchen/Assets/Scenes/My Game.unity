@@ -854,8 +854,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generationPoint: {fileID: 1669844768}
   generationPoint2: {fileID: 648823656}
-  distanceBetweenMin: 4
-  distanceBetweenMax: 6
+  distanceBetweenMinPath1: 2
+  distanceBetweenMaxPath1: 4
   maxYPointPath1: {fileID: 828427007}
   minYPointPath1: {fileID: 681943671}
   maxYchangePath1: 15
@@ -864,6 +864,8 @@ MonoBehaviour:
   maxYchangePath2: 15
   path2Position: {x: 0, y: 0, z: 0}
   path1Position: {x: 0, y: 0, z: 0}
+  distanceBetweenMinPath2: 15
+  distanceBetweenMaxPath2: 20
   theObjectPoolsPath1:
   - {fileID: 1322786898}
   - {fileID: 1257520274}
