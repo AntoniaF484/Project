@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 3615654686826521977}
   - component: {fileID: 47921960578985412}
   - component: {fileID: 5591786255820016109}
-  - component: {fileID: 491656635755346911}
-  - component: {fileID: 7543928880624703618}
   - component: {fileID: 3046542124799399755}
   m_Layer: 0
   m_Name: Food 2
@@ -136,32 +134,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 108
   m_CollisionDetection: 0
---- !u!114 &491656635755346911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7441001505352772423}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c8dc56a6e85142d592401592d1267f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 30
---- !u!114 &7543928880624703618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7441001505352772423}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef486fb5ded78469e911f0546fca8c89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DestructionPoint: {fileID: 0}
 --- !u!114 &3046542124799399755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,3 +147,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreValue: 150
+  isOnGround: 0

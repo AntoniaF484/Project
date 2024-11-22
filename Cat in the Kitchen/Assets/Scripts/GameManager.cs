@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 
@@ -11,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
+    public Button replayButton;
 
     public PlayerController playerController;
     private Vector3 playerStartPoint;
@@ -31,8 +33,8 @@ public class GameManager : MonoBehaviour
         UpdateScore(0);
         isGameActive = true;
 
-        path1StartPoint = PathGenerator.position;
-       playerStartPoint = playerController.transform.position;
+     //   path1StartPoint = PathGenerator.position;
+     //  playerStartPoint = playerController.transform.position;
 
 
     }
@@ -53,19 +55,20 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
+        replayButton.gameObject.SetActive(true);
         isGameActive = false;
 
     }
 
     public void RestartGame()
     {
-        StartCoroutine("RestartGameCo");
-       // isGameActive = true;
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+       // StartCoroutine("RestartGameCo");
+        isGameActive = true;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
     }
 
-    public IEnumerator RestartGameCo()
+   /* public IEnumerator RestartGameCo()
     {
 
         yield return new WaitForSeconds(1f);
@@ -75,5 +78,5 @@ public class GameManager : MonoBehaviour
      //  playerController.transform.position = playerStartPoint;
      //  PathGenerator.position = path1StartPoint;
      //  playerController.gameObject.SetActive(true);
-    }
+    }*/
 }
