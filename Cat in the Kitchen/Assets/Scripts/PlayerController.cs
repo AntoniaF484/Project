@@ -5,79 +5,87 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-private Rigidbody playerRb;
-private float playerSize = 0.75f;
-public float jumpForce; 
-public float horizontalInput;
-public float moveSpeed = 20.0f;
-public float maxSpeed;
-public float acceleration = 2;
-public float speedIncreasePosition;
-private float speedIncreaseCount;
-public float maxAcceleration = 2;
-public float maxXSpeed = 10.0f;
-public bool isOnGround = true;
-public float gravityModifier;
-public bool gameOver = false;
-public int maxJumps = 2;
-public int jumpCount = 0;
-private GameManager gameManager;
-private DetectCollisions detectCollisions;
-    
+    private Rigidbody playerRb;
+    private float playerSize = 0.75f;
+    public float jumpForce;
+    public float horizontalInput;
+    public float moveSpeed = 20.0f;
+    public float maxSpeed;
+    public float acceleration = 2;
+    public float speedIncreasePosition;
+    private float speedIncreaseCount;
+    public float maxAcceleration = 2;
+    public float maxXSpeed = 10.0f;
+    public bool isOnGround = true;
+
+    public float gravityModifier;
+
+//public bool gameOver = false;
+    public int maxJumps = 2;
+    public int jumpCount = 0;
+    public GameManager gameManager;
+    private DetectCollisions detectCollisions;
+
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
-        Physics.gravity*=gravityModifier;
+       // Physics.gravity *= gravityModifier;
+       Physics.gravity = Vector3.down * 9.8f * gravityModifier; 
         speedIncreaseCount = speedIncreasePosition;
-        
-        detectCollisions = GetComponent<DetectCollisions>();
+
+        // yield return null;
+        //playerRb.velocity = new Vector3(moveSpeed, playerRb.velocity.y, playerRb.velocity.z);
+        //playerRb.WakeUp();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-       if (Input.GetKeyDown(KeyCode.Space) && jumpCount<maxJumps && !gameOver)
-       {
-           playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-           jumpCount++;
-       }
+        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps /*&& /*!gameOver*/)
+        {
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jumpCount++;
+        }
 
-       if (transform.position.x > speedIncreaseCount)
-       {
-           speedIncreaseCount += speedIncreasePosition;
-           moveSpeed *= acceleration;
-       }
-       else if (moveSpeed > maxSpeed)
-       {
-           moveSpeed = maxSpeed;
-       }
-       
-       
-       if (detectCollisions.gameOver==false)
-       { playerRb.velocity = new Vector3(moveSpeed, playerRb.velocity.y, playerRb.velocity.z);} 
+        if (transform.position.x > speedIncreaseCount)
+        {
+            speedIncreaseCount += speedIncreasePosition;
+            moveSpeed *= acceleration;
+        }
+        else if (moveSpeed > maxSpeed)
+        {
+            moveSpeed = maxSpeed;
+        }
 
-       
-      //horizontalInput = Input.GetAxis("Horizontal");
-     //transform.Translate(Vector3.right*horizontalInput*Time.deltaTime*speed);
-       
-      if (transform.position.y <playerSize)
-      {
-          transform.position = new Vector3(transform.position.x, playerSize, 0);
-      }
-      
-      
-            
-    } 
-private void OnCollisionEnter (Collision collision){
+        //playerRb.velocity = new Vector3(moveSpeed, playerRb.velocity.y, playerRb.velocity.z);
 
-    if (collision.gameObject.CompareTag("Path"))
-    {
-        jumpCount = 0;
+
+        if (gameManager.isGameActive)
+        {
+            playerRb.velocity = new Vector3(moveSpeed, playerRb.velocity.y, playerRb.velocity.z);
+        }
+
+        if (transform.position.y < playerSize)
+        {
+            transform.position = new Vector3(transform.position.x, playerSize, 0);
+        }
+
+
+
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
 
-}
+        if (collision.gameObject.CompareTag("Path"))
+        {
+            jumpCount = 0;
+        }
+        
+      
+    }
 
 }
 

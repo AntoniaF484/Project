@@ -8,7 +8,7 @@ public class DetectCollisions : MonoBehaviour
     public int scoreValue;
     private GameManager gameManager;
     public bool isOnGround = false;
-    public bool gameOver = false;
+   // public bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,9 +39,10 @@ public class DetectCollisions : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
-            gameOver = true;
+            //gameOver = true;
             Debug.Log("Game Over!");
             gameManager.GameOver();
+          //  gameManager.RestartGame();
            
         }
     }
