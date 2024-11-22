@@ -21,8 +21,8 @@ public float gravityModifier;
 public bool gameOver = false;
 public int maxJumps = 2;
 public int jumpCount = 0;
-
-
+private GameManager gameManager;
+private DetectCollisions detectCollisions;
     
     // Start is called before the first frame update
     void Start()
@@ -30,6 +30,8 @@ public int jumpCount = 0;
         playerRb = GetComponent<Rigidbody>();
         Physics.gravity*=gravityModifier;
         speedIncreaseCount = speedIncreasePosition;
+        
+        detectCollisions = GetComponent<DetectCollisions>();
     }
 
     // Update is called once per frame
@@ -50,8 +52,12 @@ public int jumpCount = 0;
        {
            moveSpeed = maxSpeed;
        }
+       
+       
+       if (detectCollisions.gameOver==false)
+       { playerRb.velocity = new Vector3(moveSpeed, playerRb.velocity.y, playerRb.velocity.z);} 
 
-       playerRb.velocity = new Vector3(moveSpeed, playerRb.velocity.y, playerRb.velocity.z); 
+       
       //horizontalInput = Input.GetAxis("Horizontal");
      //transform.Translate(Vector3.right*horizontalInput*Time.deltaTime*speed);
        
@@ -59,8 +65,10 @@ public int jumpCount = 0;
       {
           transform.position = new Vector3(transform.position.x, playerSize, 0);
       }
+      
+      
             
-    }
+    } 
 private void OnCollisionEnter (Collision collision){
 
     if (collision.gameObject.CompareTag("Path"))
