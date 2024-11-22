@@ -83,7 +83,7 @@ private float platformWidth;
 
 
          objGenerator = FindObjectOfType<FoodObstaclePowerupGenerator>();
-         gameManager = FindObjectOfType<GameManager>(); 
+         //gameManager = FindObjectOfType<GameManager>(); 
          //int RandomNumber = Random.Range(0, 100);
 
          // TEST platformWidth2 = Platform2.GetComponent<Renderer>().bounds.size.x;
@@ -95,12 +95,9 @@ private float platformWidth;
         void Update()
         
         {
-            if (gameManager.isGameActive)
-            {
+      
                 GeneratePath1();
                 GeneratePath2();
-            }
-
         }
 
      void GeneratePath1()

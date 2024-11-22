@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI gameOverText;
 
-    public bool isGameActive = true;
+  //  public bool isGameActive;
     //public Transform PathGenerator;
     //private Vector3 pathStartPoint;
 
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateScore(0);
-        isGameActive = true;
+        //isGameActive = true;
 
 
     }
@@ -42,6 +42,6 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
-        isGameActive = false;
+        
     }
 }

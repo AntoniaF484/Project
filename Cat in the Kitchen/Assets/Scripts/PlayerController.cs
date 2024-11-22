@@ -22,7 +22,6 @@ public bool gameOver = false;
 public int maxJumps = 2;
 public int jumpCount = 0;
 
-private GameManager gameManager;
 
     
     // Start is called before the first frame update

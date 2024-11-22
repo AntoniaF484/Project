@@ -35,12 +35,15 @@ public class DetectCollisions : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collided with: " + collision.gameObject.name);
+        
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
             gameOver = true;
             Debug.Log("Game Over!");
             gameManager.GameOver();
+           
         }
     }
 }
