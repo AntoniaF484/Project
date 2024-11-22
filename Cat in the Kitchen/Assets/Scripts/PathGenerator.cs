@@ -119,20 +119,25 @@ private float platformWidth;
                 newPlatform.transform.position = path1Position;
                 newPlatform.transform.rotation = transform.rotation;
                 newPlatform.SetActive(true);
-               // int RandomNumber = Random.Range(0, 100);
-               // if (RandomNumber < 70 && RandomNumber > 40)
-               // {
+               int RandomNumberPath1 = Random.Range(0, 100);
+                if (RandomNumberPath1 < 70 && RandomNumberPath1 > 40)
+                {
                     objGenerator.SpawnFood(new Vector3(
                         path1Position.x + Random.Range(-(platformWidths1[platformSelector1] / 2),
                             (platformWidths1[platformSelector1] / 2)), path1Position.y + 3f, path1Position.z));
-              //  }
+               }
 
-               // else if (RandomNumber>40)
-              //  {
-                    objGenerator.SpawnObstacle (new Vector3(path1Position.x + Random.Range(-(platformWidths1[platformSelector1]/2), (platformWidths1[platformSelector1]/2)),path1Position.y+3f,path1Position.z));
+                else if (RandomNumberPath1 > 40)
+                {
+                    objGenerator.SpawnObstacle(new Vector3(
+                        path1Position.x + Random.Range(-(platformWidths1[platformSelector1] / 2),
+                            (platformWidths1[platformSelector1] / 2)), path1Position.y + 3f, path1Position.z));
+                }
+
+                
                     path1Position = new Vector3(path1Position.x + (platformWidths1[platformSelector1]/2),
                         path1Position.y, path1Position.z);
-              //  }
+               
 
                 
 
