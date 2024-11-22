@@ -41,7 +41,8 @@ private float platformWidth;
     public ObjectPooler [] theObjectPoolsPath1;
     public ObjectPooler[] theObjectPoolsPath2;
 
-    private FoodGenerator foodGenerator;
+    private FoodObstaclePowerupGenerator objGenerator;
+    
     
     //test
     //public GameObject Platform2;
@@ -77,7 +78,9 @@ private float platformWidth;
          maxYpath2 = maxYPointPath2.position.y;
 
 
-         foodGenerator = FindObjectOfType<FoodGenerator>();
+         objGenerator = FindObjectOfType<FoodObstaclePowerupGenerator>();
+         
+         int RandomNumber = Random.Range(0, 100);
 
          // TEST platformWidth2 = Platform2.GetComponent<Renderer>().bounds.size.x;
         }
@@ -90,6 +93,7 @@ private float platformWidth;
         {
          GeneratePath1();
           GeneratePath2();
+          
         }
 
      void GeneratePath1()
@@ -115,11 +119,22 @@ private float platformWidth;
                 newPlatform.transform.position = path1Position;
                 newPlatform.transform.rotation = transform.rotation;
                 newPlatform.SetActive(true);
+               // int RandomNumber = Random.Range(0, 100);
+               // if (RandomNumber < 70 && RandomNumber > 40)
+               // {
+                    objGenerator.SpawnFood(new Vector3(
+                        path1Position.x + Random.Range(-(platformWidths1[platformSelector1] / 2),
+                            (platformWidths1[platformSelector1] / 2)), path1Position.y + 3f, path1Position.z));
+              //  }
+
+               // else if (RandomNumber>40)
+              //  {
+                    objGenerator.SpawnObstacle (new Vector3(path1Position.x + Random.Range(-(platformWidths1[platformSelector1]/2), (platformWidths1[platformSelector1]/2)),path1Position.y+3f,path1Position.z));
+                    path1Position = new Vector3(path1Position.x + (platformWidths1[platformSelector1]/2),
+                        path1Position.y, path1Position.z);
+              //  }
+
                 
-              foodGenerator.SpawnFood(new Vector3(path1Position.x + Random.Range(-(platformWidths1[platformSelector1]/2), (platformWidths1[platformSelector1]/2)),path1Position.y+3f,path1Position.z));
-                
-                path1Position = new Vector3(path1Position.x + (platformWidths1[platformSelector1]/2),
-                    path1Position.y, path1Position.z);
 
             }
         }
@@ -165,11 +180,16 @@ private float platformWidth;
                newPlatform.SetActive(true);
 
                int RandomNumber = Random.Range(0, 100);
-               if (RandomNumber < 70)
+               if (RandomNumber < 90 && RandomNumber>30) 
                {
 
-               foodGenerator.SpawnFood(new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z));
+               objGenerator.SpawnFood(new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z));
                 }
+
+               else if (RandomNumber < 30)
+               {objGenerator.SpawnObstacle(new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z));
+                   
+               }
 
            path2Position = new Vector3(path2Position.x + (platformWidths2[platformSelector2]/2),
                     path2Position.y, path2Position.z);

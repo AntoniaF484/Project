@@ -6,6 +6,11 @@ public class FoodGenerator : MonoBehaviour
 {
     public ObjectPooler [] foodPool;
    private int foodSelector;
+   
+   public ObjectPooler [] obstaclePool;
+   private int obstacleSelector;
+   
+   
   //  public float distanceBetweenFood;
   //  public Transform foodLocation;
 
@@ -34,5 +39,16 @@ public class FoodGenerator : MonoBehaviour
             food1.SetActive(true);
 
         }
-    }
+
+        public void SpawnObstacles(Vector3 startPosition)
+        {
+
+            obstacleSelector = Random.Range(0, obstaclePool.Length);
+           
+            GameObject obstacle1 = obstaclePool[obstacleSelector].GetPooledObject();
+            obstacle1.transform.position = startPosition;
+            obstacle1.SetActive(true);
+
+        }
+}
 
