@@ -116,7 +116,7 @@ private float platformWidth;
                 newPlatform.transform.rotation = transform.rotation;
                 newPlatform.SetActive(true);
                 
-              foodGenerator.SpawnFood(new Vector3(path1Position.x,path1Position.y+3f,path1Position.z));
+              foodGenerator.SpawnFood(new Vector3(path1Position.x + Random.Range(-(platformWidths1[platformSelector1]/2), (platformWidths1[platformSelector1]/2)),path1Position.y+3f,path1Position.z));
                 
                 path1Position = new Vector3(path1Position.x + (platformWidths1[platformSelector1]/2),
                     path1Position.y, path1Position.z);
@@ -168,7 +168,7 @@ private float platformWidth;
                if (RandomNumber < 70)
                {
 
-               foodGenerator.SpawnFood(new Vector3(path2Position.x, path2Position.y + 3f, path2Position.z));
+               foodGenerator.SpawnFood(new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z));
                 }
 
            path2Position = new Vector3(path2Position.x + (platformWidths2[platformSelector2]/2),
