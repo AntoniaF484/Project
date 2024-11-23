@@ -84,12 +84,13 @@ public class PathGenerator : MonoBehaviour
         void Update()
         
         {
-                GeneratePath1();
-                GeneratePath2();
+              //  GeneratePath1();
+               // GeneratePath2();
         }
 
-     void GeneratePath1()
+    public void GeneratePath1()
        {
+           
             if (path1Position.x < generationPoint.position.x)
             {
                 distanceBetweenPath1 = Random.Range(distanceBetweenMinPath1, distanceBetweenMaxPath1);
@@ -136,7 +137,7 @@ public class PathGenerator : MonoBehaviour
 
             }
         }
-       void GeneratePath2()
+      public void GeneratePath2()
        
         {
         

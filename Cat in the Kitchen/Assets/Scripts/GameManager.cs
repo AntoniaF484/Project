@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -14,7 +15,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
     public Button replayButton;
 
-    public PlayerController playerController;
+    private PlayerController playerController;
+    private PathGenerator pathGenerator;
     private Vector3 playerStartPoint;
 
     public Transform GenerationPoint;
@@ -32,12 +34,19 @@ public class GameManager : MonoBehaviour
     {
       UpdateScore(0);
         isGameActive = true;
+        //playerController = FindObjectOfType < PlayerController>();
+        pathGenerator=FindObjectOfType<PathGenerator> ();
+        
+        
 
-     //   path1StartPoint = PathGenerator.position;
-     //  playerStartPoint = playerController.transform.position;
+
+        //   path1StartPoint = PathGenerator.position;
+        //  playerStartPoint = playerController.transform.position;
 
 
     }
+
+   
 
    /* public void StartGame()
     {
@@ -48,7 +57,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        StartGeneratingPaths();
+    }
+    
+    void StartGeneratingPaths()
+    {
+        pathGenerator.GeneratePath1();
+        pathGenerator.GeneratePath2();
     }
 
     public void UpdateScore(int scoreToAdd)
