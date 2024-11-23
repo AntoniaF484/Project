@@ -26,47 +26,42 @@ public class GameManager : MonoBehaviour
    public bool isGameActive;
     public Transform PathGenerator;
     private Vector3 pathStartPoint;
-
-  // public PlayerController Player;
- //private Vector3 playerStartPoint;
-    // Start is called before the first frame update
+    public GameObject titleScreen;
+ 
     void Start()
     {
-      UpdateScore(0);
-        isGameActive = true;
-        //playerController = FindObjectOfType < PlayerController>();
-        pathGenerator=FindObjectOfType<PathGenerator> ();
-        
-        
-
-
-        //   path1StartPoint = PathGenerator.position;
-        //  playerStartPoint = playerController.transform.position;
-
+      //StartGame();
 
     }
 
-   
-
-   /* public void StartGame()
+    public void StartGame()
     {
         UpdateScore(0);
         isGameActive = true;
-    }*/
+        pathGenerator=FindObjectOfType<PathGenerator> ();
+        
+        StartCoroutine(StartGeneratingPaths());
+        titleScreen.gameObject.SetActive(false);
+    }
 
-    // Update is called once per frame
-    void Update()
+   /* void Update()
     {
         StartGeneratingPaths();
     }
-    
-    void StartGeneratingPaths()
-    {
-        pathGenerator.GeneratePath1();
-        pathGenerator.GeneratePath2();
-    }
+    */
+   IEnumerator StartGeneratingPaths()
+   {
+   
+       while (isGameActive) 
+       {
+           pathGenerator.GeneratePath1();
+           pathGenerator.GeneratePath2();
 
-    public void UpdateScore(int scoreToAdd)
+           yield return new WaitForSeconds(0.5f);
+       }
+   }
+
+   public void UpdateScore(int scoreToAdd)
     {
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
@@ -83,21 +78,8 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame()
     {
-       // StartCoroutine("RestartGameCo");
         isGameActive = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
     }
-
-   /* public IEnumerator RestartGameCo()
-    {
-
-        yield return new WaitForSeconds(1f);
-         isGameActive = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-     //  playerController.gameObject.SetActive(false);
-     //  playerController.transform.position = playerStartPoint;
-     //  PathGenerator.position = path1StartPoint;
-     //  playerController.gameObject.SetActive(true);
-    }*/
+    
 }
