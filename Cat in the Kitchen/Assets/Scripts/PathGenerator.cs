@@ -3,65 +3,60 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PathGenerator : MonoBehaviour
-{
-   // public GameObject platform1;
-    //public GameObject[] Path1Prefabs;
+{    
     
-    private float[] platformWidths1;
-
-    private float[] platformWidths2;
-
-    public Transform generationPoint;
-    public Transform generationPoint2;
- 
-    private int platformSelector1;
-   private int platformSelector2;
-    
-    private float distanceBetweenPath1;
-    public float distanceBetweenMinPath1;
-    public float distanceBetweenMaxPath1;
-    
-private float platformWidth;
-    private float minYPath1;
-    public Transform maxYPointPath1;
-    public Transform minYPointPath1;
-    private float maxYpath1;
-    private float Path1YChange;
-    public float maxYchangePath1;
-    
-  public Transform maxYPointPath2;
-    public Transform minYPointPath2;
-    private float maxYpath2;
-    private float minYpath2;
-    private float Path2YChange;
-    public float maxYchangePath2;
-    public Vector3 path2Position;
-    public Vector3 path1Position;
-    public float distanceBetweenMinPath2;
-    public float distanceBetweenMaxPath2;
-    private float distanceBetweenPath2;
-
-    public ObjectPooler [] theObjectPoolsPath1;
-    public ObjectPooler[] theObjectPoolsPath2;
-
+    public Transform generationPoint;//Point in the game at which paths and attached objects are generated (attached to camera position)
     private FoodObstaclePowerupGenerator objGenerator;
     private GameManager gameManager;
     
+//Path 1 Variables
+   
+   public ObjectPooler [] theObjectPoolsPath1;
+   private float[] platformWidths1;
+   private int platformSelector1;
+   
+   //Distance Between generated platforms (x coordinates) 
+   public float distanceBetweenMinPath1;
+   public float distanceBetweenMaxPath1;
+   private float distanceBetweenPath1;
+       
+       
+    // Height of generated platforms (y coordinates)
+        public Transform maxYPointPath1;
+        public Transform minYPointPath1;
+        public float maxYchangePath1;
+        private float maxYpath1;
+        private float minYPath1;
+        private float Path1YChange;
     
-    //test
-    //public GameObject Platform2;
-  //  public Transform generationPoint2;
-  //  public float distanceBetween2;
-    private float platformWidth2;
+    //Position of Path 1 platform
+        private Vector3 path1Position;
+        
+//Path 2 Variables
+   public ObjectPooler[] theObjectPoolsPath2;
+   private float[] platformWidths2;
+   private int platformSelector2;
     
-    
+   //Distance Between generated platforms (x coordinates)
+        public float distanceBetweenMinPath2;
+        public float distanceBetweenMaxPath2; 
+        private float distanceBetweenPath2;
+        
+    // Height of generated platforms (y coordinates)
+        public Transform maxYPointPath2;
+        public Transform minYPointPath2;
+        public float maxYchangePath2;
+        private float maxYpath2;
+        private float minYpath2;
+        private float Path2YChange;
+        
+    //Position of Path 2 platforms
+        private Vector3 path2Position;
 
-    //public GameObject[] Path2Prefabs;
 
     // Start is called before the first frame update
         void Start()
         {
-          //platformWidth = platform1.GetComponent<Renderer>().bounds.size.x;
            platformWidths1 = new float [theObjectPoolsPath1.Length];
            for (int i = 0; i < theObjectPoolsPath1.Length; i++)
            {
@@ -83,19 +78,12 @@ private float platformWidth;
 
 
          objGenerator = FindObjectOfType<FoodObstaclePowerupGenerator>();
-         //gameManager = FindObjectOfType<GameManager>(); 
-         //int RandomNumber = Random.Range(0, 100);
-
-         // TEST platformWidth2 = Platform2.GetComponent<Renderer>().bounds.size.x;
+         
         }
-        
-        
-
-        // Update is called once per frame
+// Update is called once per frame
         void Update()
         
         {
-      
                 GeneratePath1();
                 GeneratePath2();
         }
@@ -105,8 +93,9 @@ private float platformWidth;
             if (path1Position.x < generationPoint.position.x)
             {
                 distanceBetweenPath1 = Random.Range(distanceBetweenMinPath1, distanceBetweenMaxPath1);
-                platformSelector1 = Random.Range(0, theObjectPoolsPath1.Length);
-                Path1YChange = path1Position.y + Random.Range(-maxYchangePath1, maxYchangePath1);
+                platformSelector1 = Random.Range(0, theObjectPoolsPath1.Length); //Picking a platform from the pool
+                
+                Path1YChange = path1Position.y + Random.Range(-maxYchangePath1, maxYchangePath1); // setting height of platform
                 if (Path1YChange > maxYchangePath1)
                 {
                     Path1YChange = maxYpath1;
@@ -116,31 +105,31 @@ private float platformWidth;
                     Path1YChange = minYPath1;
                 }
                 path1Position = new Vector3(path1Position.x + (platformWidths1[platformSelector1]/2) + distanceBetweenPath1,
-                    Path1YChange, path1Position.z);
+                    Path1YChange, path1Position.z); //position at which platform will appear
 
                 
                 GameObject newPlatform = theObjectPoolsPath1 [platformSelector1].GetPooledObject();
                 newPlatform.transform.position = path1Position;
-                newPlatform.transform.rotation = transform.rotation;
-                newPlatform.SetActive(true);
+                newPlatform.transform.rotation = transform.rotation; 
+                newPlatform.SetActive(true); //setting platform as active in above named position
+                
                int RandomNumberPath1 = Random.Range(0, 100);
-                if (RandomNumberPath1 < 70 && RandomNumberPath1 > 40)
+               if (RandomNumberPath1 < 70 && RandomNumberPath1 > 40)
                 {
                     objGenerator.SpawnFood(new Vector3(
                         path1Position.x + Random.Range(-(platformWidths1[platformSelector1] / 2),
-                            (platformWidths1[platformSelector1] / 2)), path1Position.y + 3f, path1Position.z));
-               }
+                            (platformWidths1[platformSelector1] / 2)), path1Position.y + 3f, path1Position.z)); // Generates food on the generated platform
+                }
 
                 else if (RandomNumberPath1 > 40)
                 {
                     objGenerator.SpawnObstacle(new Vector3(
                         path1Position.x + Random.Range(-(platformWidths1[platformSelector1] / 2),
-                            (platformWidths1[platformSelector1] / 2)), path1Position.y + 3f, path1Position.z));
+                            (platformWidths1[platformSelector1] / 2)), path1Position.y + 3f, path1Position.z)); // Generates obstacles on the generated platform
                 }
 
-                
-                    path1Position = new Vector3(path1Position.x + (platformWidths1[platformSelector1]/2),
-                        path1Position.y, path1Position.z);
+                path1Position = new Vector3(path1Position.x + (platformWidths1[platformSelector1]/2),
+                       path1Position.y, path1Position.z); //new platform position
                
 
                 
@@ -150,25 +139,12 @@ private float platformWidth;
        void GeneratePath2()
        
         {
-            // if (transform.position.x < generationPoint2.position.x)
-          //  {
-           //     transform.position = new Vector3(transform.)
-           // }
-
-
-
-         /*    platformWidths2 = new float [theObjectPoolsPath2.Length];
-            for (int i = 0; i < theObjectPoolsPath2.Length; i++)
-            {
-                platformWidths2[i] = theObjectPoolsPath2[i].pooledObject.GetComponent<Renderer>().bounds.size.x;
-            }*/
-           // minYpath2 = minYPointPath2.position.y;
-           // maxYpath2 = maxYPointPath2.position.y;
-           if (path2Position.x < generationPoint2.position.x)
+        
+           if (path2Position.x < generationPoint.position.x)
            {
                distanceBetweenPath2 = Random.Range(distanceBetweenMinPath2, distanceBetweenMaxPath2);
-               platformSelector2 = Random.Range(0, theObjectPoolsPath2.Length);
-               Path2YChange = path2Position.y + Random.Range(-maxYchangePath2, maxYchangePath2);
+               platformSelector2 = Random.Range(0, theObjectPoolsPath2.Length); //picking a platform from the pool
+               Path2YChange = path2Position.y + Random.Range(-maxYchangePath2, maxYchangePath2); //setting platform height
                if (Path2YChange > maxYpath2)
                {
                    Path2YChange = maxYpath2;
@@ -181,27 +157,28 @@ private float platformWidth;
 
 
                path2Position = new Vector3(path2Position.x + (platformWidths2[platformSelector2] / 2) + distanceBetweenPath2,
-                   Path2YChange, path2Position.z);
+                   Path2YChange, path2Position.z); // position at which platform will appear
 
                GameObject newPlatform = theObjectPoolsPath2[platformSelector2].GetPooledObject();
                newPlatform.transform.position = path2Position;
                newPlatform.transform.rotation = transform.rotation;
-               newPlatform.SetActive(true);
+               newPlatform.SetActive(true); // setting platform as active in above named position
 
                int RandomNumber = Random.Range(0, 100);
                if (RandomNumber < 90 && RandomNumber>30) 
                {
-
-               objGenerator.SpawnFood(new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z));
-                }
-
-               else if (RandomNumber < 30)
-               {objGenerator.SpawnObstacle(new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z));
-                   
+                objGenerator.SpawnFood(new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), 
+                    (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z)); //generating food on the platform just generated
                }
 
-           path2Position = new Vector3(path2Position.x + (platformWidths2[platformSelector2]/2),
-                    path2Position.y, path2Position.z);
+               else if (RandomNumber < 30)
+               {
+                   objGenerator.SpawnObstacle(new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), 
+                       (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z)); // generating obstacles on the platform just generated
+               }
+
+            path2Position = new Vector3(path2Position.x + (platformWidths2[platformSelector2]/2),
+                    path2Position.y, path2Position.z); // new platform position
 
             }
         }

@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UpdateScore(0);
+      UpdateScore(0);
         isGameActive = true;
 
      //   path1StartPoint = PathGenerator.position;
@@ -38,6 +38,12 @@ public class GameManager : MonoBehaviour
 
 
     }
+
+   /* public void StartGame()
+    {
+        UpdateScore(0);
+        isGameActive = true;
+    }*/
 
     // Update is called once per frame
     void Update()
