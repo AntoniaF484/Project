@@ -6,6 +6,7 @@ using UnityEngine;
 public class DetectCollisions : MonoBehaviour
 {
     public int scoreValue;
+    public int livesValue;
     private GameManager gameManager;
     public bool isOnGround = false;
    // public bool gameOver = false;
@@ -27,22 +28,25 @@ public class DetectCollisions : MonoBehaviour
         if (other.gameObject.name == ("Player"))
         {
             gameManager.UpdateScore(scoreValue);
+            gameManager.UpdateLives(livesValue);
             gameObject.SetActive(false);
         }
         
    
     }
 
-    private void OnCollisionEnter(Collision collision)
+   private void OnCollisionEnter(Collision collision)
     {
         
-        if (collision.gameObject.CompareTag("Ground"))
+        if (gameManager.lives <= 0 || collision.gameObject.CompareTag("Ground") )
         {
+            
+            Debug.Log("Collision detected with: " + collision.gameObject.tag);
+            Debug.Log("Current lives: " + gameManager.lives);
             isOnGround = true;
-            //gameOver = true;
             Debug.Log("Game Over!");
             gameManager.GameOver();
-          //  gameManager.RestartGame();
+        
            
         }
     }

@@ -10,8 +10,10 @@ public class GameManager : MonoBehaviour
 
 {
     private int score;
+    public int lives;
 
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI livesText;
     public TextMeshProUGUI gameOverText;
     public Button replayButton;
 
@@ -39,13 +41,14 @@ public class GameManager : MonoBehaviour
  
     void Start()
     {
-      //StartGame();
+        UpdateLives(9);
 
     }
 
     public void StartGame (int difficulty)
     {
         UpdateScore(0);
+        
         isGameActive = true;
         pathGenerator=FindObjectOfType<PathGenerator> ();
         
@@ -83,6 +86,12 @@ public class GameManager : MonoBehaviour
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
         
+    }
+
+    public void UpdateLives(int livesToTake)
+    {
+        lives += livesToTake;
+        livesText.text = "Lives: " + lives;
     }
 
     public void GameOver()
