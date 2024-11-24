@@ -17,6 +17,15 @@ public class GameManager : MonoBehaviour
 
     private PlayerController playerController;
     private PathGenerator pathGenerator;
+    
+    private float distanceBetweenMinPath1;
+    private float distanceBetweenMinPath2;
+    
+    private float distanceBetweenMaxPath1;
+    private float distanceBetweenMaxPath2;
+
+    
+    
     private Vector3 playerStartPoint;
 
     public Transform GenerationPoint;
@@ -34,14 +43,22 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void StartGame()
+    public void StartGame (int difficulty)
     {
         UpdateScore(0);
         isGameActive = true;
         pathGenerator=FindObjectOfType<PathGenerator> ();
         
+        
+     pathGenerator.distanceBetweenMinPath1 *= difficulty;
+     pathGenerator.distanceBetweenMaxPath1 *= difficulty;
+      
+     
+     pathGenerator.distanceBetweenMinPath2 *= difficulty; 
+     pathGenerator.distanceBetweenMaxPath2 *= difficulty;
         StartCoroutine(StartGeneratingPaths());
         titleScreen.gameObject.SetActive(false);
+     
     }
 
    /* void Update()
