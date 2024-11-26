@@ -17,12 +17,6 @@ public class DetectCollisions : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.name == ("Player")) //when the player collides with an object, relevant scores added and object deactivates

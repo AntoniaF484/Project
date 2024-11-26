@@ -20,8 +20,6 @@ public class GameManager : MonoBehaviour
     
     private int score;
     public int lives;
-
-  //  private Vector3 playerStartPoint;
     
     public bool isGameActive;
     public Transform PathGenerator;
@@ -57,7 +55,7 @@ public class GameManager : MonoBehaviour
         titleScreen.gameObject.SetActive(false);
      
     }
-   IEnumerator StartGeneratingPaths()
+   IEnumerator StartGeneratingPaths() //calls path generator while the game is active
    {
    
        while (isGameActive) 

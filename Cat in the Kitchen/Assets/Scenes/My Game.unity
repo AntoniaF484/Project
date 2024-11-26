@@ -1377,16 +1377,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbdb94f38f0cd4c88ab7c381f31b1cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 5
-  horizontalInput: 0
+  jumpForce: 100
   moveSpeed: 15
   maxSpeed: 50
   acceleration: 1.2
   speedIncreasePosition: 100
   maxAcceleration: 2
-  maxXSpeed: 10
   isOnGround: 1
-  jumpTime: 0.3
   gravityModifier: 25
   maxJumps: 2
   jumpCount: 0
@@ -1946,6 +1943,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b62308a71095740f19470da570967d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doublePoints: 0
+  extraLife: 0
+  easyPath: 0
+  powerUpActive: 0
+  powerUpLengthCounter: 0
+  gameManager: {fileID: 0}
+  pathGenerator: {fileID: 0}
+  detectCollisions: {fileID: 0}
+  normalLifeValue: 0
+  normalScoreValue: 0
+  normalPathDistance: 0
 --- !u!4 &844074398
 Transform:
   m_ObjectHideFlags: 0
@@ -2976,7 +2984,6 @@ GameObject:
   - component: {fileID: 1351225052}
   - component: {fileID: 1351225051}
   - component: {fileID: 1351225056}
-  - component: {fileID: 1351225055}
   m_Layer: 0
   m_Name: Power Up
   m_TagString: Untagged
@@ -3072,22 +3079,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1351225055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1351225050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 277a53e5636a742a5a913e65b2a7a3f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doublePoints: 1
-  extraLife: 0
-  easyPath: 0
-  powerUpDuration: 10
 --- !u!114 &1351225056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3244,15 +3235,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e002f9594d6e7463786c8535a8436a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 0
   scoreText: {fileID: 1016929071}
   livesText: {fileID: 448532145}
   gameOverText: {fileID: 1180956791}
   replayButton: {fileID: 197962601}
-  GenerationPoint: {fileID: 0}
+  titleScreen: {fileID: 1034695719}
+  lives: 0
   isGameActive: 0
   PathGenerator: {fileID: 0}
-  titleScreen: {fileID: 1034695719}
 --- !u!4 &1482095298
 Transform:
   m_ObjectHideFlags: 0
