@@ -11,14 +11,14 @@ public class PathGenerator : MonoBehaviour
     
 //Path 1 Variables
    
-   public ObjectPooler [] theObjectPoolsPath1;
-   private float[] platformWidths1;
-   private int platformSelector1;
+       public ObjectPooler [] theObjectPoolsPath1;
+       private float[] platformWidths1;
+       private int platformSelector1;
    
    //Distance Between generated platforms (x coordinates) 
-   public float distanceBetweenMinPath1;
-   public float distanceBetweenMaxPath1;
-   private float distanceBetweenPath1;
+       public float distanceBetweenMinPath1;
+       public float distanceBetweenMaxPath1;
+       private float distanceBetweenPath1;
        
        
     // Height of generated platforms (y coordinates)
@@ -33,9 +33,9 @@ public class PathGenerator : MonoBehaviour
         private Vector3 path1Position;
         
 //Path 2 Variables
-   public ObjectPooler[] theObjectPoolsPath2;
-   private float[] platformWidths2;
-   private int platformSelector2;
+       public ObjectPooler[] theObjectPoolsPath2;
+       private float[] platformWidths2;
+       private int platformSelector2;
     
    //Distance Between generated platforms (x coordinates)
         public float distanceBetweenMinPath2;
@@ -79,13 +79,6 @@ public class PathGenerator : MonoBehaviour
 
          objGenerator = FindObjectOfType<FoodObstaclePowerupGenerator>();
          
-        }
-// Update is called once per frame
-        void Update()
-        
-        {
-              //  GeneratePath1();
-               // GeneratePath2();
         }
 
     public void GeneratePath1()

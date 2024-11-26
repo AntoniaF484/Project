@@ -9,35 +9,29 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 
 {
-    private int score;
-    public int lives;
-
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI gameOverText;
     public Button replayButton;
+    public GameObject titleScreen;
 
     private PlayerController playerController;
     private PathGenerator pathGenerator;
     
+    private int score;
+    public int lives;
+
+  //  private Vector3 playerStartPoint;
+    
+    public bool isGameActive;
+    public Transform PathGenerator;
+    
+    //Distance Between Path Variables
     private float distanceBetweenMinPath1;
     private float distanceBetweenMinPath2;
     
     private float distanceBetweenMaxPath1;
     private float distanceBetweenMaxPath2;
-
-    
-    
-    private Vector3 playerStartPoint;
-
-    public Transform GenerationPoint;
-    private Vector3 path1StartPoint;
-    
-
-   public bool isGameActive;
-    public Transform PathGenerator;
-    private Vector3 pathStartPoint;
-    public GameObject titleScreen;
  
     void Start()
     {
@@ -45,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void StartGame (int difficulty)
+    public void StartGame (int difficulty) // distance between generated paths increases with difficulty selected
     {
         UpdateScore(0);
         
@@ -63,12 +57,6 @@ public class GameManager : MonoBehaviour
         titleScreen.gameObject.SetActive(false);
      
     }
-
-   /* void Update()
-    {
-        StartGeneratingPaths();
-    }
-    */
    IEnumerator StartGeneratingPaths()
    {
    

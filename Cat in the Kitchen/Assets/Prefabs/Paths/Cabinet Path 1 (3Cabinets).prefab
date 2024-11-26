@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1832560921310802879
+--- !u!1 &1293977769819122710
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,81 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7614059872566818370}
-  - component: {fileID: 2298600990945046244}
-  - component: {fileID: 336829613713873614}
-  - component: {fileID: 7989292146386382097}
+  - component: {fileID: 7071699727281540925}
   m_Layer: 0
-  m_Name: Cabinet Path 1 (4Cabinets)
-  m_TagString: Path
-  m_Icon: {fileID: 0}
+  m_Name: ObstacleSpawnLocation_Path13
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7614059872566818370
+--- !u!4 &7071699727281540925
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832560921310802879}
+  m_GameObject: {fileID: 1293977769819122710}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.2, y: 10, z: 0}
-  m_LocalScale: {x: 24, y: 2.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6314182566734831624}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2855750198673226734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6314182566734831624}
+  - component: {fileID: 5468664906087704863}
+  - component: {fileID: 7033547310398310476}
+  - component: {fileID: 2051289991760953249}
+  - component: {fileID: 5713747545594760845}
+  m_Layer: 0
+  m_Name: Cabinet Path 1 (3Cabinets)
+  m_TagString: Path
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6314182566734831624
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855750198673226734}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.9, y: 10, z: 0}
+  m_LocalScale: {x: 18, y: 2.5, z: 0.73628}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2875653160628718975}
+  - {fileID: 2516620691965242020}
+  - {fileID: 7071699727281540925}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2298600990945046244
+--- !u!33 &5468664906087704863
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832560921310802879}
+  m_GameObject: {fileID: 2855750198673226734}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &336829613713873614
+--- !u!23 &7033547310398310476
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832560921310802879}
+  m_GameObject: {fileID: 2855750198673226734}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -85,13 +118,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7989292146386382097
+--- !u!65 &2051289991760953249
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832560921310802879}
+  m_GameObject: {fileID: 2855750198673226734}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -104,9 +137,22 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.0111617, y: 1.0682114, z: 1}
-  m_Center: {x: -0.0016700428, y: -0.034105446, z: 0}
---- !u!1 &8374348577771225423
+  m_Size: {x: 1.0039847, y: 1.0583628, z: 1.5735534}
+  m_Center: {x: -0.0005877283, y: 0.03097713, z: -0.28677678}
+--- !u!114 &5713747545594760845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2855750198673226734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef486fb5ded78469e911f0546fca8c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestructionPoint: {fileID: 0}
+--- !u!1 &9082768970999161219
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,26 +160,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2875653160628718975}
+  - component: {fileID: 2516620691965242020}
   m_Layer: 0
-  m_Name: FoodSpawnLocation_Path11
+  m_Name: FoodSpawnLocation_Path13
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2875653160628718975
+--- !u!4 &2516620691965242020
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8374348577771225423}
+  m_GameObject: {fileID: 9082768970999161219}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.3, y: 0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7614059872566818370}
+  m_Father: {fileID: 6314182566734831624}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

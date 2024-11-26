@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Properties;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -18,6 +19,9 @@ public class PlayerController : MonoBehaviour
     public float maxXSpeed = 10.0f;
     public bool isOnGround = true;
 
+    public float jumpTime;
+    private float jumpTimeCounter;
+
     public float gravityModifier;
 
 //public bool gameOver = false;
@@ -25,29 +29,45 @@ public class PlayerController : MonoBehaviour
     public int jumpCount = 0;
     public GameManager gameManager;
     private DetectCollisions detectCollisions;
+    private bool onPath;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
-       // Physics.gravity *= gravityModifier;
        Physics.gravity = Vector3.down * 9.8f * gravityModifier; 
         speedIncreaseCount = speedIncreasePosition;
-
-        // yield return null;
-        //playerRb.velocity = new Vector3(moveSpeed, playerRb.velocity.y, playerRb.velocity.z);
-        //playerRb.WakeUp();
         gameManager = FindObjectOfType<GameManager>();
+        jumpTimeCounter = jumpTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps /*&& /*!gameOver*/)
+       /* if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps)
         {
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumpCount++;
-        }
+        }*/
+       if (Input.GetKey(KeyCode.Space) && jumpCount < maxJumps)
+       {
+           if (jumpTimeCounter > 0)
+           {
+               playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+               jumpTimeCounter -= Time.deltaTime;
+               onPath = false;
+           }
+       }
+
+       if (Input.GetKeyUp(KeyCode.Space))
+       {
+           jumpTimeCounter = 0;
+       }
+
+       if (onPath)
+       {
+           jumpTimeCounter = jumpTime;
+       }
 
         if (transform.position.x > speedIncreaseCount)
         {
@@ -58,8 +78,6 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed = maxSpeed;
         }
-
-        //playerRb.velocity = new Vector3(moveSpeed, playerRb.velocity.y, playerRb.velocity.z);
 
 
         if (gameManager.isGameActive)
@@ -82,8 +100,12 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Path"))
         {
             jumpCount = 0;
+            onPath = true;
         }
-        
+        else
+        {
+            onPath = false;
+        }
       
     }
 

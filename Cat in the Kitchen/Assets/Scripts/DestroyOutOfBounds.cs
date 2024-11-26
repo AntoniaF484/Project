@@ -12,11 +12,10 @@ public class DestroyOutOfBounds : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() //Deactivates objects once they pass the destruction point (set as a child of the main camera)
     {
         if (transform.position.x<DestructionPoint.transform.position.x)
         {
-            //Destroy(gameObject);
             gameObject.SetActive(false);
         }
     }

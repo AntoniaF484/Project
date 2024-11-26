@@ -25,7 +25,7 @@ public class DetectCollisions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == ("Player"))
+        if (other.gameObject.name == ("Player")) //when the player collides with an object, relevant scores added and object deactivates
         {
             gameManager.UpdateScore(scoreValue);
             gameManager.UpdateLives(livesValue);
@@ -38,11 +38,10 @@ public class DetectCollisions : MonoBehaviour
    private void OnCollisionEnter(Collision collision)
     {
         
-        if (gameManager.lives <= 0 || collision.gameObject.CompareTag("Ground") )
+        if (gameManager.lives <= 0 || collision.gameObject.CompareTag("Ground") ) //Game Ober if the player lands on the ground or loses all lives
         {
             
-            Debug.Log("Collision detected with: " + collision.gameObject.tag);
-            Debug.Log("Current lives: " + gameManager.lives);
+           
             isOnGround = true;
             Debug.Log("Game Over!");
             gameManager.GameOver();
