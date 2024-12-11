@@ -126,7 +126,7 @@ public class PathGenerator : MonoBehaviour
                 {
                     objGenerator.SpawnPowerUp(new Vector3(
                         path1Position.x + platformWidths1[platformSelector1] / 2+ distanceBetweenPath1/2, path1Position.y + 5f,
-                        path1Position.z));
+                        path1Position.z)); // generating powerups on the platform just generated
                 }
 
                 path1Position = new Vector3(path1Position.x + (platformWidths1[platformSelector1]/2),
@@ -176,7 +176,7 @@ public class PathGenerator : MonoBehaviour
                {
                    objGenerator.SpawnPowerUp(new Vector3(
                        path2Position.x + platformWidths2[platformSelector2] / 2+ distanceBetweenPath2/2, path2Position.y + 5f,
-                       path2Position.z));
+                       path2Position.z)); // generating powerups on the platform just generated
                    
                }
                else  

@@ -18,7 +18,9 @@ public class GameManager : MonoBehaviour
     private PlayerController playerController;
     private PathGenerator pathGenerator;
     
+    
     private int score;
+    public int addedScore;
     public int lives;
     
     public bool isGameActive;
@@ -30,10 +32,17 @@ public class GameManager : MonoBehaviour
     
     private float distanceBetweenMaxPath1;
     private float distanceBetweenMaxPath2;
+    
+    
+   // TEST
+   private PowerUpManager powerUpManager;
+   public bool powerUpActive = false;
+        
  
     void Start()
     {
         UpdateLives(9);
+        powerUpManager = FindObjectOfType<PowerUpManager>();
 
     }
 
@@ -68,8 +77,14 @@ public class GameManager : MonoBehaviour
    }
 
    public void UpdateScore(int scoreToAdd)
-    {
-        score += scoreToAdd;
+   {
+      // addedScore = scoreToAdd;
+
+      if (powerUpActive)
+      {
+          scoreToAdd *= 2;
+      }
+       score += scoreToAdd;
         scoreText.text = "Score: " + score;
         
     }
