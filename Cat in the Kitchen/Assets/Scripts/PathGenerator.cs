@@ -166,17 +166,26 @@ public class PathGenerator : MonoBehaviour
                newPlatform.SetActive(true); // setting platform as active in above named position
 
                int RandomNumber = Random.Range(0, 100);
-               if (RandomNumber < 90 && RandomNumber>30) 
+               if (RandomNumber > 50) 
                {
                 objGenerator.SpawnFood(new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), 
                     (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z)); //generating food on the platform just generated
                }
-
-               else if (RandomNumber < 30)
+               else if (RandomNumber > 10) 
+               
+               {
+                   objGenerator.SpawnPowerUp(new Vector3(
+                       path2Position.x + platformWidths2[platformSelector2] / 2+ distanceBetweenPath2/2, path2Position.y + 5f,
+                       path2Position.z));
+                   
+               }
+               else  
                {
                    objGenerator.SpawnObstacle(new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), 
                        (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z)); // generating obstacles on the platform just generated
                }
+               
+              
 
             path2Position = new Vector3(path2Position.x + (platformWidths2[platformSelector2]/2),
                     path2Position.y, path2Position.z); // new platform position
