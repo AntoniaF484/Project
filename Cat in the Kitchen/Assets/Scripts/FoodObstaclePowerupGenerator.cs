@@ -10,6 +10,9 @@ public class FoodObstaclePowerupGenerator : MonoBehaviour
     public ObjectPooler [] obstaclePool;
     private int obstacleSelector;
 
+    public ObjectPooler[] powerUpPool;
+    private int powerUpSelector;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,15 @@ public class FoodObstaclePowerupGenerator : MonoBehaviour
         obstacle1.transform.position = startPosition;
         obstacle1.SetActive(true);
 
+    }
+
+    public void SpawnPowerUp(Vector3 startPosition)
+    {
+        obstacleSelector = Random.Range(0, powerUpPool.Length);
+           
+        GameObject powerUp1 = powerUpPool[powerUpSelector].GetPooledObject();
+        powerUp1.transform.position = startPosition;
+        powerUp1.SetActive(true);
     }
 }
 

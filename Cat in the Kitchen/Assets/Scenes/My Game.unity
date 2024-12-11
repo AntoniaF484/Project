@@ -1377,7 +1377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbdb94f38f0cd4c88ab7c381f31b1cdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 100
+  jumpForce: 80
   moveSpeed: 15
   maxSpeed: 50
   acceleration: 1.2
@@ -1473,8 +1473,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.6978424, y: 2.1907463, z: 1.0092883}
-  m_Center: {x: 3.079151, y: 1.2437096, z: -0.00464352}
+  m_Size: {x: 1.3922832, y: 1.6486076, z: 1.0092883}
+  m_Center: {x: 3.0902183, y: 0.9726405, z: -0.00464352}
 --- !u!114 &532434016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1943,17 +1943,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b62308a71095740f19470da570967d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doublePoints: 0
-  extraLife: 0
-  easyPath: 0
-  powerUpActive: 0
-  powerUpLengthCounter: 0
-  gameManager: {fileID: 0}
-  pathGenerator: {fileID: 0}
-  detectCollisions: {fileID: 0}
-  normalLifeValue: 0
-  normalScoreValue: 0
-  normalPathDistance: 0
 --- !u!4 &844074398
 Transform:
   m_ObjectHideFlags: 0
@@ -3942,15 +3931,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.4
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
       propertyPath: m_LocalPosition.x
