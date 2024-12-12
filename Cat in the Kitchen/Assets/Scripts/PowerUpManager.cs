@@ -7,6 +7,7 @@ public class PowerUpManager : MonoBehaviour
     private bool doublePoints;
     private bool extraLife;
     private bool easyPath;
+    private int livesValue;
 
     public bool powerUpActive=false;
 
@@ -31,14 +32,19 @@ public class PowerUpManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+       
         if (powerUpActive == true)
+            
         {
+            
             powerUpLengthCounter -= Time.deltaTime;
 
             if (doublePoints)
             {
-                gameManager.powerUpActive = true;
+                gameManager.scorePowerUpActive = true;
             }
+            
 
             if (easyPath)
             {
@@ -60,16 +66,21 @@ public class PowerUpManager : MonoBehaviour
         
     }
 
-    public void ActivatePowerUp(bool points, bool path, float time)
+    public void ActivatePowerUp(bool points, bool path, bool life, int livesValue, float time)
     {
         doublePoints = points;
         easyPath = path;
+        extraLife = life;
+       
         powerUpLengthCounter = time;
 
         normalScore = gameManager.addedScore;
         powerUpActive = true;
         
+        if (extraLife)
+        {
+            gameManager.UpdateLives(livesValue);
+        }
         
-
     }
 }

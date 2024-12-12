@@ -8,10 +8,14 @@ public class PowerUps : MonoBehaviour
     public bool doublePoints;
     public bool extraLife;
     public bool easyPath;
+    public int livesValue;
 
     public float powerUpLength;
 
     private PowerUpManager powerUpManager;
+
+    private GameManager gameManager;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -28,9 +32,9 @@ public class PowerUps : MonoBehaviour
     {
         if (other.name == "Player")
         {
-            powerUpManager.ActivatePowerUp(doublePoints, easyPath, powerUpLength);
+            powerUpManager.ActivatePowerUp(doublePoints, easyPath, extraLife, livesValue, powerUpLength);
         }
-        
+       
         gameObject.SetActive(false);
     }
 }

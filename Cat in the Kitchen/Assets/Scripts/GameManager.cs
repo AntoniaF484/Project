@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     
    // TEST
    private PowerUpManager powerUpManager;
-   public bool powerUpActive;
+   public bool scorePowerUpActive;
    public bool extraLifePowerUpActive;
         
  
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
    {
       // addedScore = scoreToAdd;
 
-      if (powerUpActive)
+      if (scorePowerUpActive)
       {
           scoreToAdd *= 2;
       }
@@ -92,10 +92,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateLives(int livesToTake)
     {
-        /*if (extraLifePowerUpActive)
-        {
-            livesToTake += 1;
-        }*/
+     
         lives += livesToTake;
         livesText.text = "Lives: " + lives;
     }
