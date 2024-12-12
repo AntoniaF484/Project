@@ -6,8 +6,9 @@ public class PowerUpManager : MonoBehaviour
 {
     private bool doublePoints;
     private bool extraLife;
+    private bool easyPath;
 
-    public bool powerUpActive;
+    public bool powerUpActive=false;
 
     private float powerUpLengthCounter;
 
@@ -23,7 +24,6 @@ public class PowerUpManager : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType < GameManager>();
-        detectCollisions = FindObjectOfType<DetectCollisions>();
         pathGenerator = FindObjectOfType<PathGenerator>();
 
     }
@@ -31,7 +31,7 @@ public class PowerUpManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (powerUpActive = true)
+        if (powerUpActive == true)
         {
             powerUpLengthCounter -= Time.deltaTime;
 
@@ -40,23 +40,36 @@ public class PowerUpManager : MonoBehaviour
                 gameManager.powerUpActive = true;
             }
 
-            if (powerUpLengthCounter <= 0)
+            if (easyPath)
             {
-                gameManager.powerUpActive = false;
+                pathGenerator.distanceBetweenMaxPath1 = 0;
+                pathGenerator.distanceBetweenMinPath1 = 0;
+                pathGenerator.maxYchangePath1 = 0;
             }
+            
+        }
+        if (powerUpLengthCounter <= 0)
+        {
+            powerUpActive = false;
+            //gameManager.powerUpActive = false;
+            pathGenerator.distanceBetweenMaxPath1 = 2;
+            pathGenerator.distanceBetweenMinPath1 = 4;
+            pathGenerator.maxYchangePath1 = 15;
         }
         
         
     }
 
-    public void ActivatePowerUp(bool points, bool life, float time)
+    public void ActivatePowerUp(bool points, bool path, float time)
     {
         doublePoints = points;
-        extraLife = life;
+        easyPath = path;
         powerUpLengthCounter = time;
 
         normalScore = gameManager.addedScore;
         powerUpActive = true;
+        
+        
 
     }
 }

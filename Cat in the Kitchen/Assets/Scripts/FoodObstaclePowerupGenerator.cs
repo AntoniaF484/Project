@@ -43,7 +43,7 @@ public class FoodObstaclePowerupGenerator : MonoBehaviour
 
     public void SpawnPowerUp(Vector3 startPosition)
     {
-        obstacleSelector = Random.Range(0, powerUpPool.Length);
+        powerUpSelector = Random.Range(0, powerUpPool.Length);
            
         GameObject powerUp1 = powerUpPool[powerUpSelector].GetPooledObject();
         powerUp1.transform.position = startPosition;

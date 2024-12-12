@@ -134,4 +134,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doublePoints: 1
   extraLife: 0
-  powerUpLength: 4
+  easyPath: 1
+  powerUpLength: 3

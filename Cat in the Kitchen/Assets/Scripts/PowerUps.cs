@@ -7,6 +7,7 @@ public class PowerUps : MonoBehaviour
 {
     public bool doublePoints;
     public bool extraLife;
+    public bool easyPath;
 
     public float powerUpLength;
 
@@ -27,7 +28,7 @@ public class PowerUps : MonoBehaviour
     {
         if (other.name == "Player")
         {
-            powerUpManager.ActivatePowerUp(doublePoints, extraLife, powerUpLength);
+            powerUpManager.ActivatePowerUp(doublePoints, easyPath, powerUpLength);
         }
         
         gameObject.SetActive(false);
