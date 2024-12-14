@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI hiScoreText;
     public Button replayButton;
     public GameObject titleScreen;
 
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     private int score;
     public int addedScore;
     public int lives;
+    public int hiScore;
     
     public bool isGameActive;
     public Transform PathGenerator;
@@ -44,6 +46,11 @@ public class GameManager : MonoBehaviour
     {
         UpdateLives(9);
         powerUpManager = FindObjectOfType<PowerUpManager>();
+
+        if (PlayerPrefs.GetInt("HighScore") != null)
+        {
+            hiScore = PlayerPrefs.GetInt("HighScore");
+        }
 
     }
 
@@ -71,7 +78,7 @@ public class GameManager : MonoBehaviour
        while (isGameActive) 
        {
            pathGenerator.GeneratePath1();
-         //  pathGenerator.GeneratePath2();
+           pathGenerator.GeneratePath2();
 
            yield return new WaitForSeconds(0.5f);
        }
@@ -87,9 +94,16 @@ public class GameManager : MonoBehaviour
       }
        score += scoreToAdd;
         scoreText.text = "Score: " + score;
-        
-    }
+        if (score > hiScore)
+        {
+            hiScore = score;
+            PlayerPrefs.SetInt("HighScore",hiScore);
+        }
 
+        hiScoreText.text = "High Score: " + hiScore;
+   }
+
+   
     public void UpdateLives(int livesToTake)
     {
      
