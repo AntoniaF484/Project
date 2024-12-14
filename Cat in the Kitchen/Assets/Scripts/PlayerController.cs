@@ -16,36 +16,71 @@ public class PlayerController : MonoBehaviour
     private float speedIncreaseCount;
     public float maxAcceleration = 2;
     public bool isOnGround = true;
-   public float gravityModifier;
+    public float gravityModifier;
 
 
     public int maxJumps = 2;
     public int jumpCount = 0;
     public GameManager gameManager;
+
     private DetectCollisions detectCollisions;
-   
+
+    //TEST
+    public float jumpTime;
+    private float jumpTimeCounter;
+    public bool isHoldingJump;
 
     // Start is called before the first frame update
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
-       Physics.gravity = Vector3.down * 9.8f * gravityModifier; 
+        Physics.gravity = Vector3.down * 9.8f * gravityModifier;
         speedIncreaseCount = speedIncreasePosition;
         gameManager = FindObjectOfType<GameManager>();
-       
+        jumpTimeCounter = jumpTime;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        
-        if (Input.GetKeyDown(KeyCode.Space) && jumpCount < maxJumps)
+
+
+        if (Input.GetKeyDown(KeyCode.Space) && (isOnGround || jumpCount < maxJumps))
         {
+
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jumpCount++;
+            jumpTimeCounter = jumpTime;
+            isHoldingJump = true;
+            if (isOnGround)
+            {
+                isOnGround = false;
+            }
+
+
         }
-       
+
+        if (Input.GetKey(KeyCode.Space) && isHoldingJump && jumpTimeCounter > 0)
+        {
+
+            playerRb.AddForce(Vector3.up * jumpForce*Time.deltaTime, ForceMode.Impulse);
+            jumpTimeCounter -= Time.deltaTime;
+
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            jumpTimeCounter = 0;
+            isHoldingJump = false;
+        }
+
+        if (isOnGround)
+        {
+            jumpTimeCounter = jumpTime;
+            jumpCount = 0;
+        }
+
         if (transform.position.x > speedIncreaseCount)
         {
             speedIncreaseCount += speedIncreasePosition;
@@ -76,14 +111,16 @@ public class PlayerController : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Path"))
         {
-            jumpCount = 0;
-          
-           
-        }
-       
-    }
 
+            isOnGround = true;
+
+
+        }
+
+    }
 }
+
+
 
 
 

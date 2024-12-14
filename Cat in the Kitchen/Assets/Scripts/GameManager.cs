@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
        while (isGameActive) 
        {
            pathGenerator.GeneratePath1();
-           pathGenerator.GeneratePath2();
+         //  pathGenerator.GeneratePath2();
 
            yield return new WaitForSeconds(0.5f);
        }
