@@ -71,8 +71,11 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            jumpTimeCounter = 0;
+            playerRb.velocity = new Vector3(playerRb.velocity.x, 0, playerRb.velocity.z);
+                jumpTimeCounter = 0;
             isHoldingJump = false;
+            //TEST
+            Physics.gravity = Vector3.down * 9.8f * gravityModifier*2;
         }
 
         if (isOnGround)
