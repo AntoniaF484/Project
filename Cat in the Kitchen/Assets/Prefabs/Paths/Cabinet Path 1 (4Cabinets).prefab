@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 336829613713873614}
   - component: {fileID: 7989292146386382097}
   - component: {fileID: 115398875368471093}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cabinet Path 1 (4Cabinets)
   m_TagString: Path
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832560921310802879}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 28743cde8bce6440ebc00c5a643a9018, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

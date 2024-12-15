@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6688923946826623916}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FoodSpawnLocation_Path12
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 7033547310398310476}
   - component: {fileID: 2051289991760953249}
   - component: {fileID: 751560097667628973}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cabinet Path 1 (2Cabinets)
   m_TagString: Path
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2855750198673226734}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 28743cde8bce6440ebc00c5a643a9018, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -161,7 +161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7802489917343494281}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ObstacleSpawnLocation_Path12
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}

@@ -29,6 +29,14 @@ public class PlayerController : MonoBehaviour
     public float jumpTime;
     private float jumpTimeCounter;
     public bool isHoldingJump;
+    
+    //Collisions TEST
+    public Transform groundCheck;
+    public float groundCheckWidth;
+    public LayerMask whatIsGround;
+
+    private Collider myCollider;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -39,11 +47,19 @@ public class PlayerController : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         jumpTimeCounter = jumpTime;
 
+
+        myCollider = GetComponent<Collider>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
+        isOnGround = Physics.OverlapSphere(groundCheck.position, groundCheckWidth, whatIsGround).Length>0;
+            
+            
 
 
         if (Input.GetKeyDown(KeyCode.Space) && (isOnGround || jumpCount < maxJumps))
@@ -74,7 +90,7 @@ public class PlayerController : MonoBehaviour
             playerRb.velocity = new Vector3(playerRb.velocity.x, 0, playerRb.velocity.z);
                 jumpTimeCounter = 0;
             isHoldingJump = false;
-            //TEST
+            
             Physics.gravity = Vector3.down * 9.8f * gravityModifier*2;
         }
 
@@ -84,14 +100,18 @@ public class PlayerController : MonoBehaviour
             jumpCount = 0;
         }
 
-        if (transform.position.x > speedIncreaseCount)
+        if (isOnGround)
         {
-            speedIncreaseCount += speedIncreasePosition;
-            moveSpeed *= acceleration;
-        }
-        else if (moveSpeed > maxSpeed)
-        {
-            moveSpeed = maxSpeed;
+
+            if (transform.position.x > speedIncreaseCount)
+            {
+                speedIncreaseCount += speedIncreasePosition;
+                moveSpeed *= acceleration;
+            }
+            else if (moveSpeed > maxSpeed)
+            {
+                moveSpeed = maxSpeed;
+            }
         }
 
 
@@ -109,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+  /*  private void OnCollisionEnter(Collision collision)
     {
 
         if (collision.gameObject.CompareTag("Path"))
@@ -120,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-    }
+    }*/
 }
 
 
