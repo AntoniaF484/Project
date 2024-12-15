@@ -36,18 +36,26 @@ public class GameManager : MonoBehaviour
     private float distanceBetweenMaxPath2;
     
     
-   // TEST
+   // PowerUps
    private PowerUpManager powerUpManager;
    public bool scorePowerUpActive;
    public bool extraLifePowerUpActive;
-        
+   
+   // TEST
+   //[SerializeField] HighScoreHandler highScoreHandler;
+  // [SerializeField] string playerName;
+
+  public int SecondPlace;
+  public int ThirdPlace;
+  public TextMeshProUGUI firstPlaceScore;
+  private int firstScore;
  
     void Start()
     {
         UpdateLives(9);
         powerUpManager = FindObjectOfType<PowerUpManager>();
 
-        if (PlayerPrefs.GetInt("HighScore") != null)
+        if (PlayerPrefs.HasKey("HighScore") != null)
         {
             hiScore = PlayerPrefs.GetInt("HighScore");
         }
@@ -86,7 +94,6 @@ public class GameManager : MonoBehaviour
 
    public void UpdateScore(int scoreToAdd)
    {
-      // addedScore = scoreToAdd;
 
       if (scorePowerUpActive)
       {
@@ -99,10 +106,18 @@ public class GameManager : MonoBehaviour
             hiScore = score;
             PlayerPrefs.SetInt("HighScore",hiScore);
         }
+        
+        UpdateLeaderBoard();
 
         hiScoreText.text = "High Score: " + hiScore;
+        
    }
 
+   public void UpdateLeaderBoard()
+   {
+       firstScore = hiScore;
+       firstPlaceScore.text = firstScore.ToString();
+   }
    
     public void UpdateLives(int livesToTake)
     {
@@ -114,6 +129,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
+        
         replayButton.gameObject.SetActive(true);
         isGameActive = false;
 
