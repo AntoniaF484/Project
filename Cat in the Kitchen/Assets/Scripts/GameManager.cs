@@ -41,24 +41,43 @@ public class GameManager : MonoBehaviour
    public bool scorePowerUpActive;
    public bool extraLifePowerUpActive;
    
-   // TEST
-   //[SerializeField] HighScoreHandler highScoreHandler;
-  // [SerializeField] string playerName;
+ 
 
-  public int SecondPlace;
-  public int ThirdPlace;
+  
   public TextMeshProUGUI firstPlaceScore;
   private int firstScore;
+  public TextMeshProUGUI secondPlaceScore;
+  private int secondScore;
+  public TextMeshProUGUI thirdPlaceScore;
+  private int thirdScore;
  
     void Start()
     {
         UpdateLives(9);
         powerUpManager = FindObjectOfType<PowerUpManager>();
 
-        if (PlayerPrefs.HasKey("HighScore") != null)
+        if (PlayerPrefs.HasKey("HighScore"))
         {
             hiScore = PlayerPrefs.GetInt("HighScore");
+            
         }
+        else
+        {
+            hiScore = 0;
+        }
+
+        if (PlayerPrefs.HasKey("SecondPlace"))
+        {
+            secondScore = PlayerPrefs.GetInt("SecondPlace");
+        }
+      
+        if (PlayerPrefs.HasKey("ThirdPlace"))
+        {
+            thirdScore = PlayerPrefs.GetInt("ThirdPlace");
+        }
+      
+      //  UpdateLeaderBoardScores();
+       // UpdateLeaderBoardRankings();
 
     }
 
@@ -107,17 +126,39 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighScore",hiScore);
         }
         
-        UpdateLeaderBoard();
+        
 
         hiScoreText.text = "High Score: " + hiScore;
-        
+        UpdateLeaderBoardScores();
+
    }
 
-   public void UpdateLeaderBoard()
+   public void UpdateLeaderBoardScores()
    {
-       firstScore = hiScore;
+       firstScore = hiScore; 
+       
+       if (score>secondScore&&score<firstScore)
+       {
+           thirdScore = secondScore; 
+           secondScore= score;
+           PlayerPrefs.SetInt("SecondPlace", secondScore);
+           
+       }
+       if (score > thirdScore && score < secondScore)
+       {
+           thirdScore = score;
+           PlayerPrefs.SetInt("ThirdPlace", thirdScore);
+           
+       }
+       
        firstPlaceScore.text = firstScore.ToString();
+       secondPlaceScore.text = secondScore.ToString();
+
+       thirdPlaceScore.text = thirdScore.ToString();
    }
+
+
+
    
     public void UpdateLives(int livesToTake)
     {
@@ -129,9 +170,10 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
-        
+       // UpdateLeaderBoard();
         replayButton.gameObject.SetActive(true);
         isGameActive = false;
+       
 
     }
 
