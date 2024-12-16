@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     
     
     private int score;
+    public static int totalScore;
     public int addedScore;
     public int lives;
     public int hiScore;
@@ -120,6 +121,7 @@ public class GameManager : MonoBehaviour
       }
        score += scoreToAdd;
         scoreText.text = "Score: " + score;
+        score = totalScore;
         if (score > hiScore)
         {
             hiScore = score;

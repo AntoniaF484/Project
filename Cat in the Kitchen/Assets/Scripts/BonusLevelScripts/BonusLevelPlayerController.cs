@@ -28,7 +28,8 @@ public class BonusLevelPlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime);
         verticalInput = Input.GetAxis("Vertical");
-        playerRb.AddRelativeForce(Vector3.forward * verticalInput * catPower);
+        Vector3 forward = transform.forward * verticalInput * catPower;
+        playerRb.velocity = forward;
 
         if (playerRb.transform.position.x > xRange)
         {

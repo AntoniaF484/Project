@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 395532016378547694}
   - component: {fileID: 5944131529478312864}
   - component: {fileID: 1505009195437376620}
+  - component: {fileID: 7097852296480709325}
   m_Layer: 0
   m_Name: BonusFood 2
   m_TagString: Food
@@ -134,6 +135,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 108
   m_CollisionDetection: 0
+--- !u!114 &7097852296480709325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151564216410566968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e05577efd57cc4dafbf7d3bd0f9ade12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreValueFromObj: 50
+  score: 0
 --- !u!1001 &2505267648239496901
 PrefabInstance:
   m_ObjectHideFlags: 0
