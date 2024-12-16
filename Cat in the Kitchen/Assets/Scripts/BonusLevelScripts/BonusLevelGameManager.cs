@@ -19,7 +19,7 @@ public class BonusLevelGameManager : MonoBehaviour
     void Update()
     {
         bonusTimeCountdown -= Time.deltaTime;
-        if (bonusTimeCountdown <= 0)
+       if (bonusTimeCountdown <= 0)
         {
             SceneManager.LoadScene("MyGame");
         }
