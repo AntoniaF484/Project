@@ -9,11 +9,14 @@ public class BonusLevelSpawnManager : MonoBehaviour
 
     public float spawnRange;
     public GameObject[] foodPrefabs;
+    public int maxFood;
+    private int foodCounter;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        foodCounter = 0;
         InvokeRepeating ("SpawnRandomFood", 1, 0.8f);
 
     }
@@ -25,9 +28,16 @@ public class BonusLevelSpawnManager : MonoBehaviour
     }
     
     void SpawnRandomFood()
-    {int foodIndex = Random.Range(0, foodPrefabs.Length);
-        Vector3 spawnPos = new Vector3(Random.Range(-spawnRange,spawnRange),1.5f,Random.Range(-spawnRange,spawnRange));
-        Instantiate(foodPrefabs[foodIndex],spawnPos,foodPrefabs[foodIndex].transform.rotation);}
+    {
+        if (foodCounter < maxFood)
+        {
+            int foodIndex = Random.Range(0, foodPrefabs.Length);
+            Vector3 spawnPos = new Vector3(Random.Range(-spawnRange, spawnRange), 1.5f,
+                Random.Range(-spawnRange, spawnRange));
+            Instantiate(foodPrefabs[foodIndex], spawnPos, foodPrefabs[foodIndex].transform.rotation);
+            foodCounter++;
+        }
+    }
 
    /* private Vector3 GenerateSpawnPosition()
     {
