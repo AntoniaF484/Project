@@ -892,7 +892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd6d73e85e86473e966976592cdd13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusTimeCountdown: 2
+  bonusTimeCountdown: 20
   bonusScoreText: {fileID: 1123867197}
   addedScore: 0
   scoreFromBonusLevel: 0
@@ -928,7 +928,7 @@ MonoBehaviour:
   - {fileID: 7626869081721301558, guid: 13ee5d33f86304d4e84b4ef37b8eba71, type: 3}
   - {fileID: 7151564216410566968, guid: e5cd5ac6a6d8a4940a51cbf9203986ad, type: 3}
   - {fileID: 1549015608802214097, guid: 361163ce94b5d49bb993421b2148832e, type: 3}
-  maxFood: 15
+  maxFood: 25
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
