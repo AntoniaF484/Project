@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public static int totalScore;
     public int addedScore;
     public int lives;
+    public static int totalLives;
     public int hiScore;
 
     public bool isGameActive;
@@ -62,9 +63,17 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 
-       
-        
-               UpdateLives(9);
+
+
+        if (!returnFromBonusLevel)
+        {
+            UpdateLives(9);
+        }
+
+        else
+        {
+            UpdateLives(totalLives);
+        }
             powerUpManager = FindObjectOfType<PowerUpManager>();
 
             if (PlayerPrefs.HasKey("HighScore"))
@@ -91,8 +100,9 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("Bypassing title screen...");
                 StartGame(autoDifficulty);
-                returnFromBonusLevel = false;
+                    // returnFromBonusLevel = false;
                 score = totalScore;
+                lives = totalLives;
 
             }
 
@@ -134,7 +144,7 @@ public class GameManager : MonoBehaviour
    
        while (isGameActive) 
        {
-           yield return new WaitForSeconds(0.2f);
+           yield return new WaitForSeconds(0.3f);
            pathGenerator.GeneratePath1();
            pathGenerator.GeneratePath2();
 
@@ -195,9 +205,11 @@ public class GameManager : MonoBehaviour
    
     public void UpdateLives(int livesToTake)
     {
-     
+        Debug.Log($"Lives from Start Level: {lives}, Total Lives: {totalLives}");
         lives += livesToTake;
         livesText.text = "Lives: " + lives;
+        totalLives = lives;
+        
     }
 
     public void GameOver()

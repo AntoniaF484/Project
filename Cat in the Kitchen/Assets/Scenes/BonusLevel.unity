@@ -892,7 +892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd6d73e85e86473e966976592cdd13c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bonusTimeCountdown: 10
+  bonusTimeCountdown: 2
   bonusScoreText: {fileID: 1123867197}
   addedScore: 0
   scoreFromBonusLevel: 0
