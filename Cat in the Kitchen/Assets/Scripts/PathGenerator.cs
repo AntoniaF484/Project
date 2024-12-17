@@ -112,20 +112,20 @@ public class PathGenerator : MonoBehaviour
                 {
                     objGenerator.SpawnFood(new Vector3(
                         path1Position.x + Random.Range(-(platformWidths1[platformSelector1] / 2),
-                            (platformWidths1[platformSelector1] / 2)), path1Position.y + 3f, path1Position.z)); // Generates food on the generated platform
+                            (platformWidths1[platformSelector1] / 2)), path1Position.y + 4f, path1Position.z)); // Generates food on the generated platform
                 }
 
                else if (RandomNumberPath1 > 40)
                 {
                     objGenerator.SpawnObstacle(new Vector3(
                         path1Position.x + Random.Range(-(platformWidths1[platformSelector1] / 2),
-                            (platformWidths1[platformSelector1] / 2)), path1Position.y + 3f, path1Position.z)); // Generates obstacles on the generated platform
+                            (platformWidths1[platformSelector1] / 2)), path1Position.y + 4f, path1Position.z)); // Generates obstacles on the generated platform
                 }
 
                 else
                 {
                     objGenerator.SpawnPowerUp(new Vector3(
-                        path1Position.x + platformWidths1[platformSelector1] / 2+ distanceBetweenPath1/2, path1Position.y + 5f,
+                        path1Position.x + platformWidths1[platformSelector1] / 2+ distanceBetweenPath1/2, path1Position.y + 6f,
                         path1Position.z)); // generating powerups on the platform just generated
                 }
 
@@ -172,25 +172,25 @@ public class PathGenerator : MonoBehaviour
                if (RandomNumber >= 95)
                {
                    objGenerator.SpawnBonus((new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), 
-                       (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z)));
+                       (platformWidths2[platformSelector2]/2)), path2Position.y + 4f, path2Position.z)));
                }
                if (RandomNumber > 50 && RandomNumber<95) 
                {
                 objGenerator.SpawnFood(new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), 
-                    (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z)); //generating food on the platform just generated
+                    (platformWidths2[platformSelector2]/2)), path2Position.y + 4f, path2Position.z)); //generating food on the platform just generated
                }
                else if (RandomNumber > 10) 
                
                {
                    objGenerator.SpawnPowerUp(new Vector3(
-                       path2Position.x + platformWidths2[platformSelector2] / 2+ distanceBetweenPath2/2, path2Position.y + 5f,
+                       path2Position.x + platformWidths2[platformSelector2] / 2+ distanceBetweenPath2/2, path2Position.y + 6f,
                        path2Position.z)); // generating powerups on the platform just generated
                    
                }
                else  
                {
                    objGenerator.SpawnObstacle(new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), 
-                       (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z)); // generating obstacles on the platform just generated
+                       (platformWidths2[platformSelector2]/2)), path2Position.y + 4f, path2Position.z)); // generating obstacles on the platform just generated
                }
                
               

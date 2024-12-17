@@ -121,3 +121,4 @@ MonoBehaviour:
   BonusLevel: BonusLevel
   bonusTime: 1
   MyGame: MyGame
+  returnFromBonusLevel: 0
