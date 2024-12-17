@@ -165,8 +165,16 @@ public class PathGenerator : MonoBehaviour
                newPlatform.transform.rotation = transform.rotation;
                newPlatform.SetActive(true); // setting platform as active in above named position
 
-               int RandomNumber = Random.Range(0, 100);
-               if (RandomNumber > 50) 
+              int RandomNumber = Random.Range(0, 100);
+              
+              
+
+               if (RandomNumber >= 95)
+               {
+                   objGenerator.SpawnBonus((new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), 
+                       (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z)));
+               }
+               if (RandomNumber > 50 && RandomNumber<95) 
                {
                 objGenerator.SpawnFood(new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), 
                     (platformWidths2[platformSelector2]/2)), path2Position.y + 3f, path2Position.z)); //generating food on the platform just generated
