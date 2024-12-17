@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Bypassing title screen...");
                 StartGame(autoDifficulty);
                 returnFromBonusLevel = false;
+                score = totalScore;
 
             }
 
@@ -103,7 +104,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame (int difficulty) // distance between generated paths increases with difficulty selected
     {
-        UpdateScore(0);
+        UpdateScore(totalScore);
         
         isGameActive = true;
         pathGenerator=FindObjectOfType<PathGenerator> ();
