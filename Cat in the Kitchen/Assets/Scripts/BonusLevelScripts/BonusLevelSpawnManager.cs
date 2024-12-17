@@ -17,7 +17,7 @@ public class BonusLevelSpawnManager : MonoBehaviour
     void Start()
     {
         foodCounter = 0;
-        InvokeRepeating ("SpawnRandomFood", 1, 0.8f);
+        InvokeRepeating ("SpawnRandomFood", 1, 0.5f);
 
     }
 

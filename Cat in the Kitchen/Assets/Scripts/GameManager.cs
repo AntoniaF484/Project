@@ -150,7 +150,8 @@ public class GameManager : MonoBehaviour
       }
        score += scoreToAdd;
         scoreText.text = "Score: " + score;
-       score = totalScore;
+        totalScore = score;
+        Debug.Log($"Score from Start Level: {score}, Total Score: {totalScore}");
         if (score > hiScore)
         {
             hiScore = score;

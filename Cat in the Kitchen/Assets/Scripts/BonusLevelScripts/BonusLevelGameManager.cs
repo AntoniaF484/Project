@@ -18,14 +18,17 @@ public class BonusLevelGameManager : MonoBehaviour
     
     
    // private int score;
-    public static int totalScore;
+   // public static int totalScore;
     public int addedScore;
     public int scoreFromBonusLevel;
     
     // Start is called before the first frame update
     void Start()
     {
-        UpdateScore(0);
+        
+        Debug.Log($"Total Score: {GameManager.totalScore}");
+        bonusScoreText.text = "Score: " + GameManager.totalScore;
+       // UpdateScore();
     }
 
     // Update is called once per frame
@@ -43,11 +46,12 @@ public class BonusLevelGameManager : MonoBehaviour
     {
 
 
-        scoreFromBonusLevel += scoreToAdd;
-        totalScore += scoreToAdd; 
-        Debug.Log($"Score from Bonus Level: {scoreFromBonusLevel}, Total Score: {totalScore}");
-        bonusScoreText.text = "Score: " + totalScore;
-       // score = totalScore;
+        scoreFromBonusLevel  += scoreToAdd;
+        GameManager.totalScore += scoreFromBonusLevel;
+        bonusScoreText.text = "Score: " + GameManager.totalScore;
+        Debug.Log($"Score from Bonus Level: {scoreFromBonusLevel}, Total Score: {GameManager.totalScore}");
+        
+        // score = totalScore;
 
     }
 }
