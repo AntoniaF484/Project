@@ -12,6 +12,8 @@ public class nextscene : MonoBehaviour
 
     public string MyGame; //Original scene name
     private GameObject player;
+
+    public bool returnFromBonusLevel;
     
  
     void OnTriggerEnter(Collider other){
@@ -21,22 +23,9 @@ public class nextscene : MonoBehaviour
 
            player = other.gameObject;
            PlayerPrefs.SetString("lastLoadedScene",SceneManager.GetActiveScene().name);
-          // DontDestroyOnLoad(player);
-
-           //StartCoroutine(BonusLevelScene());
+           
         }
     }
 
-   /* private IEnumerator BonusLevelScene()
-    {
-        SceneManager.LoadScene(BonusLevel);
-        
-        
-        yield return new WaitForSeconds(bonusTime);
-
-        string MyGame = PlayerPrefs.GetString("lastLoadedScene");
-        SceneManager.LoadScene(MyGame);
-        
-      
-    }*/
+  
 }

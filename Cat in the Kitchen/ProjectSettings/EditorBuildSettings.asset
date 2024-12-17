@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BonusLevel.unity
     guid: 0227e534b44644362a01152e2c469728
+  - enabled: 1
+    path: Assets/Scenes/EndGame.unity
+    guid: 0a9bf4b79eae3427d8dd4a989531376d
   m_configObjects: {}

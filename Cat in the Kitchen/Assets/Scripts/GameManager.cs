@@ -18,68 +18,87 @@ public class GameManager : MonoBehaviour
 
     private PlayerController playerController;
     private PathGenerator pathGenerator;
-    
-    
+
+   
+
+
     private int score;
     public static int totalScore;
     public int addedScore;
     public int lives;
     public int hiScore;
-    
+
     public bool isGameActive;
     public Transform PathGenerator;
-    
+
     //Distance Between Path Variables
     private float distanceBetweenMinPath1;
     private float distanceBetweenMinPath2;
-    
+
     private float distanceBetweenMaxPath1;
     private float distanceBetweenMaxPath2;
-    
-    
-   // PowerUps
-   private PowerUpManager powerUpManager;
-   public bool scorePowerUpActive;
-   public bool extraLifePowerUpActive;
-   
- 
 
-  
-  public TextMeshProUGUI firstPlaceScore;
-  private int firstScore;
-  public TextMeshProUGUI secondPlaceScore;
-  private int secondScore;
-  public TextMeshProUGUI thirdPlaceScore;
-  private int thirdScore;
- 
+
+    // PowerUps
+    private PowerUpManager powerUpManager;
+    public bool scorePowerUpActive;
+    public bool extraLifePowerUpActive;
+
+
+
+
+    public TextMeshProUGUI firstPlaceScore;
+    private int firstScore;
+    public TextMeshProUGUI secondPlaceScore;
+    private int secondScore;
+    public TextMeshProUGUI thirdPlaceScore;
+    private int thirdScore;
+
+
+    public bool returnFromBonusLevel;
+   // private nextscene reachBonusLevel;
+    public int autoDifficulty = 1;
+
     void Start()
     {
-        UpdateLives(9);
-        powerUpManager = FindObjectOfType<PowerUpManager>();
 
-        if (PlayerPrefs.HasKey("HighScore"))
-        {
-            hiScore = PlayerPrefs.GetInt("HighScore");
-            
-        }
-        else
-        {
-            hiScore = 0;
-        }
+       
+        
+               UpdateLives(9);
+            powerUpManager = FindObjectOfType<PowerUpManager>();
 
-        if (PlayerPrefs.HasKey("SecondPlace"))
-        {
-            secondScore = PlayerPrefs.GetInt("SecondPlace");
-        }
-      
-        if (PlayerPrefs.HasKey("ThirdPlace"))
-        {
-            thirdScore = PlayerPrefs.GetInt("ThirdPlace");
-        }
-      
-      //  UpdateLeaderBoardScores();
-       // UpdateLeaderBoardRankings();
+            if (PlayerPrefs.HasKey("HighScore"))
+            {
+                hiScore = PlayerPrefs.GetInt("HighScore");
 
+            }
+            else
+            {
+                hiScore = 0;
+            }
+
+            if (PlayerPrefs.HasKey("SecondPlace"))
+            {
+                secondScore = PlayerPrefs.GetInt("SecondPlace");
+            }
+
+            if (PlayerPrefs.HasKey("ThirdPlace"))
+            {
+                thirdScore = PlayerPrefs.GetInt("ThirdPlace");
+            }
+
+           if (returnFromBonusLevel)
+            {
+                Debug.Log("Bypassing title screen...");
+                StartGame(autoDifficulty);
+                returnFromBonusLevel = false;
+
+            }
+
+            //  UpdateLeaderBoardScores();
+            // UpdateLeaderBoardRankings();
+
+           
     }
 
     public void StartGame (int difficulty) // distance between generated paths increases with difficulty selected
@@ -100,15 +119,25 @@ public class GameManager : MonoBehaviour
         titleScreen.gameObject.SetActive(false);
      
     }
+
+   /* void StartReturnedGame()
+    {
+        isGameActive = true;
+        titleScreen.gameObject.SetActive(false);
+        pathGenerator=FindObjectOfType<PathGenerator> ();
+        StartCoroutine(StartGeneratingPaths());
+        
+    }*/
    IEnumerator StartGeneratingPaths() //calls path generator while the game is active
    {
    
        while (isGameActive) 
        {
+           yield return new WaitForSeconds(0.2f);
            pathGenerator.GeneratePath1();
            pathGenerator.GeneratePath2();
 
-           yield return new WaitForSeconds(0.5f);
+           //yield return new WaitForSeconds(0.5f);
        }
    }
 
@@ -121,7 +150,7 @@ public class GameManager : MonoBehaviour
       }
        score += scoreToAdd;
         scoreText.text = "Score: " + score;
-        score = totalScore;
+       score = totalScore;
         if (score > hiScore)
         {
             hiScore = score;
@@ -182,7 +211,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         isGameActive = true;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("MyGame");
     }
     
 }

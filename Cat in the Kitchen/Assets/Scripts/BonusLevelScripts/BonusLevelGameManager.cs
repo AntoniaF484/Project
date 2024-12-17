@@ -3,11 +3,17 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class BonusLevelGameManager : MonoBehaviour
 {
 
     public float bonusTimeCountdown;
+    public TextMeshProUGUI bonusScoreText;
+    
     
     
     
@@ -26,10 +32,11 @@ public class BonusLevelGameManager : MonoBehaviour
     void Update()
     {
         bonusTimeCountdown -= Time.deltaTime;
-     /*  if (bonusTimeCountdown <= 0)
+      if (bonusTimeCountdown <= 0)
         {
-            SceneManager.LoadScene("MyGame");
-        }*/
+            SceneManager.LoadScene("EndGame");
+            
+        }
     }
 
     public void UpdateScore(int scoreToAdd)
@@ -37,8 +44,9 @@ public class BonusLevelGameManager : MonoBehaviour
 
 
         scoreFromBonusLevel += scoreToAdd;
-        totalScore += scoreToAdd; // Synchronize total score
+        totalScore += scoreToAdd; 
         Debug.Log($"Score from Bonus Level: {scoreFromBonusLevel}, Total Score: {totalScore}");
+        bonusScoreText.text = "Score: " + totalScore;
        // score = totalScore;
 
     }
