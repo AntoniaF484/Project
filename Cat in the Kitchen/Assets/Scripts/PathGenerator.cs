@@ -5,7 +5,8 @@ using UnityEngine;
 public class PathGenerator : MonoBehaviour
 {    
     
-    public Transform generationPoint;//Point in the game at which paths and attached objects are generated (attached to camera position)
+    public Transform generationPoint; //Point in the game at which paths and attached objects are generated (attached to camera position)
+    public Transform generationPoint2;
     private FoodObstaclePowerupGenerator objGenerator;
     private GameManager gameManager;
     
@@ -57,7 +58,10 @@ public class PathGenerator : MonoBehaviour
     // Start is called before the first frame update
         void Start()
         {
-           platformWidths1 = new float [theObjectPoolsPath1.Length];
+            
+            gameManager = FindObjectOfType<GameManager>();
+           
+            platformWidths1 = new float [theObjectPoolsPath1.Length];
            for (int i = 0; i < theObjectPoolsPath1.Length; i++)
            {
                platformWidths1[i] = theObjectPoolsPath1[i].pooledObject.GetComponent<Renderer>().bounds.size.x;
@@ -140,7 +144,7 @@ public class PathGenerator : MonoBehaviour
       public void GeneratePath2()
        
         {
-        
+          
            if (path2Position.x < generationPoint.position.x)
            {
                distanceBetweenPath2 = Random.Range(distanceBetweenMinPath2, distanceBetweenMaxPath2);
@@ -167,9 +171,7 @@ public class PathGenerator : MonoBehaviour
 
               int RandomNumber = Random.Range(0, 100);
               
-              
-
-               if (RandomNumber >= 95)
+               if (RandomNumber >= 95 && (!gameManager.returnFromBonusLevel))
                {
                    objGenerator.SpawnBonus((new Vector3(path2Position.x+ Random.Range(-(platformWidths2[platformSelector2]/2), 
                        (platformWidths2[platformSelector2]/2)), path2Position.y + 4f, path2Position.z)));

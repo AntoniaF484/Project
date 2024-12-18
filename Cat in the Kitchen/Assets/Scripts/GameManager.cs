@@ -144,11 +144,12 @@ public class GameManager : MonoBehaviour
    
        while (isGameActive) 
        {
-           //yield return new WaitForSeconds(0.6f);
+           //yield return new WaitForSeconds(1f);
+           
            pathGenerator.GeneratePath1();
-           pathGenerator.GeneratePath2();
+          pathGenerator.GeneratePath2();
 
-           yield return new WaitForSeconds(0.5f);
+          yield return new WaitForSeconds(0.1f);
        }
    }
 

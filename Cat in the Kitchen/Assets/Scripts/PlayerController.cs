@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
 
     private Collider myCollider;
+
+    private bool enableMovement = false;
     
 
     // Start is called before the first frame update
@@ -50,11 +52,24 @@ public class PlayerController : MonoBehaviour
 
         myCollider = GetComponent<Collider>();
 
+        StartCoroutine(EnableMovement(3f));
+
+    }
+
+    private IEnumerator EnableMovement(float wait)
+    {
+        yield return new WaitForSeconds(wait);
+        enableMovement = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (!enableMovement)
+        {
+            return;
+        }
 
 
         isOnGround = Physics.OverlapSphere(groundCheck.position, groundCheckWidth, whatIsGround).Length>0;
