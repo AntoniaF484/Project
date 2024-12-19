@@ -6,6 +6,7 @@ public class BonusLevelDetectCollisions : MonoBehaviour
 {
 
     public int scoreValueFromObj;
+   
    // public int score;
 
    // public GameManager bonusGameManager;
