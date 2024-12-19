@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 656110757445481459}
   - component: {fileID: 2628249612259234101}
   - component: {fileID: 3409064876351253191}
+  - component: {fileID: 7236816031224624771}
   m_Layer: 0
   m_Name: BonusLevelEntrance
   m_TagString: Untagged
@@ -145,6 +146,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.238504, y: 4.3416777, z: 3.6347566}
   m_Center: {x: 0.52866817, y: -0.19440985, z: 0.29275078}
+--- !u!114 &7236816031224624771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5058661246575027031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef486fb5ded78469e911f0546fca8c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestructionPoint: {fileID: 0}
 --- !u!1001 &1430250659451158434
 PrefabInstance:
   m_ObjectHideFlags: 0

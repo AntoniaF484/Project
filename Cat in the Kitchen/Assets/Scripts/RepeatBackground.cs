@@ -44,7 +44,9 @@ public class RepeatBackground : MonoBehaviour
             GameObject newBackground = theObjectPoolsBackground [backgroundSelector].GetPooledObject();
             newBackground.transform.position = backgroundPosition;
             newBackground.transform.rotation = transform.rotation; 
-            newBackground.SetActive(true); //setting platform as active in above named position
+            newBackground.SetActive(true); //setting background as active in above named position
+            
+            Debug.Log($"Spawned background at {backgroundPosition} with width {distanceBetweenBackgrounds}");
         }
       //  if (transform.position.x < startPos.x - 50)
        // {
