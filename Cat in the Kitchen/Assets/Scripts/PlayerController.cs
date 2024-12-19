@@ -25,19 +25,26 @@ public class PlayerController : MonoBehaviour
 
     private DetectCollisions detectCollisions;
 
-    //TEST
+ 
     public float jumpTime;
     private float jumpTimeCounter;
     public bool isHoldingJump;
     
-    //Collisions TEST
+   
     public Transform groundCheck;
     public float groundCheckWidth;
     public LayerMask whatIsGround;
+    
+    
+   
 
     private Collider myCollider;
 
     private bool enableMovement = false;
+    
+    
+    public AudioClip jumpSound;
+    private AudioSource playerAudio;
     
 
     // Start is called before the first frame update
@@ -53,6 +60,8 @@ public class PlayerController : MonoBehaviour
         myCollider = GetComponent<Collider>();
 
         StartCoroutine(EnableMovement(3f));
+
+        playerAudio = GetComponent<AudioSource>();
 
     }
 
@@ -81,6 +90,7 @@ public class PlayerController : MonoBehaviour
         {
 
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            playerAudio.PlayOneShot(jumpSound,1.0f);
             jumpCount++;
             jumpTimeCounter = jumpTime;
             isHoldingJump = true;
