@@ -94,12 +94,7 @@ public class PathGenerator : MonoBehaviour
     public void GeneratePath1()
     {
         
-        if (distanceBetweenMinPath1 == 0 || distanceBetweenMaxPath1 == 0)
-        {
-            Debug.LogWarning("Path distances are not initialized. Resetting to defaults.");
-            distanceBetweenMinPath1 = 2f;
-            distanceBetweenMaxPath1 = 4f;
-        }
+        
 
         if (path1Position.x < generationPoint.position.x)
         {
