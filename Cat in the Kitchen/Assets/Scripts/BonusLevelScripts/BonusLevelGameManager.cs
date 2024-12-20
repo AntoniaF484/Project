@@ -41,7 +41,7 @@ public class BonusLevelGameManager : MonoBehaviour
 
 
         scoreFromBonusLevel  += scoreToAdd;
-        GameManager.totalScore += scoreFromBonusLevel; // Add the score from the Bonus level to the overall score
+        GameManager.totalScore += scoreToAdd; // Add the score from the Bonus level to the overall score
         bonusScoreText.text = "Score: " + GameManager.totalScore;
         
 
