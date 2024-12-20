@@ -59,11 +59,18 @@ public class GameManager : MonoBehaviour
     public bool returnFromBonusLevel;
    // private nextscene reachBonusLevel;
     public int autoDifficulty = 1;
+    
+    
+    private DifficultyButton difficultyButton;
+    private float originalDistanceMax; 
+    private float originalDistanceMin;
 
     void Start()
     {
         
         pathGenerator = FindObjectOfType<PathGenerator>();
+      
+        
 
 
 
@@ -100,27 +107,36 @@ public class GameManager : MonoBehaviour
 
            if (returnFromBonusLevel)
             {
-                Debug.Log("Bypassing title screen...");
+               
                 StartGame(autoDifficulty);
-                    // returnFromBonusLevel = false;
+                
+                   
                 score = totalScore;
                 lives = totalLives;
 
             }
 
-            //  UpdateLeaderBoardScores();
-            // UpdateLeaderBoardRankings();
-
+          
            
     }
 
     public void StartGame (int difficulty) // distance between generated paths increases with difficulty selected
     {
+        
+      /*  if (!returnFromBonusLevel)
+        {
+            originalDistanceMin = pathGenerator.distanceBetweenMinPath1;
+            originalDistanceMax = pathGenerator.distanceBetweenMaxPath1;
+        }
+        pathGenerator.distanceBetweenMinPath1 = originalDistanceMin * difficulty;
+        pathGenerator.distanceBetweenMaxPath1 = originalDistanceMax * difficulty;*/
+        
         UpdateScore(totalScore);
         
         isGameActive = true;
         pathGenerator=FindObjectOfType<PathGenerator> ();
         
+       
         
      pathGenerator.distanceBetweenMinPath1 *= difficulty;
      pathGenerator.distanceBetweenMaxPath1 *= difficulty;

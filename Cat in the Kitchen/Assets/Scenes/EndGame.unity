@@ -122,6 +122,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &13301575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 13301577}
+  - component: {fileID: 13301576}
+  m_Layer: 0
+  m_Name: PowerUpManagerBonus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &13301576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13301575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6aaf039787db4bf7a79ff9186090b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUpActive: 0
+--- !u!4 &13301577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13301575}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.140839, y: 18.90835, z: -0.00005054474}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &27706648
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f411ff8bf751547b1acc6ca6525ee33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObject: {fileID: 8873983100217070245, guid: b97323c6cbf9a4523a516248ea4fd129, type: 3}
+  pooledObject: {fileID: 4385853492939910507, guid: 727c2d302425343c1bd71d594161333b, type: 3}
   pooledAmount: 10
 --- !u!1 &293657447
 GameObject:
@@ -1538,7 +1583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f411ff8bf751547b1acc6ca6525ee33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObject: {fileID: 922177468543433457, guid: bf8edeedf63c844a6afdca8131d6ab30, type: 3}
+  pooledObject: {fileID: 7441001505352772423, guid: d1155016c7bbf4be9b4aeb188b312b88, type: 3}
   pooledAmount: 10
 --- !u!1 &445546997
 GameObject:
@@ -2375,7 +2420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &568064858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2515,7 +2560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f411ff8bf751547b1acc6ca6525ee33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObject: {fileID: 2276400405714653228, guid: 3512b4e101da7464688262e539f4173d, type: 3}
+  pooledObject: {fileID: 1683458531359515106, guid: e723af9bf0bde4e28aa25bf611e60629, type: 3}
   pooledAmount: 10
 --- !u!1 &648823655
 GameObject:
@@ -4625,7 +4670,7 @@ MonoBehaviour:
   secondPlaceScore: {fileID: 1823585699}
   thirdPlaceScore: {fileID: 293657449}
   returnFromBonusLevel: 1
-  autoDifficulty: 1
+  autoDifficulty: 2
 --- !u!4 &1482095298
 Transform:
   m_ObjectHideFlags: 0
@@ -6048,3 +6093,4 @@ SceneRoots:
   - {fileID: 568064859}
   - {fileID: 1218470029}
   - {fileID: 1127916334}
+  - {fileID: 13301577}

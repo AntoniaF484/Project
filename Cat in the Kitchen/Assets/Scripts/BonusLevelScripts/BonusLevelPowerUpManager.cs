@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpManager : MonoBehaviour
+public class BonusLevelPowerUpManager : MonoBehaviour
 {
     private bool doublePoints;
     private bool extraLife;
@@ -34,15 +34,7 @@ public class PowerUpManager : MonoBehaviour
     {
         gameManager = FindObjectOfType < GameManager>();
         pathGenerator = FindObjectOfType<PathGenerator>();
-        difficultyButton = FindObjectOfType<DifficultyButton>(); 
-      
-        
-        originalDistanceMin = pathGenerator.distanceBetweenMinPath1*difficultyButton.difficulty;
-        originalDistanceMax = pathGenerator.distanceBetweenMaxPath1*difficultyButton.difficulty;
-
-      
-        
-
+    
     }
 
     // Update is called once per frame
@@ -74,8 +66,8 @@ public class PowerUpManager : MonoBehaviour
         {
             powerUpActive = false;
             
-            pathGenerator.distanceBetweenMaxPath1 = originalDistanceMax;
-            pathGenerator.distanceBetweenMinPath1 = originalDistanceMin;
+            pathGenerator.distanceBetweenMaxPath1 = 2;
+            pathGenerator.distanceBetweenMinPath1 = 4;
             pathGenerator.maxYchangePath1 = 15;
         }
         
