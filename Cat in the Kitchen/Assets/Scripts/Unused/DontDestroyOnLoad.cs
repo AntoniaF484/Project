@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DontDestroyOnLoad : MonoBehaviour
+/*public class DontDestroyOnLoad : MonoBehaviour
 {
     void Awake()
     {
@@ -15,5 +15,5 @@ public class DontDestroyOnLoad : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
     }
-}
+}*/
 
