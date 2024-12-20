@@ -16,8 +16,15 @@ public class PowerUpManager : MonoBehaviour
     private GameManager gameManager;
     private PathGenerator pathGenerator;
     private  DetectCollisions detectCollisions;
+    private DifficultyButton difficultyButton;
 
     private int normalScore;
+
+    private float difficulty;
+    
+   private float originalDistanceMax;
+   private float originalDistanceMin;
+  
     
     
     
@@ -26,6 +33,12 @@ public class PowerUpManager : MonoBehaviour
     {
         gameManager = FindObjectOfType < GameManager>();
         pathGenerator = FindObjectOfType<PathGenerator>();
+        difficultyButton = FindObjectOfType<DifficultyButton>();
+        
+        
+         originalDistanceMin   = pathGenerator.distanceBetweenMinPath1*difficultyButton.difficulty;
+         originalDistanceMax = pathGenerator.distanceBetweenMaxPath1*difficultyButton.difficulty;;
+        
 
     }
 
@@ -46,7 +59,9 @@ public class PowerUpManager : MonoBehaviour
             }
             
 
-            if (easyPath)
+           if (easyPath)
+               
+               
             {
                 pathGenerator.distanceBetweenMaxPath1 = 0;
                 pathGenerator.distanceBetweenMinPath1 = 0;
@@ -57,9 +72,9 @@ public class PowerUpManager : MonoBehaviour
         if (powerUpLengthCounter <= 0)
         {
             powerUpActive = false;
-            //gameManager.powerUpActive = false;
-            pathGenerator.distanceBetweenMaxPath1 = 2;
-            pathGenerator.distanceBetweenMinPath1 = 4;
+            
+            pathGenerator.distanceBetweenMaxPath1 = originalDistanceMax;
+            pathGenerator.distanceBetweenMinPath1 = originalDistanceMin;
             pathGenerator.maxYchangePath1 = 15;
         }
         

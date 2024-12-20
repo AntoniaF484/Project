@@ -1742,6 +1742,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  playerAnim: {fileID: 0}
   jumpSound: {fileID: 8300000, guid: 2d0f505c9aee94f989801ec3911e2383, type: 3}
 --- !u!23 &532434012
 MeshRenderer:
@@ -2151,7 +2152,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generationPoint: {fileID: 1669844768}
-  generationPoint2: {fileID: 0}
   theObjectPoolsPath1:
   - {fileID: 1322786898}
   - {fileID: 1257520274}

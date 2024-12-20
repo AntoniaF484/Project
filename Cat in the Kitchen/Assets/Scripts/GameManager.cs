@@ -62,6 +62,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        
+        pathGenerator = FindObjectOfType<PathGenerator>();
 
 
 
@@ -126,25 +128,19 @@ public class GameManager : MonoBehaviour
      
      pathGenerator.distanceBetweenMinPath2 *= difficulty; 
      pathGenerator.distanceBetweenMaxPath2 *= difficulty;
+     
         StartCoroutine(StartGeneratingPaths());
         titleScreen.gameObject.SetActive(false);
      
     }
 
-   /* void StartReturnedGame()
-    {
-        isGameActive = true;
-        titleScreen.gameObject.SetActive(false);
-        pathGenerator=FindObjectOfType<PathGenerator> ();
-        StartCoroutine(StartGeneratingPaths());
-        
-    }*/
+ 
    IEnumerator StartGeneratingPaths() //calls path generator while the game is active
    {
    
        while (isGameActive) 
        {
-           //yield return new WaitForSeconds(1f);
+           yield return new WaitForSeconds(0.1f);
            
            pathGenerator.GeneratePath1();
           pathGenerator.GeneratePath2();
@@ -163,7 +159,7 @@ public class GameManager : MonoBehaviour
        score += scoreToAdd;
         scoreText.text = "Score: " + score;
         totalScore = score;
-        Debug.Log($"Score from Start Level: {score}, Total Score: {totalScore}");
+     
         if (score > hiScore)
         {
             hiScore = score;

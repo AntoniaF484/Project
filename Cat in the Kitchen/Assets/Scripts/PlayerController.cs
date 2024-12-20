@@ -42,9 +42,11 @@ public class PlayerController : MonoBehaviour
 
     private bool enableMovement = false;
     
-    
+    public Animator playerAnim;
     public AudioClip jumpSound;
     private AudioSource playerAudio;
+
+    
     
 
     // Start is called before the first frame update
@@ -62,6 +64,11 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(EnableMovement(3f));
 
         playerAudio = GetComponent<AudioSource>();
+      playerAnim = GetComponent<Animator>();
+        if (playerAnim == null)
+        {
+            Debug.LogError("Animator component is not assigned or missing on this GameObject!");
+        }
 
     }
 
@@ -69,11 +76,13 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(wait);
         enableMovement = true;
+        playerAnim.SetFloat("Forward", 2.98f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
 
         if (!enableMovement)
         {
@@ -91,16 +100,19 @@ public class PlayerController : MonoBehaviour
 
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             playerAudio.PlayOneShot(jumpSound,1.0f);
+            playerAnim.SetBool("Jumping", true);
+            //Debug.Log("jump");
             jumpCount++;
             jumpTimeCounter = jumpTime;
             isHoldingJump = true;
             if (isOnGround)
             {
+               playerAnim.SetBool("Jumping", false);
                 isOnGround = false;
             }
-
-
         }
+        
+        
 
         if (Input.GetKey(KeyCode.Space) && isHoldingJump && jumpTimeCounter > 0)
         {
@@ -127,11 +139,18 @@ public class PlayerController : MonoBehaviour
 
         if (isOnGround)
         {
-
+           
             if (transform.position.x > speedIncreaseCount)
+               
             {
+               // float horizontalAxis = Input.GetAxis("Horizontal");
+               // float verticalAxis = Input.GetAxis("Vertical");
+                
                 speedIncreaseCount += speedIncreasePosition;
                 moveSpeed *= acceleration;
+                
+                
+                
             }
             else if (moveSpeed > maxSpeed)
             {
@@ -143,6 +162,8 @@ public class PlayerController : MonoBehaviour
         if (gameManager.isGameActive)
         {
             playerRb.velocity = new Vector3(moveSpeed, playerRb.velocity.y, playerRb.velocity.z);
+            this.playerAnim.SetFloat("Forward", 2.98f);
+            Debug.Log("Forward parameter set to: " + 1.0f);
         }
 
         if (transform.position.y < playerSize)
