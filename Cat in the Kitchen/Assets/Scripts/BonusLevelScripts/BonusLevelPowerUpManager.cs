@@ -23,8 +23,8 @@ public class BonusLevelPowerUpManager : MonoBehaviour
     private float difficulty;
    
     //Min and max distance between platforms prior to hitting easypath powerup
-   private float originalDistanceMax; 
-   private float originalDistanceMin;
+    private float defaultDistanceMax = 4f;
+    private float defaultDistanceMin = 2f;
   
     
     
@@ -65,9 +65,9 @@ public class BonusLevelPowerUpManager : MonoBehaviour
         if (powerUpLengthCounter <= 0)
         {
             powerUpActive = false;
-            
-            pathGenerator.distanceBetweenMaxPath1 = 2;
-            pathGenerator.distanceBetweenMinPath1 = 4;
+
+            pathGenerator.distanceBetweenMaxPath1 = defaultDistanceMax;
+            pathGenerator.distanceBetweenMinPath1 = defaultDistanceMin;
             pathGenerator.maxYchangePath1 = 15;
         }
         
