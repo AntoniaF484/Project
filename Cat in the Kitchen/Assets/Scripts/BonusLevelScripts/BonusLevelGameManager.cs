@@ -11,14 +11,8 @@ using UnityEngine.UI;
 public class BonusLevelGameManager : MonoBehaviour
 {
 
-    public float bonusTimeCountdown;
+    public float bonusTimeCountdown; // time allowed in bonus scene
     public TextMeshProUGUI bonusScoreText;
-    
-    
-    
-    
-   // private int score;
-   // public static int totalScore;
     public int addedScore;
     public int scoreFromBonusLevel;
     
@@ -26,9 +20,9 @@ public class BonusLevelGameManager : MonoBehaviour
     void Start()
     {
         
-        Debug.Log($"Total Score: {GameManager.totalScore}");
-        bonusScoreText.text = "Score: " + GameManager.totalScore;
-       // UpdateScore();
+        
+        bonusScoreText.text = "Score: " + GameManager.totalScore; // when bonus level starts, score is made consistent with the score from first level
+       
     }
 
     // Update is called once per frame
@@ -37,7 +31,7 @@ public class BonusLevelGameManager : MonoBehaviour
         bonusTimeCountdown -= Time.deltaTime;
       if (bonusTimeCountdown <= 0)
         {
-            SceneManager.LoadScene("EndGame");
+            SceneManager.LoadScene("EndGame"); // When time in the Bonus scene runs out, load the EndGame scene
             
         }
     }
@@ -47,11 +41,9 @@ public class BonusLevelGameManager : MonoBehaviour
 
 
         scoreFromBonusLevel  += scoreToAdd;
-        GameManager.totalScore += scoreFromBonusLevel;
+        GameManager.totalScore += scoreFromBonusLevel; // Add the score from the Bonus level to the overall score
         bonusScoreText.text = "Score: " + GameManager.totalScore;
-        Debug.Log($"Score from Bonus Level: {scoreFromBonusLevel}, Total Score: {GameManager.totalScore}");
         
-        // score = totalScore;
 
     }
 }

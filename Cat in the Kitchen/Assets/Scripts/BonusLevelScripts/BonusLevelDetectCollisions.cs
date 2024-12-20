@@ -6,14 +6,7 @@ public class BonusLevelDetectCollisions : MonoBehaviour
 {
 
     public int scoreValueFromObj;
-   
-   // public int score;
-
-   // public GameManager bonusGameManager;
-   
-   private BonusLevelGameManager bonusGameManager;
-
-  // public GameManager bonusGameManager;
+    private BonusLevelGameManager bonusGameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +15,11 @@ public class BonusLevelDetectCollisions : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) 
     {
         if (other.CompareTag("Player"))//when the player collides with an object, relevant scores added and object deactivates
         {
             Destroy(gameObject);
-            //score += scoreValueFromObj;
             bonusGameManager.UpdateScore(scoreValueFromObj);
         }
         

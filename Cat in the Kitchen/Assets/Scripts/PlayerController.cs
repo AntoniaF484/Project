@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    
+    private DetectCollisions detectCollisions;
+    
     private Rigidbody playerRb;
     private float playerSize = 0.75f;
     public float jumpForce;
@@ -22,10 +25,7 @@ public class PlayerController : MonoBehaviour
     public int maxJumps = 2;
     public int jumpCount = 0;
     public GameManager gameManager;
-
-    private DetectCollisions detectCollisions;
-
- 
+    
     public float jumpTime;
     private float jumpTimeCounter;
     public bool isHoldingJump;
@@ -35,14 +35,12 @@ public class PlayerController : MonoBehaviour
     public float groundCheckWidth;
     public LayerMask whatIsGround;
     
-    
-   
-
     private Collider myCollider;
 
     private bool enableMovement = false;
+   
     
-    public Animator playerAnim;
+    //Audio 
     public AudioClip jumpSound;
     private AudioSource playerAudio;
 
@@ -61,14 +59,10 @@ public class PlayerController : MonoBehaviour
 
         myCollider = GetComponent<Collider>();
 
-        StartCoroutine(EnableMovement(3f));
+        StartCoroutine(EnableMovement(3f)); //Wait to start moving the player 
 
         playerAudio = GetComponent<AudioSource>();
-      playerAnim = GetComponent<Animator>();
-        if (playerAnim == null)
-        {
-            Debug.LogError("Animator component is not assigned or missing on this GameObject!");
-        }
+      
 
     }
 
@@ -76,7 +70,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(wait);
         enableMovement = true;
-        playerAnim.SetFloat("Forward", 2.98f);
+        
     }
 
     // Update is called once per frame
@@ -95,26 +89,24 @@ public class PlayerController : MonoBehaviour
             
 
 
-        if (Input.GetKeyDown(KeyCode.Space) && (isOnGround || jumpCount < maxJumps))
+        if (Input.GetKeyDown(KeyCode.Space) && (isOnGround || jumpCount < maxJumps))//Player jumps if they are on the ground or have not jumped more than max.
         {
 
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            playerAudio.PlayOneShot(jumpSound,1.0f);
-            playerAnim.SetBool("Jumping", true);
-            //Debug.Log("jump");
-            jumpCount++;
-            jumpTimeCounter = jumpTime;
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); //Force added to jump
+            playerAudio.PlayOneShot(jumpSound,1.0f); //Audio on jump
+          
+            jumpCount++; // add a jump to the jump counter
+            jumpTimeCounter = jumpTime; // resets jump time
             isHoldingJump = true;
             if (isOnGround)
             {
-               playerAnim.SetBool("Jumping", false);
                 isOnGround = false;
             }
         }
         
         
 
-        if (Input.GetKey(KeyCode.Space) && isHoldingJump && jumpTimeCounter > 0)
+        if (Input.GetKey(KeyCode.Space) && isHoldingJump && jumpTimeCounter > 0)//If player is holding space, keep jumping until max jump time
         {
 
             playerRb.AddForce(Vector3.up * jumpForce*Time.deltaTime, ForceMode.Impulse);
@@ -122,7 +114,7 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space)) // when player release space, stop jumping and reset jumptime counter
         {
             playerRb.velocity = new Vector3(playerRb.velocity.x, 0, playerRb.velocity.z);
                 jumpTimeCounter = 0;
@@ -143,8 +135,7 @@ public class PlayerController : MonoBehaviour
             if (transform.position.x > speedIncreaseCount)
                
             {
-               // float horizontalAxis = Input.GetAxis("Horizontal");
-               // float verticalAxis = Input.GetAxis("Vertical");
+              
                 
                 speedIncreaseCount += speedIncreasePosition;
                 moveSpeed *= acceleration;
@@ -162,8 +153,7 @@ public class PlayerController : MonoBehaviour
         if (gameManager.isGameActive)
         {
             playerRb.velocity = new Vector3(moveSpeed, playerRb.velocity.y, playerRb.velocity.z);
-            this.playerAnim.SetFloat("Forward", 2.98f);
-            Debug.Log("Forward parameter set to: " + 1.0f);
+           
         }
 
         if (transform.position.y < playerSize)
@@ -174,19 +164,7 @@ public class PlayerController : MonoBehaviour
 
 
     }
-
-  /*  private void OnCollisionEnter(Collision collision)
-    {
-
-        if (collision.gameObject.CompareTag("Path"))
-        {
-
-            isOnGround = true;
-
-
-        }
-
-    }*/
+    
 }
 
 

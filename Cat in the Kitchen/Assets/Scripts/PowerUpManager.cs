@@ -11,7 +11,7 @@ public class PowerUpManager : MonoBehaviour
 
     public bool powerUpActive=false;
 
-    private float powerUpLengthCounter;
+    private float powerUpLengthCounter; // time that powerup remains active for
 
     private GameManager gameManager;
     private PathGenerator pathGenerator;
@@ -21,8 +21,9 @@ public class PowerUpManager : MonoBehaviour
     private int normalScore;
 
     private float difficulty;
-    
-   private float originalDistanceMax;
+   
+    //Min and max distance between platforms prior to hitting easypath powerup
+   private float originalDistanceMax; 
    private float originalDistanceMin;
   
     
@@ -37,7 +38,7 @@ public class PowerUpManager : MonoBehaviour
         
         
          originalDistanceMin   = pathGenerator.distanceBetweenMinPath1*difficultyButton.difficulty;
-         originalDistanceMax = pathGenerator.distanceBetweenMaxPath1*difficultyButton.difficulty;;
+         originalDistanceMax = pathGenerator.distanceBetweenMaxPath1*difficultyButton.difficulty;
         
 
     }
@@ -59,9 +60,7 @@ public class PowerUpManager : MonoBehaviour
             }
             
 
-           if (easyPath)
-               
-               
+           if (easyPath) 
             {
                 pathGenerator.distanceBetweenMaxPath1 = 0;
                 pathGenerator.distanceBetweenMinPath1 = 0;
@@ -87,7 +86,7 @@ public class PowerUpManager : MonoBehaviour
         easyPath = path;
         extraLife = life;
        
-        powerUpLengthCounter = time;
+        powerUpLengthCounter = time; 
 
         normalScore = gameManager.addedScore;
         powerUpActive = true;

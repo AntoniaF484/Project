@@ -21,14 +21,9 @@ public class PowerUps : MonoBehaviour
     {
         powerUpManager = FindObjectOfType < PowerUpManager>(); 
     }
+    
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //on collision with powerup, parameters are sent to power up manager and powerup is deactivated
     {
         if (other.name == "Player")
         {
