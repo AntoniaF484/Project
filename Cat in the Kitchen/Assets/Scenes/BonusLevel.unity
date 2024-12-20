@@ -653,8 +653,65 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 3.3985233, z: 4.163405}
-  m_Center: {x: 0, y: 1.1992617, z: 0.21878552}
+  m_Size: {x: 4.894091, y: 3.3985233, z: 1.9652994}
+  m_Center: {x: 0.18932223, y: 1.1992617, z: 0.1971494}
+--- !u!1001 &357973522
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 351276577}
+    m_Modifications:
+    - target: {fileID: 8566943903271108975, guid: 074cf3cd1648f42fd923d49d1bdfc524, type: 3}
+      propertyPath: m_Name
+      value: DodiModelOnly copy
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547230829845461, guid: 074cf3cd1648f42fd923d49d1bdfc524, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.08437286
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547230829845461, guid: 074cf3cd1648f42fd923d49d1bdfc524, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547230829845461, guid: 074cf3cd1648f42fd923d49d1bdfc524, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.20181382
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547230829845461, guid: 074cf3cd1648f42fd923d49d1bdfc524, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547230829845461, guid: 074cf3cd1648f42fd923d49d1bdfc524, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547230829845461, guid: 074cf3cd1648f42fd923d49d1bdfc524, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547230829845461, guid: 074cf3cd1648f42fd923d49d1bdfc524, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547230829845461, guid: 074cf3cd1648f42fd923d49d1bdfc524, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547230829845461, guid: 074cf3cd1648f42fd923d49d1bdfc524, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054547230829845461, guid: 074cf3cd1648f42fd923d49d1bdfc524, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 074cf3cd1648f42fd923d49d1bdfc524, type: 3}
 --- !u!1001 &379366473
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1622,6 +1679,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5474fb426662040a9a6a69a26b620032, type: 3}
+--- !u!4 &956015423 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9054547230829845461, guid: 074cf3cd1648f42fd923d49d1bdfc524, type: 3}
+  m_PrefabInstance: {fileID: 357973522}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &993620338
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1670,6 +1732,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8116613859084990610, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7146521406498821007, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3215555783603854218, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2932998491564163895, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1018664272722485354, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
       propertyPath: m_Name
       value: DodiModelForUnity
@@ -1678,12 +1772,27 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4424396828587804706, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5914173764048766335, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8416272007918961125, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1679098820}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 956015423}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6c9bb23ec43984cc5a9fa2acd801dbfa, type: 3}
       insertIndex: -1
@@ -3525,7 +3634,6 @@ SceneRoots:
   - {fileID: 471616341}
   - {fileID: 894680533}
   - {fileID: 2077937168}
-  - {fileID: 993620338}
   - {fileID: 263347166}
   - {fileID: 1560250455}
   - {fileID: 106238119}
@@ -3535,3 +3643,4 @@ SceneRoots:
   - {fileID: 1022386775}
   - {fileID: 2107422567}
   - {fileID: 1695172854}
+  - {fileID: 993620338}
