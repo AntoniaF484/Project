@@ -13,23 +13,34 @@ public class PowerUps : MonoBehaviour
     public float powerUpLength;
 
     private PowerUpManager powerUpManager;
+    private BonusLevelPowerUpManager bonusLevelPowerUpManager;
 
     private GameManager gameManager;
     
     // Start is called before the first frame update
     void Start()
     {
-        powerUpManager = FindObjectOfType < PowerUpManager>(); 
+        bonusLevelPowerUpManager = FindObjectOfType < BonusLevelPowerUpManager>(); 
+        powerUpManager = FindObjectOfType < PowerUpManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
     
 
     private void OnTriggerEnter(Collider other) //on collision with powerup, parameters are sent to power up manager and powerup is deactivated
     {
-        if (other.name == "Player")
+        if (other.name == "Player" && gameManager. returnFromBonusLevel)
+        {
+            bonusLevelPowerUpManager.ActivatePowerUp(doublePoints, easyPath, extraLife, livesValue, powerUpLength);
+            gameObject.SetActive(false);
+        }
+        
+        else 
         {
             powerUpManager.ActivatePowerUp(doublePoints, easyPath, extraLife, livesValue, powerUpLength);
+            gameObject.SetActive(false);
         }
+
        
-        gameObject.SetActive(false);
+        
     }
 }

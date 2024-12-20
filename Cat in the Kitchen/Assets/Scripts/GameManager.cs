@@ -239,6 +239,7 @@ public class GameManager : MonoBehaviour
     {
         isGameActive = true;
         SceneManager.LoadScene("MyGame");
+        totalScore = 0;
     }
     
 }
