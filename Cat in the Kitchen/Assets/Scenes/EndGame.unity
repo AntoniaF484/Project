@@ -5061,8 +5061,6 @@ MonoBehaviour:
   - {fileID: 445546999}
   - {fileID: 1257815816}
   powerUpPool:
-  - {fileID: 265027748}
-  - {fileID: 445012297}
   - {fileID: 604198811}
   bonusPool:
   - {fileID: 2103040614}
