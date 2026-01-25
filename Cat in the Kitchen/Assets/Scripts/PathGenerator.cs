@@ -149,7 +149,7 @@ public class PathGenerator : MonoBehaviour
                         path1Position.z)); // Generates obstacles on the generated platform
                 }
 
-                else
+                else if (RandomNumberPath1 < 5)
                 {
                     objGenerator.SpawnPowerUp(new Vector3(
                         path1Position.x + platformWidths1[platformSelector1] / 2 + distanceBetweenPath1 / 2,
@@ -213,7 +213,7 @@ public class PathGenerator : MonoBehaviour
                             (platformWidths2[platformSelector2] / 2)), path2Position.y + 4f,
                         path2Position.z)); //generating food on the platform just generated
                 }
-                else if (RandomNumber > 10)
+                else if (RandomNumber < 5)
 
                 {
                     objGenerator.SpawnPowerUp(new Vector3(
