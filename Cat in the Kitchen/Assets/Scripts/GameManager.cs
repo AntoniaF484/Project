@@ -42,12 +42,7 @@ public class GameManager : MonoBehaviour
 
     // PowerUps
     private PowerUpManager powerUpManager;
-    public bool scorePowerUpActive;
-    public bool extraLifePowerUpActive;
-
-
-
-
+    
     public TextMeshProUGUI firstPlaceScore;
     private int firstScore;
     public TextMeshProUGUI secondPlaceScore;
@@ -76,7 +71,6 @@ public class GameManager : MonoBehaviour
 
         if (!returnFromBonusLevel)
         {
-            //UpdateLives(9);
             lives = 9;
             totalLives = lives;
             livesText.text = "Lives: " + lives;
@@ -84,12 +78,11 @@ public class GameManager : MonoBehaviour
 
         else
         {
-           // UpdateLives(totalLives);
            lives=totalLives;
            livesText.text = "Lives: " + lives;
             
-        }
-            powerUpManager = FindObjectOfType<PowerUpManager>();
+        } 
+        powerUpManager = FindObjectOfType<PowerUpManager>();
 
             if (PlayerPrefs.HasKey("HighScore"))
             {
@@ -129,13 +122,6 @@ public class GameManager : MonoBehaviour
     public void StartGame (int difficulty) // distance between generated paths increases with difficulty selected
     {
         
-      /*  if (!returnFromBonusLevel)
-        {
-            originalDistanceMin = pathGenerator.distanceBetweenMinPath1;
-            originalDistanceMax = pathGenerator.distanceBetweenMaxPath1;
-        }
-        pathGenerator.distanceBetweenMinPath1 = originalDistanceMin * difficulty;
-        pathGenerator.distanceBetweenMaxPath1 = originalDistanceMax * difficulty;*/
         
         UpdateScore(totalScore);
         
@@ -174,10 +160,7 @@ public class GameManager : MonoBehaviour
    public void UpdateScore(int scoreToAdd)
    {
 
-      if (scorePowerUpActive)
-      {
-          scoreToAdd *= 2;
-      }
+      
        score += scoreToAdd;
         scoreText.text = "Score: " + score;
         totalScore = score;

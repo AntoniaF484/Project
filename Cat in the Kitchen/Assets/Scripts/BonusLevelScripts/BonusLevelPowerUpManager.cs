@@ -48,10 +48,7 @@ public class BonusLevelPowerUpManager : MonoBehaviour
             
             powerUpLengthCounter -= Time.deltaTime;
 
-            if (doublePoints)
-            {
-                gameManager.scorePowerUpActive = true;
-            }
+           
             
 
            if (easyPath) 
@@ -78,17 +75,14 @@ public class BonusLevelPowerUpManager : MonoBehaviour
     {
         doublePoints = points;
         easyPath = path;
-        extraLife = life;
+       
        
         powerUpLengthCounter = time; 
 
         normalScore = gameManager.addedScore;
         powerUpActive = true;
         
-        if (extraLife)
-        {
-            gameManager.UpdateLives(livesValue);
-        }
+       
         
     }
 }
