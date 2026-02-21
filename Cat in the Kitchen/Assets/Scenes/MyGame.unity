@@ -1112,7 +1112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f411ff8bf751547b1acc6ca6525ee33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObject: {fileID: 1200638334}
+  pooledObject: {fileID: 307645552070753256, guid: c58c84e554ad443379a68a50efd67d3d, type: 3}
   pooledAmount: 2
 --- !u!4 &445795497
 Transform:
@@ -1417,6 +1417,7 @@ GameObject:
   - component: {fileID: 532434016}
   - component: {fileID: 532434017}
   - component: {fileID: 532434018}
+  - component: {fileID: 532434019}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1541,7 +1542,7 @@ Transform:
   m_GameObject: {fileID: 532434008}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.2, y: 15.2, z: 0}
+  m_LocalPosition: {x: -18.2, y: 15.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1566,10 +1567,10 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 2.467989, y: 4.06664, z: 1.0092883}
-  m_Center: {x: 0.12975597, y: 1.7343926, z: -0.0046435}
+  m_Size: {x: 2.467989, y: 4.9909735, z: 1.0092883}
+  m_Center: {x: 0.12975597, y: 1.9488425, z: -0.0046435}
 --- !u!114 &532434016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1584,7 +1585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreValue: 0
   livesValue: 0
-  isOnGround: 0
+  isOnFloor: 0
 --- !u!82 &532434017
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1605,7 +1606,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 0.9682389
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -1702,6 +1703,29 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &532434019
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532434008}
+  m_Material: {fileID: 13400000, guid: 28743cde8bce6440ebc00c5a643a9018, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.99590015
+  m_Height: 4.6493454
+  m_Direction: 1
+  m_Center: {x: -0.041373253, y: 1.4847975, z: 0.049463987}
 --- !u!1 &553315305
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,7 +2571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f411ff8bf751547b1acc6ca6525ee33f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledObject: {fileID: 50591617404781242}
+  pooledObject: {fileID: 8120588924985573714, guid: e982a8d145b9e48578ee612fd59b76e5, type: 3}
   pooledAmount: 2
 --- !u!4 &943625222
 Transform:
@@ -3375,11 +3399,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1180956789}
   m_CullTransparentMesh: 1
---- !u!1 &1200638334 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 307645552070753256, guid: c58c84e554ad443379a68a50efd67d3d, type: 3}
-  m_PrefabInstance: {fileID: 360990147}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1257520272
 GameObject:
   m_ObjectHideFlags: 0
@@ -3600,7 +3619,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1339882738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3615,7 +3634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreValue: 0
   livesValue: 0
-  isOnGround: 0
+  isOnFloor: 0
 --- !u!4 &1339882739
 Transform:
   m_ObjectHideFlags: 0
@@ -4357,11 +4376,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &50591617404781242 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8120588924985573714, guid: e982a8d145b9e48578ee612fd59b76e5, type: 3}
-  m_PrefabInstance: {fileID: 8820138159510019807}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &319766022718122690
 RectTransform:
   m_ObjectHideFlags: 0

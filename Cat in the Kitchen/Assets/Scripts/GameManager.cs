@@ -76,12 +76,18 @@ public class GameManager : MonoBehaviour
 
         if (!returnFromBonusLevel)
         {
-            UpdateLives(9);
+            //UpdateLives(9);
+            lives = 9;
+            totalLives = lives;
+            livesText.text = "Lives: " + lives;
         }
 
         else
         {
-            UpdateLives(totalLives);
+           // UpdateLives(totalLives);
+           lives=totalLives;
+           livesText.text = "Lives: " + lives;
+            
         }
             powerUpManager = FindObjectOfType<PowerUpManager>();
 
@@ -231,6 +237,10 @@ public class GameManager : MonoBehaviour
        // UpdateLeaderBoard();
         replayButton.gameObject.SetActive(true);
         isGameActive = false;
+        
+        Rigidbody playerRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
+        playerRb.velocity = Vector3.zero;
+        playerRb.isKinematic = true;
        
 
     }

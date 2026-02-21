@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 6530231389961291966}
   - component: {fileID: 1168253138010592551}
   - component: {fileID: 5257780386415179967}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 9.200005, z: -5}
-  m_LocalScale: {x: 1, y: 0.19999996, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2430786223238823893}
@@ -271,9 +271,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 10.000009, y: 0, z: 10}
   m_Center: {x: 0, y: 1.110223e-16, z: 0}

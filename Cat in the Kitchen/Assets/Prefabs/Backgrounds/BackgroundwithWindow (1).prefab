@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7515908955512748705}
   - component: {fileID: 8833504542840298866}
   - component: {fileID: 7780532075965250015}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 2511972793256171779}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 9.200005, z: -5}
-  m_LocalScale: {x: 1, y: 0.19999996, z: 2}
+  m_LocalPosition: {x: 0, y: 9.2, z: -5}
+  m_LocalScale: {x: 1, y: 2.6125, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3556984532266758341}
@@ -150,9 +150,9 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 10.000009, y: 0, z: 10}
   m_Center: {x: 0, y: 1.110223e-16, z: 0}
@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 1828557172949588862}
   - component: {fileID: 5833897267971492841}
   - component: {fileID: 8238176612669909028}
+  - component: {fileID: 5628493786419295516}
   m_Layer: 0
   m_Name: BackgroundwithWindow (1)
   m_TagString: Untagged
@@ -277,3 +278,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestructionPoint: {fileID: 0}
+--- !u!54 &5628493786419295516
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9128035886373523367}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

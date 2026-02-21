@@ -8,8 +8,8 @@ public class DetectCollisions : MonoBehaviour
     public int scoreValue;
     public int livesValue;
     private GameManager gameManager;
-    public bool isOnGround = false;
-   // public bool gameOver = false;
+    public bool isOnFloor = false;
+  
 
     // Start is called before the first frame update
     void Start()
@@ -30,20 +30,20 @@ public class DetectCollisions : MonoBehaviour
    
     }
 
-   private void OnCollisionEnter(Collision collision)
+  private void OnCollisionEnter(Collision collision)
     {
         
-        if (gameManager.lives <= 0 || collision.gameObject.CompareTag("Ground") ) //Game Ober if the player lands on the ground or loses all lives
-        {
-            
-           
-            isOnGround = true;
-            Debug.Log("Game Over!");
-            gameManager.GameOver();
-        
-           
-        }
+      
+      if (gameManager.lives <= 0 ||collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
+      {
+         
+          gameManager.GameOver();
+          isOnFloor = true;
+      } 
     }
+       
+ 
+
 }
 
 
