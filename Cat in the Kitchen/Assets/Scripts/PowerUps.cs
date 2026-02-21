@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class PowerUps : MonoBehaviour
 {
-    public bool doublePoints;
-    public bool extraLife;
+   
     public bool easyPath;
-    public int livesValue;
+   
 
     public float powerUpLength;
 

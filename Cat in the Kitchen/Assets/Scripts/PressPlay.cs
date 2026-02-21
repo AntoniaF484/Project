@@ -22,7 +22,6 @@ public class PressPlay : MonoBehaviour
     
     void PressPlayButton()
     {
-        Debug.Log(gameObject.name + " was clicked");
        
         gameManager.StartGame(difficulty);
         

@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PowerUpManager : MonoBehaviour
 {
-    private bool doublePoints;
-    private bool extraLife;
+   
     private bool easyPath;
-    private int livesValue;
+    
 
     public bool powerUpActive=false;
 
@@ -83,8 +82,6 @@ public class PowerUpManager : MonoBehaviour
         
        
         powerUpLengthCounter = time; 
-
-        normalScore = gameManager.addedScore;
         powerUpActive = true;
         
         
