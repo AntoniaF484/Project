@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class BonusLevelPowerUpManager : MonoBehaviour
 {
-    private bool doublePoints;
-    private bool extraLife;
+   
     private bool easyPath;
-    private int livesValue;
+   
 
     public bool powerUpActive=false;
 
@@ -16,7 +15,7 @@ public class BonusLevelPowerUpManager : MonoBehaviour
     private GameManager gameManager;
     private PathGenerator pathGenerator;
     private  DetectCollisions detectCollisions;
-    private DifficultyButton difficultyButton;
+ //   private DifficultyButton difficultyButton;
 
     private int normalScore;
 
@@ -71,9 +70,9 @@ public class BonusLevelPowerUpManager : MonoBehaviour
         
     }
 
-    public void ActivatePowerUp(bool points, bool path, bool life, int livesValue, float time)
+    public void ActivatePowerUp( bool path, float time)
     {
-        doublePoints = points;
+        
         easyPath = path;
        
        

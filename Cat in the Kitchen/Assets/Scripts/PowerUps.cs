@@ -30,13 +30,13 @@ public class PowerUps : MonoBehaviour
     {
         if (other.name == "Player" && gameManager. returnFromBonusLevel)
         {
-            bonusLevelPowerUpManager.ActivatePowerUp(doublePoints, easyPath, extraLife, livesValue, powerUpLength);
+            bonusLevelPowerUpManager.ActivatePowerUp(easyPath, powerUpLength);
             gameObject.SetActive(false);
         }
         
         else 
         {
-            powerUpManager.ActivatePowerUp(doublePoints, easyPath, extraLife, livesValue, powerUpLength);
+            powerUpManager.ActivatePowerUp(easyPath, powerUpLength);
             gameObject.SetActive(false);
         }
 

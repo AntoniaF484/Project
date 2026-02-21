@@ -52,11 +52,11 @@ public class GameManager : MonoBehaviour
 
 
     public bool returnFromBonusLevel;
-   // private nextscene reachBonusLevel;
-    public int autoDifficulty = 1;
+   
+    public int autoDifficulty = 3;
     
     
-    private DifficultyButton difficultyButton;
+   // private DifficultyButton difficultyButton;
     private float originalDistanceMax; 
     private float originalDistanceMin;
 
@@ -136,6 +136,7 @@ public class GameManager : MonoBehaviour
      
      pathGenerator.distanceBetweenMinPath2 *= difficulty; 
      pathGenerator.distanceBetweenMaxPath2 *= difficulty;
+     
      
         StartCoroutine(StartGeneratingPaths());
         titleScreen.gameObject.SetActive(false);
@@ -217,7 +218,6 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverText.gameObject.SetActive(true);
-       // UpdateLeaderBoard();
         replayButton.gameObject.SetActive(true);
         isGameActive = false;
         

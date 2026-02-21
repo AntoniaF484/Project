@@ -4622,7 +4622,7 @@ MonoBehaviour:
   secondPlaceScore: {fileID: 1823585699}
   thirdPlaceScore: {fileID: 293657449}
   returnFromBonusLevel: 1
-  autoDifficulty: 2
+  autoDifficulty: 3
 --- !u!4 &1482095298
 Transform:
   m_ObjectHideFlags: 0

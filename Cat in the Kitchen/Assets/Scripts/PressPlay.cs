@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DifficultyButton : MonoBehaviour
+public class PressPlay : MonoBehaviour
 {
     private Button button;
     public int difficulty;
@@ -15,12 +15,12 @@ public class DifficultyButton : MonoBehaviour
     void Start() 
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(SetDifficulty);
+        button.onClick.AddListener(PressPlayButton);
        
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     
-    void SetDifficulty()
+    void PressPlayButton()
     {
         Debug.Log(gameObject.name + " was clicked");
        

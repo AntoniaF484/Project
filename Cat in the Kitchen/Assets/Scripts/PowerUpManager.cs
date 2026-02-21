@@ -16,7 +16,7 @@ public class PowerUpManager : MonoBehaviour
     private GameManager gameManager;
     private PathGenerator pathGenerator;
     private  DetectCollisions detectCollisions;
-    private DifficultyButton difficultyButton;
+   // private DifficultyButton difficultyButton;
 
     private int normalScore;
 
@@ -34,14 +34,13 @@ public class PowerUpManager : MonoBehaviour
     {
         gameManager = FindObjectOfType < GameManager>();
         pathGenerator = FindObjectOfType<PathGenerator>();
-        difficultyButton = FindObjectOfType<DifficultyButton>(); 
-      
-        
-        originalDistanceMin = pathGenerator.distanceBetweenMinPath1*difficultyButton.difficulty;
-        originalDistanceMax = pathGenerator.distanceBetweenMaxPath1*difficultyButton.difficulty;
 
-      
-        
+
+        originalDistanceMin = pathGenerator.distanceBetweenMinPath1;
+        originalDistanceMax = pathGenerator.distanceBetweenMaxPath1;
+
+
+
 
     }
 
@@ -78,9 +77,9 @@ public class PowerUpManager : MonoBehaviour
         
     }
 
-    public void ActivatePowerUp(bool points, bool path, bool life, int livesValue, float time)
+    public void ActivatePowerUp(bool path, float time)
     {
-        doublePoints = points;
+        
         
        
         powerUpLengthCounter = time; 
