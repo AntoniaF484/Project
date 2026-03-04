@@ -222,7 +222,7 @@ public class GameManager : MonoBehaviour
         isGameActive = false;
         
         Rigidbody playerRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
-        playerRb.velocity = Vector3.zero;
+        playerRb.linearVelocity = Vector3.zero;
         playerRb.isKinematic = true;
        
 

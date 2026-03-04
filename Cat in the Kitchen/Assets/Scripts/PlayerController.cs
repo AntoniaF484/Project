@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space)) // when player release space, stop jumping and reset jumptime counter
         {
-            playerRb.velocity = new Vector3(playerRb.velocity.x, 0, playerRb.velocity.z);
+            playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0, playerRb.linearVelocity.z);
                 jumpTimeCounter = 0;
             isHoldingJump = false;
             
@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour
 
         if (gameManager.isGameActive)
         {
-            playerRb.velocity = new Vector3(moveSpeed, playerRb.velocity.y, playerRb.velocity.z);
+            playerRb.linearVelocity = new Vector3(moveSpeed, playerRb.linearVelocity.y, playerRb.linearVelocity.z);
            
         }
 
