@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
 {
     private Vector3 offset = new Vector3(0,22,-28);
+    private Transform target;
         public GameObject player;
 
     // Start is called before the first frame update
@@ -17,5 +17,10 @@ public class FollowPlayer : MonoBehaviour
     {
        float transformPositionx = player.transform.position.x + offset.x;
 transform.position = new Vector3 (transformPositionx,22,-28);
+    }
+   
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
     }
 }
