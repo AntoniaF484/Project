@@ -1,7 +1,5 @@
-using System;
+
 using System.Collections;
-using System.Collections.Generic;
-using Unity.Properties;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -37,7 +35,7 @@ public class PlayerController : MonoBehaviour
     
     private Collider myCollider;
 
-    private bool enableMovement = false;
+    public bool enableMovement = false;
    
     
     //Audio 
@@ -158,7 +156,9 @@ public class PlayerController : MonoBehaviour
 
         if (transform.position.y < playerSize)
         {
-            transform.position = new Vector3(transform.position.x, playerSize, 0);
+           transform.position = new Vector3(transform.position.x, playerSize, 0);
+           
+           //playerRb.MovePosition(new Vector3(transform.position.x, playerSize, 0));
         }
 
 

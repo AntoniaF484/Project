@@ -221,10 +221,13 @@ public class GameManager : MonoBehaviour
         replayButton.gameObject.SetActive(true);
         isGameActive = false;
         
+        
+        PlayerController player = FindObjectOfType<PlayerController>();
+        player.enableMovement = false;
         Rigidbody playerRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
         playerRb.linearVelocity = Vector3.zero;
-        playerRb.isKinematic = true;
-       
+        // playerRb.isKinematic = true;
+
 
     }
 
