@@ -4475,6 +4475,10 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 423033884
       objectReference: {fileID: 0}
+    - target: {fileID: 656733729591785301, guid: 2cfe3163702234463aff49e7bedc86cd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6389073907941131838, guid: 2cfe3163702234463aff49e7bedc86cd, type: 3}
       propertyPath: m_Name
       value: Player1PrefabForMultiplayer
@@ -4487,7 +4491,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1482095297}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114446608304647198, guid: 2cfe3163702234463aff49e7bedc86cd, type: 3}
+    - {fileID: 2811824527581039728, guid: 2cfe3163702234463aff49e7bedc86cd, type: 3}
+    - {fileID: 8694197628805184645, guid: 2cfe3163702234463aff49e7bedc86cd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4601,7 +4608,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2995475228736164595, guid: 25b1402d1e53d40a78b51ac18ba3b6e0, type: 3}
+    - {fileID: 5990740260346406087, guid: 25b1402d1e53d40a78b51ac18ba3b6e0, type: 3}
+    - {fileID: 343898816536951491, guid: 25b1402d1e53d40a78b51ac18ba3b6e0, type: 3}
+    - {fileID: 9029527799033918585, guid: 25b1402d1e53d40a78b51ac18ba3b6e0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
