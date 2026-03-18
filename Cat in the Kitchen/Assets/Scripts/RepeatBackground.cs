@@ -20,6 +20,7 @@ public class RepeatBackground : MonoBehaviour
     private float backgroundY = 25.3f;
     private float backgroundZ = 2f;
     
+    float offsetDistance = 200f;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +35,19 @@ public class RepeatBackground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        PlayerController[] players = FindObjectsOfType<PlayerController>();//Get all players in the scene, if there are no players then no action
+        if (players.Length == 0) return;
+        
+        Transform leader = players[0].transform; //find player in the lead (furthest along x)
+        foreach (var p in players)
+        {
+            if (p.transform.position.x > leader.position.x)
+                leader = p.transform;
+        }
+        Vector3 newPos = backgroundGenerationPoint.position; //update generation point so always ahead of leading player
+        newPos.x = Mathf.Max(newPos.x, leader.position.x + offsetDistance); // returns larger of newPos.x and the leader pos + offset to prevent generation point moving back
+        backgroundGenerationPoint.position = newPos;
+       
         if (backgroundPosition.x<backgroundGenerationPoint.position.x) // Selecting background and setting as active in below named position
         {
             backgroundSelector = Random.Range(0, theObjectPoolsBackground.Length);
@@ -49,4 +62,16 @@ public class RepeatBackground : MonoBehaviour
         }
       
     }
+   /* Transform GetLeadingPlayer(PlayerController[] players)
+    {
+        if (players.Length == 0) return null;
+
+        Transform leading = players[0].transform;
+        foreach (var p in players)
+        {
+            if (p.transform.position.x > leading.position.x)
+                leading = p.transform;
+        }
+        return leading;
+    }*/
 }

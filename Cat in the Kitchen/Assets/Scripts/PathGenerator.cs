@@ -60,6 +60,7 @@ public class PathGenerator : MonoBehaviour
     
     
     private bool generationEnabled = false;
+    float offsetDistance = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -108,21 +109,21 @@ public class PathGenerator : MonoBehaviour
     void Update()
     {
         if (NetworkManager.Singleton == null) return;  // Prevent null reference
-        if (!NetworkManager.Singleton.IsServer) return;
-
+        if (!NetworkManager.Singleton.IsServer) return; //only server can generate paths
         if (generationPoint == null) return;
-        PlayerController[] players = FindObjectsOfType<PlayerController>();
+        
+        PlayerController[] players = FindObjectsOfType<PlayerController>(); //Get all players in the scene, if there are no players then no action
         if (players.Length == 0) return;
 
-        Transform leader = players[0].transform;
+        Transform leader = players[0].transform; //find player in the lead (furthest along x)
         foreach (var p in players)
         {
             if (p.transform.position.x > leader.position.x)
                 leader = p.transform;
         }
-        float lookAheadDistance = 100f;
-        Vector3 newPos = generationPoint.position;
-        newPos.x = Mathf.Max(newPos.x, leader.position.x + lookAheadDistance);
+        
+        Vector3 newPos = generationPoint.position; //update generation point so always ahead of leading player
+        newPos.x = Mathf.Max(newPos.x, leader.position.x + offsetDistance); // returns larger of newPos.x and the leader pos + offset to prevent generation point moving back
         generationPoint.position = newPos;
 
 
