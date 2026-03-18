@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     public int autoDifficulty = 3;
     
     
-   // private DifficultyButton difficultyButton;
+  
     private float originalDistanceMax; 
     private float originalDistanceMin;
 
@@ -138,26 +138,11 @@ public class GameManager : MonoBehaviour
      pathGenerator.distanceBetweenMaxPath2 *= difficulty;
      
      
-        StartCoroutine(StartGeneratingPaths());
+     
         titleScreen.gameObject.SetActive(false);
      
     }
-
- 
-   IEnumerator StartGeneratingPaths() //calls path generator while the game is active
-   {
-   
-       while (isGameActive) 
-       {
-           yield return new WaitForSeconds(0.1f);
-           
-           pathGenerator.GeneratePath1();
-          pathGenerator.GeneratePath2();
-
-          yield return new WaitForSeconds(0.1f);
-       }
-   }
-
+    
    public void UpdateScore(int scoreToAdd)
    {
 
@@ -226,7 +211,7 @@ public class GameManager : MonoBehaviour
         player.enableMovement = false;
         Rigidbody playerRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
         playerRb.linearVelocity = Vector3.zero;
-        // playerRb.isKinematic = true;
+       
 
 
     }

@@ -1,8 +1,9 @@
 
 using System.Collections;
 using UnityEngine;
+using Unity.Netcode;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     
     private DetectCollisions detectCollisions;
@@ -43,8 +44,16 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudio;
 
     
-    
+    public override void OnNetworkSpawn()
+    {
+        if (!IsServer) return;
 
+        PathGenerator generator = FindObjectOfType<PathGenerator>();
+        if (generator != null)
+        {
+            generator.StartGeneration(); // Enable path generation on server
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {

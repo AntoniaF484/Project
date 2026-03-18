@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 public class PathGenerator : MonoBehaviour
 {
@@ -56,6 +57,9 @@ public class PathGenerator : MonoBehaviour
     //Position of Path 2 platforms
     private Vector3 path2Position;
 
+    
+    
+    private bool generationEnabled = false;
 
     // Start is called before the first frame update
     void Start()
@@ -90,7 +94,53 @@ public class PathGenerator : MonoBehaviour
         objGenerator = FindObjectOfType<FoodObstaclePowerupGenerator>();
 
     }
+    public void StartGeneration()
+    {
+        if (!generationEnabled)
+        {
+            generationEnabled = true;
+            if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsServer)
+            {
+                StartCoroutine(StartGeneratingPaths());
+            }
+        }
+    }
+    void Update()
+    {
+        if (NetworkManager.Singleton == null) return;  // Prevent null reference
+        if (!NetworkManager.Singleton.IsServer) return;
 
+        if (generationPoint == null) return;
+        PlayerController[] players = FindObjectsOfType<PlayerController>();
+        if (players.Length == 0) return;
+
+        Transform leader = players[0].transform;
+        foreach (var p in players)
+        {
+            if (p.transform.position.x > leader.position.x)
+                leader = p.transform;
+        }
+        float lookAheadDistance = 100f;
+        Vector3 newPos = generationPoint.position;
+        newPos.x = Mathf.Max(newPos.x, leader.position.x + lookAheadDistance);
+        generationPoint.position = newPos;
+
+
+        StartCoroutine(StartGeneratingPaths());
+    }
+     IEnumerator StartGeneratingPaths() //calls path generator while the game is active
+     {
+
+         while (generationEnabled)
+         {
+             yield return new WaitForSeconds(0.1f);
+
+             GeneratePath1();
+             GeneratePath2();
+
+            yield return new WaitForSeconds(0.1f);
+         }
+     }
     public void GeneratePath1()
     {
         
