@@ -331,6 +331,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabinet Path 1 (4Cabinets)
       objectReference: {fileID: 0}
+    - target: {fileID: 5430074076568136608, guid: dc0502c7daca74ca380984989fee22b9, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 689604105
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430074076568136608, guid: dc0502c7daca74ca380984989fee22b9, type: 3}
+      propertyPath: SceneMigrationSynchronization
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430074076568136608, guid: dc0502c7daca74ca380984989fee22b9, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 4210050299
+      objectReference: {fileID: 0}
     - target: {fileID: 7614059872566818370, guid: dc0502c7daca74ca380984989fee22b9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.7692
@@ -3076,6 +3088,18 @@ PrefabInstance:
     - target: {fileID: 1832560921310802879, guid: dc0502c7daca74ca380984989fee22b9, type: 3}
       propertyPath: m_Name
       value: Cabinet Path 1 (4Cabinets) (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430074076568136608, guid: dc0502c7daca74ca380984989fee22b9, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 275866743
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430074076568136608, guid: dc0502c7daca74ca380984989fee22b9, type: 3}
+      propertyPath: SceneMigrationSynchronization
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5430074076568136608, guid: dc0502c7daca74ca380984989fee22b9, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 4210050299
       objectReference: {fileID: 0}
     - target: {fileID: 7614059872566818370, guid: dc0502c7daca74ca380984989fee22b9, type: 3}
       propertyPath: m_LocalPosition.x

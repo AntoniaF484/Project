@@ -127,7 +127,7 @@ public class PathGenerator : MonoBehaviour
         generationPoint.position = newPos;
 
 
-        StartCoroutine(StartGeneratingPaths());
+      
     }
      IEnumerator StartGeneratingPaths() //calls path generator while the game is active
      {
@@ -181,15 +181,22 @@ public class PathGenerator : MonoBehaviour
                 newPlatform.transform.rotation = transform.rotation;
                 newPlatform.SetActive(true); //setting platform as active in above named position
 
-                
+                NetworkObject netObj = newPlatform.GetComponent<NetworkObject>();//get networkobject attached to prefab
+                if (netObj != null && !netObj.IsSpawned)//if the object has a network object attached and has not spawned yet
+                {
+                    netObj.Spawn(); //spawns on network
+                }
 
                 int RandomNumberPath1 = Random.Range(0, 100);
                 if (RandomNumberPath1 > 60)
                 {
+                    
                     objGenerator.SpawnFood(new Vector3(
                         path1Position.x + Random.Range(-(platformWidths1[platformSelector1] / 2),
                             (platformWidths1[platformSelector1] / 2)), path1Position.y + 4f,
                         path1Position.z)); // Generates food on the generated platform
+                    
+                   
                 }
 
                 else if (RandomNumberPath1 > 40)
@@ -247,7 +254,11 @@ public class PathGenerator : MonoBehaviour
                 newPlatform.transform.position = path2Position;
                 newPlatform.transform.rotation = transform.rotation;
                 newPlatform.SetActive(true); // setting platform as active in above named position
-
+                NetworkObject netObj = newPlatform.GetComponent<NetworkObject>();//get networkobject attached to prefab
+                if (netObj != null && !netObj.IsSpawned) //if the object has a network object attached and has not spawned yet
+                {
+                    netObj.Spawn(); //spawn on network 
+                }
                 int RandomNumber = Random.Range(0, 100);
 
                 if (RandomNumber >= 95 && (!gameManager.returnFromBonusLevel))
