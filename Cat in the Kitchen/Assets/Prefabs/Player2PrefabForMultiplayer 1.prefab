@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5649607197590034174}
   - component: {fileID: 636787025727603937}
   - component: {fileID: 7457592219514778987}
+  - component: {fileID: 3169779957839030223}
   m_Layer: 0
   m_Name: Camera Player 2
   m_TagString: MainCamera
@@ -101,6 +102,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 9102128900242339458}
+--- !u!114 &3169779957839030223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528181490730410447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b987f50f91349a49d90c1356eb687d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SplitScreen
+  ShowTopMostFoldoutHeaderGroup: 1
 --- !u!1 &2997805534560597214
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3316232972
+  GlobalObjectIdHash: 4098960920
   InScenePlacedSourceGlobalObjectIdHash: 3296124989
   DeferredDespawnTick: 0
   Ownership: 1

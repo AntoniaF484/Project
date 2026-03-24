@@ -27,10 +27,7 @@ public class NetworkStartUI : NetworkBehaviour
     }
     void Update()
     {
-    
-   
-     
-
+        
        if (playerCountText!=null)
         playerCountText.text = playerCount.Value.ToString();
         if (!IsServer) return;
