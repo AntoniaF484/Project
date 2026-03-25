@@ -3380,6 +3380,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1482095298}
+  - component: {fileID: 1482095299}
   - component: {fileID: 1482095297}
   m_Layer: 0
   m_Name: GameManager
@@ -3400,6 +3401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e002f9594d6e7463786c8535a8436a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   scoreText: {fileID: 1016929071}
   livesText: {fileID: 448532145}
   gameOverText: {fileID: 1180956791}
@@ -3416,6 +3418,11 @@ MonoBehaviour:
   thirdPlaceScore: {fileID: 3098084183826179200}
   returnFromBonusLevel: 0
   autoDifficulty: 1
+  playerPrefab:
+  - {fileID: 3525177397171221557, guid: 72f105da335254b93b37410d822f194e, type: 3}
+  - {fileID: 3525177397171221557, guid: 2147547ecff6a487d87fbfc2828d20a3, type: 3}
+  - {fileID: 3525177397171221557, guid: 1d22aaeef1afb4444bd98918e4a6c055, type: 3}
+  - {fileID: 3525177397171221557, guid: aebfc81ae6f9a4b41bc1dbc985ab1dd6, type: 3}
 --- !u!4 &1482095298
 Transform:
   m_ObjectHideFlags: 0
@@ -3431,6 +3438,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1482095299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482095296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 714722885
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1491229139
 GameObject:
   m_ObjectHideFlags: 0
@@ -4164,7 +4196,7 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 2106627752}
-    PlayerPrefab: {fileID: 3525177397171221557, guid: 72f105da335254b93b37410d822f194e, type: 3}
+    PlayerPrefab: {fileID: 0}
     Prefabs:
       NetworkPrefabsLists:
       - {fileID: 11400000, guid: 7c8c13508aa1f47f7a69b7fc3c3f06ff, type: 2}

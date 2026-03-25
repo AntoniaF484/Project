@@ -1,20 +1,25 @@
 using System;
 using Unity.Netcode;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 
 [RequireComponent(typeof(Camera))]
 public class SplitScreen : NetworkBehaviour
 {
     private NetworkVariable<int> playerCount = new NetworkVariable<int>(0,NetworkVariableReadPermission.Everyone);
     private Camera cam;
+    
 
     private int index; //number is assigned to each player as they joing the game
 
+   // [SerializeField] private GameObject [] playerPrefab;
    // private int totalPlayers;
 
     private void Awake()
     {
         cam=GetComponent<Camera>();
+        
     }
 
     public override void OnNetworkSpawn()
@@ -94,7 +99,8 @@ public class SplitScreen : NetworkBehaviour
         cam.depth = index;
        
     }
-    
+
+   
 
     // Update is called once per frame
     void Update()

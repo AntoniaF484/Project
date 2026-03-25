@@ -5,8 +5,9 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Unity.Netcode;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 
 {
     public TextMeshProUGUI scoreText;
@@ -59,10 +60,16 @@ public class GameManager : MonoBehaviour
   
     private float originalDistanceMax; 
     private float originalDistanceMin;
+    
+    
+    [SerializeField] private GameObject [] playerPrefab;
 
     void Start()
     {
-        
+        if (NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.OnClientConnectedCallback += SpawnCatForClient;
+        }
         pathGenerator = FindObjectOfType<PathGenerator>();
       
         
@@ -221,6 +228,19 @@ public class GameManager : MonoBehaviour
         isGameActive = true;
         SceneManager.LoadScene("MyGame");
         totalScore = 0;
+    }
+    
+    private void SpawnCatForClient(ulong clientId)
+    {
+        if (!NetworkManager.Singleton.IsServer) return; //only server can spawn cats
+
+        int prefabIndex = Random.Range(0, playerPrefab.Length); //pick number at random based on number of cat prefabs
+        GameObject prefabToSpawn = playerPrefab[prefabIndex]; //corresponding cat to be spawned
+
+        GameObject playerInstance = Instantiate(prefabToSpawn); //in server/host the prefab is instantiated
+        NetworkObject netObj = playerInstance.GetComponent<NetworkObject>(); //get the nework object on the spawned cat (to synch with Client)
+        netObj.SpawnAsPlayerObject(clientId, true); //Client owns this playerobject
+
     }
     
 }
