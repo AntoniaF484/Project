@@ -63,9 +63,12 @@ public class GameManager : NetworkBehaviour
     
     
     [SerializeField] private GameObject [] playerPrefab;
+    private List<GameObject> availableCats;
 
     void Start()
+    
     {
+        availableCats =new List<GameObject>(playerPrefab);
         if (NetworkManager.Singleton != null)
         {
             NetworkManager.Singleton.OnClientConnectedCallback += SpawnCatForClient;
@@ -233,10 +236,10 @@ public class GameManager : NetworkBehaviour
     private void SpawnCatForClient(ulong clientId)
     {
         if (!NetworkManager.Singleton.IsServer) return; //only server can spawn cats
-
-        int prefabIndex = Random.Range(0, playerPrefab.Length); //pick number at random based on number of cat prefabs
-        GameObject prefabToSpawn = playerPrefab[prefabIndex]; //corresponding cat to be spawned
-
+      
+        int prefabIndex = Random.Range(0, availableCats.Count); //pick number at random based on number of cat prefabs
+        GameObject prefabToSpawn = availableCats [prefabIndex]; //corresponding cat to be spawned
+        availableCats.RemoveAt(prefabIndex);
         GameObject playerInstance = Instantiate(prefabToSpawn); //in server/host the prefab is instantiated
         NetworkObject netObj = playerInstance.GetComponent<NetworkObject>(); //get the nework object on the spawned cat (to synch with Client)
         netObj.SpawnAsPlayerObject(clientId, true); //Client owns this playerobject
