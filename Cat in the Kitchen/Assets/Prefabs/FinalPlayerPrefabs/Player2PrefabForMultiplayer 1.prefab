@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2858275170
+  GlobalObjectIdHash: 4098960920
   InScenePlacedSourceGlobalObjectIdHash: 3296124989
   DeferredDespawnTick: 0
   Ownership: 1
@@ -230,7 +230,7 @@ MonoBehaviour:
   RotationMaxInterpolationTime: 0.1
   ScaleLerpSmoothing: 1
   ScaleMaxInterpolationTime: 0.1
-  AuthorityMode: 0
+  AuthorityMode: 1
   TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
@@ -406,6 +406,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: b7a24cd321070415a8f3f5412ba1d673, type: 2}
     - target: {fileID: 4727795126514273545, guid: aa5ae0f23780848e281fe178a0960052, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4727795126514273545, guid: aa5ae0f23780848e281fe178a0960052, type: 3}
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
@@ -451,6 +455,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5619372507615308615, guid: aa5ae0f23780848e281fe178a0960052, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6278209101771893093, guid: aa5ae0f23780848e281fe178a0960052, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6500682311338829115, guid: aa5ae0f23780848e281fe178a0960052, type: 3}
