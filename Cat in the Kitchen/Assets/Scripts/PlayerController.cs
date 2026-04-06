@@ -2,12 +2,14 @@
 using System.Collections;
 using UnityEngine;
 using Unity.Netcode;
+using System.Collections.Generic;
+using System.Linq;
 
 public class PlayerController : NetworkBehaviour
 {
-    
+
     private DetectCollisions detectCollisions;
-    
+
     private Rigidbody playerRb;
     private float playerSize = 0.75f;
     public float jumpForce;
@@ -24,52 +26,98 @@ public class PlayerController : NetworkBehaviour
     public int maxJumps = 2;
     public int jumpCount = 0;
     public GameManager gameManager;
-    
+
     public float jumpTime;
     private float jumpTimeCounter;
     public bool isHoldingJump;
-    
-   
+
+
     public Transform groundCheck;
     public float groundCheckWidth;
     public LayerMask whatIsGround;
-    
+
     private Collider myCollider;
 
     public bool enableMovement = false;
-   
-    
+
+
     //Audio 
     public AudioClip jumpSound;
     private AudioSource playerAudio;
 
-    
+// Authoritative player
+    private NetworkVariable<Vector3> serverPosition = new(readPerm: NetworkVariableReadPermission.Everyone,
+        writePerm: NetworkVariableWritePermission.Server);
+
+    private Vector2 input;
+    private float inputSendInterval = 1f / 60f;
+    private float inputSendTimer;
+    private Queue<Snapshot> snapshots = new();
+
+    private struct Snapshot
+    {
+        public Vector3 pos;
+        public float time;
+
+        public Snapshot(Vector3 p, float t)
+        {
+            pos = p;
+            time = t;
+        }
+
+    }
+
     public override void OnNetworkSpawn()
     {
-        if (!IsServer) return;
 
-        PathGenerator generator = FindObjectOfType<PathGenerator>();
-        if (generator != null)
+        Physics.gravity = Vector3.down * 9.8f * gravityModifier;
+        if (IsServer)
         {
-            generator.StartGeneration(); // Enable path generation on server
+
+
+            PathGenerator generator = FindObjectOfType<PathGenerator>();
+
+
+            if (generator != null)
+            {
+                generator.StartGeneration(); // Enable path generation on server
+            }
         }
+
+        if (IsClient)
+        {
+            serverPosition.OnValueChanged += (oldVal, newVal) =>
+            {
+                snapshots.Enqueue(new Snapshot(newVal, Time.time));
+
+                while (snapshots.Count > 5)
+                {
+                    snapshots.Dequeue();
+                }
+            };
+
+
+        }
+
+        StartCoroutine(EnableMovement(3f));
     }
-    // Start is called before the first frame update
+
+
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
-        Physics.gravity = Vector3.down * 9.8f * gravityModifier;
+
         speedIncreaseCount = speedIncreasePosition;
-        gameManager = FindObjectOfType<GameManager>();
+        // gameManager = FindObjectOfType<GameManager>();
         jumpTimeCounter = jumpTime;
 
 
-        myCollider = GetComponent<Collider>();
+        //myCollider = GetComponent<Collider>();
 
-        StartCoroutine(EnableMovement(3f)); //Wait to start moving the player 
+        // StartCoroutine(EnableMovement(3f)); //Wait to start moving the player 
 
         playerAudio = GetComponent<AudioSource>();
-      
+
 
     }
 
@@ -77,104 +125,165 @@ public class PlayerController : NetworkBehaviour
     {
         yield return new WaitForSeconds(wait);
         enableMovement = true;
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!enableMovement) return;
 
-        if (!enableMovement)
+        if (IsOwner)
         {
-            return;
+            inputSendTimer += Time.deltaTime;
+
+            if (inputSendTimer >= inputSendInterval)
+            {
+                inputSendTimer = 0f;
+                isOnGround = Physics.OverlapSphere(groundCheck.position, groundCheckWidth, whatIsGround).Length > 0;
+            }
+            bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
+            bool jumpHeld = Input.GetKeyDown(KeyCode.Space);
+            SendInputServerRpc(jumpPressed, jumpHeld);
         }
 
 
-        isOnGround = Physics.OverlapSphere(groundCheck.position, groundCheckWidth, whatIsGround).Length>0;
-            
-            
+        if (snapshots.Count >= 2)
+
+            Interpolate();
+
+    }
+
+    void Interpolate()
+    {
+        if (snapshots.Count < 2) return;
 
 
-        if (Input.GetKeyDown(KeyCode.Space) && (isOnGround || jumpCount < maxJumps))//Player jumps if they are on the ground or have not jumped more than max.
+        Snapshot from = snapshots.Peek();
+        Snapshot to = snapshots.ElementAt(1);
+
+        float duration = to.time - from.time;
+        if (duration <= 0f) return;
+
+        float elapsed = Time.time - from.time;
+        float t = Mathf.Clamp01(elapsed / duration);
+
+        transform.position = Vector3.Lerp(from.pos, to.pos, t);
+
+        if (t >= 1f) snapshots.Dequeue();
+    }
+
+
+
+
+
+    [ServerRpc(RequireOwnership = false)]
+    void SendInputServerRpc(bool jumpPressed, bool jumpHeld, ServerRpcParams rpcParams = default)
+    {
+        if (!enableMovement) return;
+
+        isOnGround = Physics.OverlapSphere(groundCheck.position, groundCheckWidth, whatIsGround).Length > 0;
+        if (transform.position.x > speedIncreaseCount)
+
         {
+            speedIncreaseCount += speedIncreasePosition;
+            moveSpeed *= acceleration;
+        }
+        else if (moveSpeed > maxSpeed)
+        {
+            moveSpeed = maxSpeed;
+        }
 
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); //Force added to jump
-            playerAudio.PlayOneShot(jumpSound,1.0f); //Audio on jump
-          
-            jumpCount++; // add a jump to the jump counter
+        Vector3 velocity = playerRb.linearVelocity;
+        velocity.x = moveSpeed;
+
+        if (jumpPressed && (isOnGround || jumpCount < maxJumps))
+        {
+            velocity.y = jumpForce;
+            jumpCount++;
+
             jumpTimeCounter = jumpTime; // resets jump time
             isHoldingJump = true;
-            if (isOnGround)
-            {
-                isOnGround = false;
-            }
+            isOnGround = false;
+            PlayJumpClientRpc();
         }
-        
-        
 
-        if (Input.GetKey(KeyCode.Space) && isHoldingJump && jumpTimeCounter > 0)//If player is holding space, keep jumping until max jump time
+        playerRb.linearVelocity = velocity;
+
+        if (jumpHeld && isHoldingJump &&
+            jumpTimeCounter > 0) //If player is holding space, keep jumping until max jump time
         {
 
-            playerRb.AddForce(Vector3.up * jumpForce*Time.deltaTime, ForceMode.Impulse);
+            playerRb.AddForce(Vector3.up * (jumpForce*Time.deltaTime), ForceMode.Impulse);
             jumpTimeCounter -= Time.deltaTime;
 
         }
 
-        if (Input.GetKeyUp(KeyCode.Space)) // when player release space, stop jumping and reset jumptime counter
-        {
-            playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0, playerRb.linearVelocity.z);
-                jumpTimeCounter = 0;
-            isHoldingJump = false;
-            
-            Physics.gravity = Vector3.down * 9.8f * gravityModifier*2;
-        }
-
         if (isOnGround)
         {
-            jumpTimeCounter = jumpTime;
             jumpCount = 0;
         }
 
-        if (isOnGround)
+        if (Input.GetKeyUp(KeyCode
+                .Space)) // when player release space, stop jumping and reset jumptime counter
         {
-           
-            if (transform.position.x > speedIncreaseCount)
-               
-            {
-              
-                
-                speedIncreaseCount += speedIncreasePosition;
-                moveSpeed *= acceleration;
-                
-                
-                
-            }
-            else if (moveSpeed > maxSpeed)
-            {
-                moveSpeed = maxSpeed;
-            }
+            playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0, playerRb.linearVelocity.z);
+            jumpTimeCounter = 0;
+            isHoldingJump = false;
         }
 
-
-        if (gameManager.isGameActive)
-        {
-            playerRb.linearVelocity = new Vector3(moveSpeed, playerRb.linearVelocity.y, playerRb.linearVelocity.z);
-           
-        }
-
-        if (transform.position.y < playerSize)
-        {
-           transform.position = new Vector3(transform.position.x, playerSize, 0);
-           
-           //playerRb.MovePosition(new Vector3(transform.position.x, playerSize, 0));
-        }
+        playerRb.linearVelocity = velocity;
 
 
+        serverPosition.Value = transform.position;
 
     }
-    
-}
+
+
+
+
+
+            
+
+
+            [ClientRpc]
+          void PlayJumpClientRpc()
+            {
+
+                if (playerAudio != null && jumpSound != null)
+                    playerAudio.PlayOneShot(jumpSound, 1.0f);
+            }
+
+
+          
+
+
+
+         /*     
+
+
+
+
+               if (gameManager.isGameActive)
+               {
+                   playerRb.linearVelocity = new Vector3(moveSpeed, playerRb.linearVelocity.y, playerRb.linearVelocity.z);
+
+               }
+
+         */
+
+
+
+        }
+
+
+
+
+
+        
+
+
+
 
 
 
