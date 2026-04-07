@@ -143,8 +143,9 @@ public class PlayerController : NetworkBehaviour
                 isOnGround = Physics.OverlapSphere(groundCheck.position, groundCheckWidth, whatIsGround).Length > 0;
             }
             bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
-            bool jumpHeld = Input.GetKeyDown(KeyCode.Space);
-            SendInputServerRpc(jumpPressed, jumpHeld);
+            bool jumpHeld = Input.GetKey(KeyCode.Space);
+            bool jumpReleased = Input.GetKeyUp(KeyCode.Space);
+            SendInputServerRpc(jumpPressed, jumpHeld, jumpReleased);
         }
 
 
@@ -178,7 +179,7 @@ public class PlayerController : NetworkBehaviour
 
 
     [ServerRpc(RequireOwnership = false)]
-    void SendInputServerRpc(bool jumpPressed, bool jumpHeld, ServerRpcParams rpcParams = default)
+    void SendInputServerRpc(bool jumpPressed, bool jumpHeld, bool jumpReleased, ServerRpcParams rpcParams = default)
     {
         if (!enableMovement) return;
 
@@ -224,8 +225,7 @@ public class PlayerController : NetworkBehaviour
             jumpCount = 0;
         }
 
-        if (Input.GetKeyUp(KeyCode
-                .Space)) // when player release space, stop jumping and reset jumptime counter
+        if (jumpReleased) // when player release space, stop jumping and reset jumptime counter
         {
             playerRb.linearVelocity = new Vector3(playerRb.linearVelocity.x, 0, playerRb.linearVelocity.z);
             jumpTimeCounter = 0;

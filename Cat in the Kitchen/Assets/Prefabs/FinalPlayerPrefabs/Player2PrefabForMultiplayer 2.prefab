@@ -354,6 +354,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 8331625728223926513}
     m_Modifications:
     - target: {fileID: 233688062680009510, guid: aa5ae0f23780848e281fe178a0960052, type: 3}
+      propertyPath: gravityModifier
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 233688062680009510, guid: aa5ae0f23780848e281fe178a0960052, type: 3}
       propertyPath: materials.Array.size
       value: 4
       objectReference: {fileID: 0}
