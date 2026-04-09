@@ -15,15 +15,22 @@ public class DetectCollisions : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+         
+        
       
     }
 
     private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == ("Player")) //when the player collides with an object, relevant scores added and object deactivates
+    { IndividualPlayerStats playerStats = other.GetComponentInParent<IndividualPlayerStats>();
+        if (other.CompareTag("Player")) //when the player collides with an object, relevant scores added and object deactivates
         {
-            gameManager.UpdateScore(scoreValue);
-            gameManager.UpdateLives(livesValue);
+           
+            if (playerStats != null)
+            {
+                playerStats.UpdateScore(scoreValue);
+                playerStats.UpdateLives(livesValue);
+            }
+
             gameObject.SetActive(false);
         }
         
@@ -33,8 +40,8 @@ public class DetectCollisions : MonoBehaviour
   private void OnCollisionEnter(Collision collision)
     {
         
-      
-      if (gameManager.lives <= 0 ||collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        IndividualPlayerStats playerStats = GetComponentInParent<IndividualPlayerStats>();
+      if (playerStats!=null && playerStats.lives.Value <= 0 ||collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
       {
          
           gameManager.GameOver();

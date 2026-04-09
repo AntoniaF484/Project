@@ -53,6 +53,7 @@ public class PlayerController : NetworkBehaviour
     private float inputSendInterval = 1f / 60f;
     private float inputSendTimer;
     private Queue<Snapshot> snapshots = new();
+   // private float interpolationDelay = 0.05f;
 
     private struct Snapshot
     {
@@ -90,7 +91,7 @@ public class PlayerController : NetworkBehaviour
             {
                 snapshots.Enqueue(new Snapshot(newVal, Time.time));
 
-                while (snapshots.Count > 5)
+                while (snapshots.Count > 20)
                 {
                     snapshots.Dequeue();
                 }
@@ -106,6 +107,10 @@ public class PlayerController : NetworkBehaviour
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        if (!IsServer) // only server should control physics
+        {
+            playerRb.isKinematic = true;
+        }
 
         speedIncreaseCount = speedIncreasePosition;
         // gameManager = FindObjectOfType<GameManager>();
@@ -166,6 +171,7 @@ public class PlayerController : NetworkBehaviour
         float duration = to.time - from.time;
         if (duration <= 0f) return;
 
+     //   float renderTime = Time.time - interpolationDelay;
         float elapsed = Time.time - from.time;
         float t = Mathf.Clamp01(elapsed / duration);
 
@@ -231,19 +237,10 @@ public class PlayerController : NetworkBehaviour
             jumpTimeCounter = 0;
             isHoldingJump = false;
         }
-
-        playerRb.linearVelocity = velocity;
-
-
+        
         serverPosition.Value = transform.position;
 
     }
-
-
-
-
-
-            
 
 
             [ClientRpc]

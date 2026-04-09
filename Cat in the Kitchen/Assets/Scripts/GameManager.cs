@@ -79,7 +79,7 @@ public class GameManager : NetworkBehaviour
 
 
 
-        if (!returnFromBonusLevel)
+      /* if (!returnFromBonusLevel)
         {
             lives = 9;
             totalLives = lives;
@@ -91,10 +91,10 @@ public class GameManager : NetworkBehaviour
            lives=totalLives;
            livesText.text = "Lives: " + lives;
             
-        } 
+        } */
         powerUpManager = FindObjectOfType<PowerUpManager>();
 
-            if (PlayerPrefs.HasKey("HighScore"))
+      /*      if (PlayerPrefs.HasKey("HighScore"))
             {
                 hiScore = PlayerPrefs.GetInt("HighScore");
 
@@ -124,7 +124,7 @@ public class GameManager : NetworkBehaviour
                 lives = totalLives;
 
             }
-
+*/
           
            
     }
@@ -133,7 +133,7 @@ public class GameManager : NetworkBehaviour
     {
         
         
-        UpdateScore(totalScore);
+        //UpdateScore(totalScore);
         
         isGameActive = true;
         pathGenerator=FindObjectOfType<PathGenerator> ();
@@ -153,7 +153,7 @@ public class GameManager : NetworkBehaviour
      
     }
     
-   public void UpdateScore(int scoreToAdd)
+  /* public void UpdateScore(int scoreToAdd)
    {
 
       
@@ -208,7 +208,7 @@ public class GameManager : NetworkBehaviour
         livesText.text = "Lives: " + lives;
         totalLives = lives;
         
-    }
+    }*/
 
     public void GameOver()
     {
@@ -243,7 +243,17 @@ public class GameManager : NetworkBehaviour
         GameObject playerInstance = Instantiate(prefabToSpawn); //in server/host the prefab is instantiated
         NetworkObject netObj = playerInstance.GetComponent<NetworkObject>(); //get the nework object on the spawned cat (to synch with Client)
         netObj.SpawnAsPlayerObject(clientId, true); //Client owns this playerobject
-
+        
+        IndividualPlayerStats playerStats = playerInstance.GetComponent<IndividualPlayerStats>();
+        if (playerStats != null)
+        {
+            playerStats.lives.Value = playerStats.startingLives;
+            playerStats.score.Value = 0;
+        }
+        else
+        {
+            Debug.LogError("IndividualPlayerStats not found on player prefab!");
+        }
     }
     
 }
