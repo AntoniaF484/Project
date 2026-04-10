@@ -24,8 +24,8 @@ public class IndividualPlayerStats : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
        
-            lives.Value = startingLives;
-            score.Value = 0;
+        score.OnValueChanged += (_, _) => UpdateScoreUI();
+        lives.OnValueChanged += (_, _) => UpdateLivesUI();
         
         if (!IsOwner)
         {
@@ -36,12 +36,11 @@ public class IndividualPlayerStats : NetworkBehaviour
         }
         else
         {
-            lives.Value = startingLives;
+            
             UpdateScoreUI();
             UpdateLivesUI();
         }
-        score.OnValueChanged += (_, _) => UpdateScoreUI();
-       lives.OnValueChanged += (_, _) => UpdateLivesUI();
+       
 
     }
 

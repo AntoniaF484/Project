@@ -250,10 +250,7 @@ public class GameManager : NetworkBehaviour
             playerStats.lives.Value = playerStats.startingLives;
             playerStats.score.Value = 0;
         }
-        else
-        {
-            Debug.LogError("IndividualPlayerStats not found on player prefab!");
-        }
+        
     }
     
 }
