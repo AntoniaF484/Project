@@ -21,6 +21,8 @@ public class GameManager : NetworkBehaviour
     public TextMeshProUGUI hiScoreText;
     public Button replayButton;
     public GameObject titleScreen;
+
+   
         //Start game UI
         public TMP_Dropdown expectedPlayersDropdown;
         // Scoreboard
