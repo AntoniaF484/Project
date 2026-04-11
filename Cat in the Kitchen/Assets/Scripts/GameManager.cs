@@ -194,7 +194,8 @@ public class GameManager : NetworkBehaviour
     {
         if (NetworkManager.Singleton != null)
         {
-            expectedPlayersDropdown.interactable = NetworkManager.Singleton.IsHost;
+            expectedPlayersDropdown.gameObject.SetActive(NetworkManager.Singleton.IsHost);
         }
+        
     }
 }
