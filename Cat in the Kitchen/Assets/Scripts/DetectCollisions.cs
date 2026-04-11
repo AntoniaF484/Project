@@ -15,9 +15,6 @@ public class DetectCollisions : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-         
-        
-      
     }
 
     private void OnTriggerEnter(Collider other)
