@@ -2,11 +2,18 @@ using System;
 using UnityEngine;
 using Unity.Netcode;
 using TMPro;
+using Unity.Collections;
 
 public class IndividualPlayerStats : NetworkBehaviour
 {
     public NetworkVariable<int> score = new NetworkVariable<int>(0);
     public NetworkVariable<int> lives = new NetworkVariable<int>(9);
+    
+    public NetworkVariable<FixedString32Bytes> playerName =
+        new NetworkVariable<FixedString32Bytes>();
+
+    public NetworkVariable<bool> isReady =
+        new NetworkVariable<bool>(false);
 
     public int startingLives = 9;
     
@@ -15,6 +22,8 @@ public class IndividualPlayerStats : NetworkBehaviour
     public TextMeshProUGUI hiScoreText;
     
     private int hiScore;
+    
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
@@ -97,6 +106,18 @@ public class IndividualPlayerStats : NetworkBehaviour
     {
         livesText.text = "Lives: " + lives.Value;
     }
+    
+    [ServerRpc(RequireOwnership = false)]
+    public void SetPlayerNameServerRpc(string newName)
+    {
+        playerName.Value = newName;
+    }
+    [ServerRpc(RequireOwnership = false)]
+    public void SetReadyServerRpc(bool ready)
+    {
+        isReady.Value = ready;
+    }
+
 
 
 

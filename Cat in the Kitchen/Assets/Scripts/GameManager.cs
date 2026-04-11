@@ -64,6 +64,13 @@ public class GameManager : NetworkBehaviour
     
     [SerializeField] private GameObject [] playerPrefab;
     private List<GameObject> availableCats;
+    
+    
+    
+    public NetworkVariable<bool> allReady = new(readPerm: NetworkVariableReadPermission.Everyone,
+        writePerm: NetworkVariableWritePermission.Server);
+    public int expectedPlayers=1;
+    private int readyPlayers;
 
     void Start()
     
@@ -75,65 +82,15 @@ public class GameManager : NetworkBehaviour
         }
         pathGenerator = FindObjectOfType<PathGenerator>();
       
-        
-
-
-
-      /* if (!returnFromBonusLevel)
-        {
-            lives = 9;
-            totalLives = lives;
-            livesText.text = "Lives: " + lives;
-        }
-
-        else
-        {
-           lives=totalLives;
-           livesText.text = "Lives: " + lives;
-            
-        } */
         powerUpManager = FindObjectOfType<PowerUpManager>();
-
-      /*      if (PlayerPrefs.HasKey("HighScore"))
-            {
-                hiScore = PlayerPrefs.GetInt("HighScore");
-
-            }
-            else
-            {
-                hiScore = 0;
-            }
-
-            if (PlayerPrefs.HasKey("SecondPlace"))
-            {
-                secondScore = PlayerPrefs.GetInt("SecondPlace");
-            }
-
-            if (PlayerPrefs.HasKey("ThirdPlace"))
-            {
-                thirdScore = PlayerPrefs.GetInt("ThirdPlace");
-            }
-
-           if (returnFromBonusLevel)
-            {
-               
-                StartGame(autoDifficulty);
-                
-                   
-                score = totalScore;
-                lives = totalLives;
-
-            }
-*/
-          
-           
+     
     }
 
     public void StartGame (int difficulty) // distance between generated paths increases with difficulty selected
     {
         
         
-        //UpdateScore(totalScore);
+        
         
         isGameActive = true;
         pathGenerator=FindObjectOfType<PathGenerator> ();
@@ -153,62 +110,6 @@ public class GameManager : NetworkBehaviour
      
     }
     
-  /* public void UpdateScore(int scoreToAdd)
-   {
-
-      
-       score += scoreToAdd;
-        scoreText.text = "Score: " + score;
-        totalScore = score;
-     
-        if (score > hiScore)
-        {
-            hiScore = score;
-            PlayerPrefs.SetInt("HighScore",hiScore);
-        }
-        
-        
-
-        hiScoreText.text = "High Score: " + hiScore;
-        UpdateLeaderBoardScores();
-
-   }
-
-   public void UpdateLeaderBoardScores()
-   {
-       firstScore = hiScore; 
-       
-       if (score>secondScore&&score<firstScore)
-       {
-           thirdScore = secondScore; 
-           secondScore= score;
-           PlayerPrefs.SetInt("SecondPlace", secondScore);
-           
-       }
-       if (score > thirdScore && score < secondScore)
-       {
-           thirdScore = score;
-           PlayerPrefs.SetInt("ThirdPlace", thirdScore);
-           
-       }
-       
-       firstPlaceScore.text = firstScore.ToString();
-       secondPlaceScore.text = secondScore.ToString();
-
-       thirdPlaceScore.text = thirdScore.ToString();
-   }
-
-
-
-   
-    public void UpdateLives(int livesToTake)
-    {
-        Debug.Log($"Lives from Start Level: {lives}, Total Lives: {totalLives}");
-        lives += livesToTake;
-        livesText.text = "Lives: " + lives;
-        totalLives = lives;
-        
-    }*/
 
     public void GameOver()
     {
@@ -251,6 +152,20 @@ public class GameManager : NetworkBehaviour
             playerStats.score.Value = 0;
         }
         
+    }
+    
+    [ServerRpc(RequireOwnership = false)]
+    public void PlayerReadyServerRpc()
+    {
+        readyPlayers++;
+
+        Debug.Log($"Ready Players: {readyPlayers}/{expectedPlayers}");
+
+        if (readyPlayers >= expectedPlayers)
+        {
+            allReady.Value = true;
+            Debug.Log("ALL PLAYERS READY!");
+        }
     }
     
 }
