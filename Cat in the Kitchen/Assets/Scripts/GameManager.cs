@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Unity.Netcode;
 
+
 public class GameManager : NetworkBehaviour
 
 {
@@ -69,12 +70,19 @@ public class GameManager : NetworkBehaviour
     
     public NetworkVariable<bool> allReady = new(readPerm: NetworkVariableReadPermission.Everyone,
         writePerm: NetworkVariableWritePermission.Server);
-    public int expectedPlayers=1;
+
+    public int expectedPlayers=4;
     private int readyPlayers;
+    public TMP_Dropdown expectedPlayersDropdown;
+
+    public GameObject joinScreen;
+
+    private int spawnedCats = 0;
 
     void Start()
     
     {
+       
         availableCats =new List<GameObject>(playerPrefab);
         if (NetworkManager.Singleton != null)
         {
@@ -84,6 +92,14 @@ public class GameManager : NetworkBehaviour
       
         powerUpManager = FindObjectOfType<PowerUpManager>();
      
+    }
+    public void OnPlayerCountChanged(int index)
+    {
+        if (!NetworkManager.Singleton.IsServer) return;
+
+        expectedPlayers = index + 1;
+        
+        
     }
 
     public void StartGame (int difficulty) // distance between generated paths increases with difficulty selected
@@ -133,11 +149,20 @@ public class GameManager : NetworkBehaviour
         SceneManager.LoadScene("MyGame");
         totalScore = 0;
     }
-    
+
+    void Update()
+    {
+        if (allReady.Value){ joinScreen.gameObject.SetActive(false);}
+    }
     private void SpawnCatForClient(ulong clientId)
     {
         if (!NetworkManager.Singleton.IsServer) return; //only server can spawn cats
-      
+        if (spawnedCats >= expectedPlayers)
+        {
+            return;
+        }
+
+        spawnedCats++;
         int prefabIndex = Random.Range(0, availableCats.Count); //pick number at random based on number of cat prefabs
         GameObject prefabToSpawn = availableCats [prefabIndex]; //corresponding cat to be spawned
         availableCats.RemoveAt(prefabIndex);
@@ -157,15 +182,19 @@ public class GameManager : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void PlayerReadyServerRpc()
     {
-        readyPlayers++;
-
-        Debug.Log($"Ready Players: {readyPlayers}/{expectedPlayers}");
+        readyPlayers++ ;
 
         if (readyPlayers >= expectedPlayers)
         {
             allReady.Value = true;
-            Debug.Log("ALL PLAYERS READY!");
+           
         }
     }
-    
+    public override void OnNetworkSpawn()
+    {
+        if (NetworkManager.Singleton != null)
+        {
+            expectedPlayersDropdown.interactable = NetworkManager.Singleton.IsHost;
+        }
+    }
 }
