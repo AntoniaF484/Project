@@ -23,13 +23,6 @@ public class IndividualPlayerStats : NetworkBehaviour
     
     private int hiScore;
     
-    
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
-    {
-       
-    }
-
     public override void OnNetworkSpawn()
     {
        
@@ -95,11 +88,7 @@ public class IndividualPlayerStats : NetworkBehaviour
     }
     void UpdateScoreUI()
     {
-        
         scoreText.text = "Score: " + score.Value;
-
-      //  hiScoreText.text = "High Score: " + hiScore;
-        
     }
 
     void UpdateLivesUI()
@@ -118,12 +107,4 @@ public class IndividualPlayerStats : NetworkBehaviour
         isReady.Value = ready;
     }
 
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

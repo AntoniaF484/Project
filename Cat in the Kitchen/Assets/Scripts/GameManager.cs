@@ -71,18 +71,26 @@ public class GameManager : NetworkBehaviour
     public NetworkVariable<bool> allReady = new(readPerm: NetworkVariableReadPermission.Everyone,
         writePerm: NetworkVariableWritePermission.Server);
 
-    public int expectedPlayers=4;
+    public int defaultExpectedPlayers=4;
     private int readyPlayers;
     public TMP_Dropdown expectedPlayersDropdown;
 
     public GameObject joinScreen;
 
     private int spawnedCats = 0;
+    public NetworkVariable<int> expectedPlayers = new(
+        4,
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Server
+    );
 
     void Start()
     
     {
-       
+        if (NetworkManager.Singleton.IsServer)
+        {
+            expectedPlayers.Value = defaultExpectedPlayers;
+        }
         availableCats =new List<GameObject>(playerPrefab);
         if (NetworkManager.Singleton != null)
         {
@@ -97,7 +105,7 @@ public class GameManager : NetworkBehaviour
     {
         if (!NetworkManager.Singleton.IsServer) return;
 
-        expectedPlayers = index + 1;
+        expectedPlayers.Value = index;
         
         
     }
@@ -157,7 +165,7 @@ public class GameManager : NetworkBehaviour
     private void SpawnCatForClient(ulong clientId)
     {
         if (!NetworkManager.Singleton.IsServer) return; //only server can spawn cats
-        if (spawnedCats >= expectedPlayers)
+        if (spawnedCats >= expectedPlayers.Value)
         {
             return;
         }
@@ -184,7 +192,7 @@ public class GameManager : NetworkBehaviour
     {
         readyPlayers++ ;
 
-        if (readyPlayers >= expectedPlayers)
+        if (readyPlayers >= expectedPlayers.Value)
         {
             allReady.Value = true;
            

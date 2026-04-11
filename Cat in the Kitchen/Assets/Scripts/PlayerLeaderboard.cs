@@ -7,9 +7,9 @@ public class PlayerLeaderboard : MonoBehaviour
     public TextMeshProUGUI playerNameText;
     public TextMeshProUGUI scoreText;
 
-    public void SetEntry(ulong clientId, int score)
+    public void SetEntry(string playerName, int score)
     {
-        playerNameText.text = $"Player {clientId}";
+        playerNameText.text = playerName;
         scoreText.text = score.ToString();
     
     }
