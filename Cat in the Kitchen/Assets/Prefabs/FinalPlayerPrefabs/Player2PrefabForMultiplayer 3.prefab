@@ -764,10 +764,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::IndividualPlayerStats
   ShowTopMostFoldoutHeaderGroup: 1
   score:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
     m_InternalValue: 0
   lives:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
     m_InternalValue: 0
   playerName:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
     m_InternalValue:
       utf8LengthInBytes: 0
       bytes:
@@ -803,6 +812,9 @@ MonoBehaviour:
         byte0028: 0
         byte0029: 0
   isReady:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
     m_InternalValue: 0
   startingLives: 9
   scoreText: {fileID: 8088375047056628056}
@@ -1321,6 +1333,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8331625728223926513}
     m_Modifications:
+    - target: {fileID: 233688062680009510, guid: aa5ae0f23780848e281fe178a0960052, type: 3}
+      propertyPath: playerCamera
+      value: 
+      objectReference: {fileID: 636787025727603937}
     - target: {fileID: 233688062680009510, guid: aa5ae0f23780848e281fe178a0960052, type: 3}
       propertyPath: gravityModifier
       value: 16

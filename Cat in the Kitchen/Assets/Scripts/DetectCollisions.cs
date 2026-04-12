@@ -41,7 +41,7 @@ public class DetectCollisions : MonoBehaviour
       if (playerStats!=null && playerStats.lives.Value <= 0 ||collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
       {
          
-          gameManager.GameOver();
+          gameManager.PlayerDead(playerStats);
           isOnFloor = true;
       } 
     }

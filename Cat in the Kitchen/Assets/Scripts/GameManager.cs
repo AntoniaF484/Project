@@ -80,7 +80,10 @@ public class GameManager : NetworkBehaviour
 
     private int spawnedCats = 0; //number of players who have joined the game
     public NetworkVariable<int> expectedPlayers = new(4, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);//number of players expected
-
+//players dying
+    public NetworkVariable<int> deadPlayers = new(readPerm: NetworkVariableReadPermission.Everyone,
+        writePerm: NetworkVariableWritePermission.Server); 
+    
     void Start()
     
     {
@@ -124,16 +127,40 @@ public class GameManager : NetworkBehaviour
 
     public void GameOver() // when the game is over, this brings up the game over message and stops the players movement
     {
+        Debug.Log("all players dead");
         gameOverText.gameObject.SetActive(true);
         replayButton.gameObject.SetActive(true);
         isGameActive = false;
-        PlayerController player = FindObjectOfType<PlayerController>();
-        player.enableMovement = false;
-        Rigidbody playerRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
-        playerRb.linearVelocity = Vector3.zero;
+       
+        
        
 
 
+    }
+
+    public void PlayerDead(IndividualPlayerStats playerStats)
+    { 
+        Debug.Log("Player Dead");
+        PlayerController player = playerStats.GetComponentInChildren<PlayerController>();
+        player.enableMovement = false;
+        Rigidbody playerRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
+        playerRb.linearVelocity = Vector3.zero;
+        deadPlayers.Value++;
+        Debug.Log("Total Dead " + deadPlayers.Value); 
+            
+            Debug.Log ("Total expected "+readyPlayers);
+       Camera playerCamera = player.GetCamera();
+        playerCamera.transform.SetParent(null);
+
+        FollowPlayer follow = playerCamera.GetComponent<FollowPlayer>();
+        if (follow != null)
+        {
+            follow.enabled = false;
+        }
+       if (deadPlayers.Value>= readyPlayers)
+       {
+         GameOver();
+       } 
     }
     
     void Update()
