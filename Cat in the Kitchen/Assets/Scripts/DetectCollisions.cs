@@ -40,7 +40,9 @@ public class DetectCollisions : MonoBehaviour
         IndividualPlayerStats playerStats = GetComponentInParent<IndividualPlayerStats>();
       if (playerStats!=null && playerStats.lives.Value <= 0 ||collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
       {
-         
+
+          playerStats.Dead();
+          
           gameManager.PlayerDead(playerStats);
           isOnFloor = true;
       } 

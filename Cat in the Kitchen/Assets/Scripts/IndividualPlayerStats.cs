@@ -19,9 +19,12 @@ public class IndividualPlayerStats : NetworkBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
     public TextMeshProUGUI hiScoreText;
+    public TextMeshProUGUI deadText;
+    
+    
     
     private int hiScore;
-    
+    private bool isDead = false;
     public override void OnNetworkSpawn()
     {
        
@@ -62,6 +65,7 @@ public class IndividualPlayerStats : NetworkBehaviour
             TakeLivesServerRpc(livesToAdd);
         }
     }
+
     
     [ServerRpc(RequireOwnership = false)]
     void AddScoreServerRpc(int scoreToAdd) // server changes the score by adding the scoretoadd to the existing score
@@ -80,6 +84,12 @@ public class IndividualPlayerStats : NetworkBehaviour
     {
         scoreText.text = "Score: " + score.Value;
     }
+    
+  public void Dead () 
+    {
+        isDead = true;
+        DeadClientRpc();
+    }
 
     void UpdateLivesUI() // update players lives count
     {
@@ -90,6 +100,21 @@ public class IndividualPlayerStats : NetworkBehaviour
     public void SetPlayerNameServerRpc(string newName)
     {
         playerName.Value = newName;
+    }
+    void Update()
+    {
+        if (isDead) // added due to delay in Dead message showing up
+        {
+            deadText.gameObject.SetActive(true);
+        }
+    }
+    [ClientRpc(RequireOwnership = false)] 
+    public void DeadClientRpc()
+    {
+        Debug.Log("Dead");
+        deadText.gameObject.SetActive(true);
+
+       
     }
     [ServerRpc(RequireOwnership = false)]// server sets ready status for player
     public void SetReadyServerRpc(bool ready)
