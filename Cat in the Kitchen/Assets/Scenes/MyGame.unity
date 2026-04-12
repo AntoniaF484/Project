@@ -4870,7 +4870,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1138892862}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.81333333
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6559,10 +6559,16 @@ MonoBehaviour:
   - {fileID: 3525177397171221557, guid: 1d22aaeef1afb4444bd98918e4a6c055, type: 3}
   - {fileID: 3525177397171221557, guid: aebfc81ae6f9a4b41bc1dbc985ab1dd6, type: 3}
   allReady:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
     m_InternalValue: 0
   defaultExpectedPlayers: 4
   joinScreen: {fileID: 515928536}
   expectedPlayers:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
     m_InternalValue: 4
 --- !u!4 &1482095298
 Transform:
@@ -7984,9 +7990,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c631c28204b454c56be9b15a41438017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLeaderboard
-  playerNameText: {fileID: 0}
-  scoreText: {fileID: 0}
-  livesText: {fileID: 0}
+  playerNameText: {fileID: 1741064826}
+  scoreText: {fileID: 1622665503}
+  livesText: {fileID: 1667520023}
 --- !u!114 &1859157419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8679,9 +8685,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c631c28204b454c56be9b15a41438017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLeaderboard
-  playerNameText: {fileID: 0}
-  scoreText: {fileID: 0}
-  livesText: {fileID: 0}
+  playerNameText: {fileID: 1225443994}
+  scoreText: {fileID: 1774049660}
+  livesText: {fileID: 1703730057}
 --- !u!114 &2048761916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8793,6 +8799,7 @@ MonoBehaviour:
   ConnectionData:
     Address: 127.0.0.1
     Port: 7777
+    WebSocketPath: /
     ServerListenAddress: 127.0.0.1
     ClientBindPort: 0
   DebugSimulator:
