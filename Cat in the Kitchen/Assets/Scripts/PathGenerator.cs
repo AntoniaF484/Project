@@ -261,12 +261,7 @@ public class PathGenerator : MonoBehaviour
                 }
                 int RandomNumber = Random.Range(0, 100);
 
-                if (RandomNumber >= 95 && (!gameManager.returnFromBonusLevel))
-                {
-                    objGenerator.SpawnBonus((new Vector3(path2Position.x + Random.Range(
-                        -(platformWidths2[platformSelector2] / 2),
-                        (platformWidths2[platformSelector2] / 2)), path2Position.y + 4f, path2Position.z)));
-                }
+             
 
                 if (RandomNumber > 50 && RandomNumber < 95)
                 {

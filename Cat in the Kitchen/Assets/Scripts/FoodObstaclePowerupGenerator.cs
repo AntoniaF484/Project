@@ -17,13 +17,6 @@ public class FoodObstaclePowerupGenerator : MonoBehaviour
     public ObjectPooler[] bonusPool;
     private int bonusSelector;
     
-
-    // Start is called before the first frame update
-    void Start()
-    {
-       
-    }
-
     
 
     public void SpawnFood(Vector3 startPosition) //selects a random food from the different foods in the pool, sets as active in the scene
@@ -69,18 +62,5 @@ public class FoodObstaclePowerupGenerator : MonoBehaviour
         }
     }
     
-    public void SpawnBonus(Vector3 startPosition)
-    {
-        bonusSelector = Random.Range(0, bonusPool.Length);   
-        GameObject Bonus = bonusPool[bonusSelector].GetPooledObject();
-        Bonus.transform.position = startPosition;
-        Bonus.SetActive(true);
-        
-        NetworkObject netObj = Bonus.GetComponent<NetworkObject>();//get networkobject attached to prefab
-        if (netObj != null && !netObj.IsSpawned && NetworkManager.Singleton != null && NetworkManager.Singleton.IsServer)//spawn object if it has a networkobject,hasnt been spawned already, and in the scene there is a networkmanager/instance is the server
-        {
-            netObj.Spawn();//spawns on network
-        }
-    }
 }
 

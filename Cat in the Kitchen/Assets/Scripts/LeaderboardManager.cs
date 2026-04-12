@@ -50,7 +50,7 @@ public class LeaderboardManager : NetworkBehaviour // handles the leaderboard
             {
                 leaderboardEntries[i].SetEntry(
                     allPlayers[i].playerName.Value.ToString(),
-                    allPlayers[i].score.Value
+                    allPlayers[i].score.Value, allPlayers[i].lives.Value
                 );
                 leaderboardEntries[i].gameObject.SetActive(true); // make the used leaderboard entry visible
             }

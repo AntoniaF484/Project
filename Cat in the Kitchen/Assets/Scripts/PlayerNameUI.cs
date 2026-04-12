@@ -1,7 +1,7 @@
-using UnityEngine;
+
 using TMPro;
 using Unity.Netcode;
-using System.Collections.Generic;
+
 
 public class PlayerNameUI : NetworkBehaviour
 {
