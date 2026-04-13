@@ -82,8 +82,11 @@ public class GameManager : NetworkBehaviour
     public NetworkVariable<int> expectedPlayers = new(4, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);//number of players expected
 //players dying
     public NetworkVariable<int> deadPlayers = new(readPerm: NetworkVariableReadPermission.Everyone,
-        writePerm: NetworkVariableWritePermission.Server); 
+        writePerm: NetworkVariableWritePermission.Server);
+
+    public GameObject gameOverCanvas;
     
+    public NetworkVariable<bool> gameOver = new NetworkVariable<bool>(false);
     void Start()
     
     {
@@ -128,14 +131,22 @@ public class GameManager : NetworkBehaviour
     public void GameOver() // when the game is over, this brings up the game over message and stops the players movement
     {
         Debug.Log("all players dead");
-        gameOverText.gameObject.SetActive(true);
+       // gameOverText.gameObject.SetActive(true);
         replayButton.gameObject.SetActive(true);
         isGameActive = false;
-       
-        
-       
+
+        GameOverClientRpc(); 
 
 
+
+    }
+    [ClientRpc(RequireOwnership = false)] 
+    public void GameOverClientRpc()
+    {
+        Debug.Log("Dead");
+        gameOverCanvas.gameObject.SetActive(true);
+
+       
     }
 
     public void PlayerDead(IndividualPlayerStats playerStats)
@@ -160,6 +171,7 @@ public class GameManager : NetworkBehaviour
        if (deadPlayers.Value>= readyPlayers)
        {
          GameOver();
+         gameOver.Value = true;
        } 
     }
     
