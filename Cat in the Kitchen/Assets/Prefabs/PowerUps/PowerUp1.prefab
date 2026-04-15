@@ -142,8 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4a43c19672a499681e858b66109bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  easyPath: 0
-  doublePoints: 1
+  doublePoints: 0
+  takeOtherLives: 1
   powerUpLength: 10
 --- !u!114 &5303215034162496511
 MonoBehaviour:

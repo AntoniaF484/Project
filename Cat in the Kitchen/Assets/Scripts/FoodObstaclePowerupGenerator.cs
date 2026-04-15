@@ -14,9 +14,7 @@ public class FoodObstaclePowerupGenerator : MonoBehaviour
     public ObjectPooler[] powerUpPool;
     private int powerUpSelector;
 
-    public ObjectPooler[] bonusPool;
-    private int bonusSelector;
-    
+   
     
 
     public void SpawnFood(Vector3 startPosition) //selects a random food from the different foods in the pool, sets as active in the scene

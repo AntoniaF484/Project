@@ -142,7 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4a43c19672a499681e858b66109bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  easyPath: 1
+  doublePoints: 1
+  takeOtherLives: 0
   powerUpLength: 3
 --- !u!114 &4420823025253883651
 MonoBehaviour:
@@ -156,7 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 0
+  GlobalObjectIdHash: 2016728769
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1
