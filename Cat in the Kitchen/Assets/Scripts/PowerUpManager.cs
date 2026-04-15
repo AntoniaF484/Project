@@ -86,4 +86,16 @@ public class PowerUpManager : MonoBehaviour
         
         
     }
+    
+    public void ActivateDoubleScore(IndividualPlayerStats player, float time)
+    {
+        StartCoroutine(DoubleScore(player, time));
+    }
+
+    IEnumerator DoubleScore(IndividualPlayerStats player, float duration)
+    {
+        player.SetScoreMultiplyerServerRpc(2);
+        yield return new WaitForSeconds(duration);
+        player.SetScoreMultiplyerServerRpc(1);
+    }
 }

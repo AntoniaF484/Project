@@ -25,6 +25,10 @@ public class IndividualPlayerStats : NetworkBehaviour
     
     private int hiScore;
     private bool isDead = false;
+    
+    
+    public NetworkVariable<int> scoreMultiplyer = new NetworkVariable<int>(1);
+    
     public override void OnNetworkSpawn()
     {
        
@@ -53,7 +57,9 @@ public class IndividualPlayerStats : NetworkBehaviour
 
         if (IsOwner) // the owner (relevant player) sends a request to the server to update score
         {
-            AddScoreServerRpc(scoreToAdd);
+           int finalScore = scoreToAdd*scoreMultiplyer.Value;
+           AddScoreServerRpc(finalScore);
+           Debug.Log(finalScore);
         }
 
     }
@@ -120,6 +126,11 @@ public class IndividualPlayerStats : NetworkBehaviour
     public void SetReadyServerRpc(bool ready)
     {
         isReady.Value = ready;
+    }
+    [ServerRpc(RequireOwnership = false)]
+    public void SetScoreMultiplyerServerRpc(int value)
+    {
+        scoreMultiplyer.Value = value;
     }
 
 }

@@ -7,6 +7,7 @@ public class PowerUps : MonoBehaviour
 {
    
     public bool easyPath;
+    public bool doublePoints;
    
 
     public float powerUpLength;
@@ -27,17 +28,24 @@ public class PowerUps : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) //on collision with powerup, parameters are sent to power up manager and powerup is deactivated
     {
-        if (other.name == "Player" && gameManager. returnFromBonusLevel)
+        IndividualPlayerStats playerStats = other.GetComponentInParent<IndividualPlayerStats>();
+
+        if (playerStats != null)
         {
-            bonusLevelPowerUpManager.ActivatePowerUp(easyPath, powerUpLength);
-            gameObject.SetActive(false);
+            if (doublePoints)
+            {
+                powerUpManager.ActivateDoubleScore(playerStats, powerUpLength);
+            }
+            
         }
         
-        else 
+        else if (easyPath)
         {
             powerUpManager.ActivatePowerUp(easyPath, powerUpLength);
-            gameObject.SetActive(false);
+           
         }
+        
+        gameObject.SetActive(false);
 
        
         
