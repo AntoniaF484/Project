@@ -52,7 +52,6 @@ public class GameManager : NetworkBehaviour
     //Path generation/game setup
    public bool isGameActive;
     public Transform PathGenerator;
-    public bool returnFromBonusLevel;
     public int autoDifficulty = 3;
 
          //Distance Between Path Variables

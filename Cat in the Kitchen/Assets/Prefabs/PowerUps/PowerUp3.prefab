@@ -144,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doublePoints: 1
   takeOtherLives: 0
-  powerUpLength: 3
+  powerUpLength: 10
 --- !u!114 &4420823025253883651
 MonoBehaviour:
   m_ObjectHideFlags: 0
