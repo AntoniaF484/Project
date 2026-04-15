@@ -133,4 +133,6 @@ public class IndividualPlayerStats : NetworkBehaviour
         scoreMultiplyer.Value = value;
     }
 
+   
+  
 }

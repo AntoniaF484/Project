@@ -18,7 +18,9 @@ public class DetectCollisions : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    { IndividualPlayerStats playerStats = other.GetComponentInParent<IndividualPlayerStats>();
+    {
+        
+        IndividualPlayerStats playerStats = other.GetComponentInParent<IndividualPlayerStats>();
         if (other.CompareTag("Player")) //when the player collides with an object, relevant scores added and object deactivates
         {
            
