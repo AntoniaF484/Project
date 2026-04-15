@@ -7,7 +7,7 @@ using UnityEngine;
 public class PowerUps : MonoBehaviour
 {
    
-    public bool easyPath;
+    
     public bool doublePoints;
     public bool takeOtherLives;
    
