@@ -12,6 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
+
 public class RelayManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI joinCodeText;
@@ -38,7 +39,7 @@ public class RelayManager : MonoBehaviour
     private async Task<string> StartHostWithRelay(int maxConnections = 4)
     {
         Allocation allocation = await RelayService.Instance.CreateAllocationAsync(maxConnections);
-        RelayServerData relayServerData = allocation.ToRelayServerData("dtls");
+        RelayServerData relayServerData = allocation.ToRelayServerData("wss");
       NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
         string joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
         return NetworkManager.Singleton.StartHost() ? joinCode : null;
@@ -48,7 +49,7 @@ public class RelayManager : MonoBehaviour
     private async Task<bool> StartClientWithRelay(string joinCode)
     {
         JoinAllocation joinAllocation = await RelayService.Instance.JoinAllocationAsync(joinCode);
-        RelayServerData relayServerData = joinAllocation.ToRelayServerData("dtls");
+        RelayServerData relayServerData = joinAllocation.ToRelayServerData("wss");
         NetworkManager.Singleton.GetComponent<UnityTransport>().SetRelayServerData(relayServerData);
         return !string.IsNullOrEmpty(joinCode) && NetworkManager.Singleton.StartClient(); 
     }
