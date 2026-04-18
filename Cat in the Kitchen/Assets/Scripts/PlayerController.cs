@@ -53,8 +53,13 @@ public class PlayerController : NetworkBehaviour
     private float inputSendInterval = 1f / 60f;
     private float inputSendTimer;
     private Queue<Snapshot> snapshots = new();
-   // private float interpolationDelay = 0.05f;
+   
 
+   [SerializeField] private Camera playerCamera;
+
+   private float interpolationBackTime = 0.001f; 
+   
+  
     private struct Snapshot
     {
         public Vector3 pos;
@@ -70,7 +75,11 @@ public class PlayerController : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
-
+        gameManager = FindObjectOfType<GameManager>();
+        if (IsClient)
+        {
+            gameManager.allReady.OnValueChanged += OnAllReadyChanged;
+        }
         Physics.gravity = Vector3.down * 9.8f * gravityModifier;
         if (IsServer)
         {
@@ -100,27 +109,29 @@ public class PlayerController : NetworkBehaviour
 
         }
 
-        StartCoroutine(EnableMovement(3f));
+      
     }
-
+    private void OnAllReadyChanged(bool oldValue, bool newValue)
+    {
+        if (newValue)
+        {
+            StartCoroutine(EnableMovement(3f));
+        }
+    }
 
     void Start()
     {
+        
         playerRb = GetComponent<Rigidbody>();
-        if (!IsServer) // only server should control physics
+      if (!IsServer) // only server should control physics
         {
             playerRb.isKinematic = true;
         }
 
         speedIncreaseCount = speedIncreasePosition;
-        // gameManager = FindObjectOfType<GameManager>();
+      
         jumpTimeCounter = jumpTime;
-
-
-        //myCollider = GetComponent<Collider>();
-
-        // StartCoroutine(EnableMovement(3f)); //Wait to start moving the player 
-
+        
         playerAudio = GetComponent<AudioSource>();
 
 
@@ -133,9 +144,10 @@ public class PlayerController : NetworkBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
+
+        
         if (!enableMovement) return;
 
         if (IsOwner)
@@ -151,10 +163,12 @@ public class PlayerController : NetworkBehaviour
             bool jumpHeld = Input.GetKey(KeyCode.Space);
             bool jumpReleased = Input.GetKeyUp(KeyCode.Space);
             SendInputServerRpc(jumpPressed, jumpHeld, jumpReleased);
+          
         }
+        
 
 
-        if (snapshots.Count >= 2)
+        if (!IsServer && snapshots.Count >= 2)
 
             Interpolate();
 
@@ -163,21 +177,25 @@ public class PlayerController : NetworkBehaviour
     void Interpolate()
     {
         if (snapshots.Count < 2) return;
+       
 
+   Snapshot from = snapshots.Peek();
+     Snapshot to = snapshots.ElementAt(1);
 
-        Snapshot from = snapshots.Peek();
-        Snapshot to = snapshots.ElementAt(1);
+     float duration = to.time - from.time;
+     if (duration <= 0f) return;
 
-        float duration = to.time - from.time;
-        if (duration <= 0f) return;
+     float renderTime = Time.time - interpolationBackTime;
+     float elapsed = renderTime - from.time;
+     float t = Mathf.Clamp01(elapsed / duration);
 
-     //   float renderTime = Time.time - interpolationDelay;
-        float elapsed = Time.time - from.time;
-        float t = Mathf.Clamp01(elapsed / duration);
+     transform.position = Vector3.Lerp(from.pos, to.pos, t);
 
-        transform.position = Vector3.Lerp(from.pos, to.pos, t);
-
-        if (t >= 1f) snapshots.Dequeue();
+     if (t >= 1f) snapshots.Dequeue();
+ }
+    public Camera GetCamera()
+    {
+        return playerCamera;
     }
 
 
@@ -250,27 +268,7 @@ public class PlayerController : NetworkBehaviour
                 if (playerAudio != null && jumpSound != null)
                     playerAudio.PlayOneShot(jumpSound, 1.0f);
             }
-
-
           
-
-
-
-         /*     
-
-
-
-
-               if (gameManager.isGameActive)
-               {
-                   playerRb.linearVelocity = new Vector3(moveSpeed, playerRb.linearVelocity.y, playerRb.linearVelocity.z);
-
-               }
-
-         */
-
-
-
         }
 
 
