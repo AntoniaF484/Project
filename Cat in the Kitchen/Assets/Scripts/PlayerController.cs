@@ -48,28 +48,36 @@ public class PlayerController : NetworkBehaviour
 // Authoritative player
     private NetworkVariable<Vector3> serverPosition = new(readPerm: NetworkVariableReadPermission.Everyone,
         writePerm: NetworkVariableWritePermission.Server);
+    private NetworkVariable<Vector3> serverVelocity =
+        new(readPerm: NetworkVariableReadPermission.Everyone,
+            writePerm: NetworkVariableWritePermission.Server);
 
     private Vector2 input;
     private float inputSendInterval = 1f / 60f;
     private float inputSendTimer;
-    private Queue<Snapshot> snapshots = new();
+   // private Queue<Snapshot> snapshots = new();
+    
+    private List<Snapshot> snapshots = new();
    
 
    [SerializeField] private Camera playerCamera;
 
-   private float interpolationBackTime = 0.1f; 
-   private int predictedJumpCount = 0;
+   private float interpolationBackTime = 0.15f; 
+  private int predictedJumpCount = 0;
    private float predictedJumpMultiplier = 5f;
   
     private struct Snapshot
     {
         public Vector3 pos;
         public float time;
+        public Vector3 velocity;
+        
 
-        public Snapshot(Vector3 p, float t)
+        public Snapshot(Vector3 p, float t, Vector3 v)
         {
             pos = p;
             time = t;
+            velocity = v;
         }
 
     }
@@ -99,11 +107,14 @@ public class PlayerController : NetworkBehaviour
         {
             serverPosition.OnValueChanged += (oldVal, newVal) =>
             {
-                snapshots.Enqueue(new Snapshot(newVal, Time.time));
+               // snapshots.Enqueue(new Snapshot(newVal, Time.time));
+               snapshots.Add(new Snapshot(newVal, Time.time,serverVelocity.Value));
+               snapshots.Sort((a, b) => a.time.CompareTo(b.time));
 
                 while (snapshots.Count > 50)
                 {
-                    snapshots.Dequeue();
+                   // snapshots.Dequeue();
+                   snapshots.RemoveAt(0);
                 }
             };
 
@@ -164,13 +175,13 @@ public class PlayerController : NetworkBehaviour
             bool jumpHeld = Input.GetKey(KeyCode.Space);
             bool jumpReleased = Input.GetKeyUp(KeyCode.Space);
 
-            if (jumpPressed && predictedJumpCount<maxJumps)
+         /*   if (jumpPressed && predictedJumpCount<maxJumps)
             {
                 predictedJumpCount++;
 
                 transform.position += Vector3.up * predictedJumpMultiplier;
 
-            }
+            }*/
 
             SendInputServerRpc(jumpPressed, jumpHeld, jumpReleased);
           
@@ -187,12 +198,15 @@ public class PlayerController : NetworkBehaviour
     void Interpolate()
     {
         if (snapshots.Count < 2) return;
+        float renderTime = Time.time - interpolationBackTime;
+        Snapshot from = default;
+        Snapshot to = default;
        
 
-   Snapshot from = snapshots.Peek();
-     Snapshot to = snapshots.ElementAt(1);
+   //Snapshot from = snapshots.Peek();
+  //   Snapshot to = snapshots.ElementAt(1);
 
-     float duration = to.time - from.time;
+    /* float duration = to.time - from.time;
      if (duration <= 0f) return;
 
      float renderTime = Time.time - interpolationBackTime;
@@ -201,7 +215,36 @@ public class PlayerController : NetworkBehaviour
 
      transform.position = Vector3.Lerp(from.pos, to.pos, t);
 
-     if (t >= 1f) snapshots.Dequeue();
+     if (t >= 1f) snapshots.Dequeue();*/
+    for (int i = 0; i < snapshots.Count - 1; i++)
+    {
+        if (snapshots[i].time <= renderTime && snapshots[i + 1].time >= renderTime)
+        {
+            from = snapshots[i];
+            to = snapshots[i + 1];
+            break;
+        }
+    }
+    
+    if (from.time == 0 || to.time == 0) return;
+
+    float duration = to.time - from.time;
+    if (duration <= 0f) return;
+
+    float t = (renderTime - from.time) / duration;
+
+    Vector3 predictedFrom =
+        from.pos + from.velocity * (renderTime - from.time);
+
+    Vector3 predictedTo =
+        to.pos + to.velocity * (renderTime - to.time);
+    
+    transform.position = Vector3.Lerp(predictedFrom, predictedTo, t);
+    while (snapshots.Count > 2 && snapshots[0].time < renderTime - interpolationBackTime * 2f)
+    {
+        snapshots.RemoveAt(0);
+    }
+     
  }
     public Camera GetCamera()
     {
@@ -240,7 +283,7 @@ public class PlayerController : NetworkBehaviour
             jumpTimeCounter = jumpTime; // resets jump time
             isHoldingJump = true;
             isOnGround = false;
-            ConfirmJumpClientRpc();
+            //ConfirmJumpClientRpc();
             PlayJumpClientRpc();
             
         }
@@ -269,6 +312,7 @@ public class PlayerController : NetworkBehaviour
         }
         
         serverPosition.Value = transform.position;
+        serverVelocity.Value = playerRb.linearVelocity;
 
     }
 
@@ -280,14 +324,14 @@ public class PlayerController : NetworkBehaviour
                 if (playerAudio != null && jumpSound != null)
                     playerAudio.PlayOneShot(jumpSound, 1.0f);
             }
-            [ClientRpc]
+          /*  [ClientRpc]
             void ConfirmJumpClientRpc()
             {
                 if (IsOwner)
                 {
                     predictedJumpCount = 0;
                 }
-            }
+            }*/
           
         }
 
