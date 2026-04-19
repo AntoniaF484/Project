@@ -39,13 +39,19 @@ public class DetectCollisions : MonoBehaviour
     {
         
         IndividualPlayerStats playerStats = GetComponentInParent<IndividualPlayerStats>();
-      if (playerStats!=null && playerStats.lives.Value <= 0 ||collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        
+        if (playerStats!=null && collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        {
+            isOnFloor = true;
+            playerStats.UpdateLives(-1);
+        }
+      if (playerStats!=null && playerStats.lives.Value <= 0) 
       {
 
           playerStats.Dead();
           
           gameManager.PlayerDead(playerStats);
-          isOnFloor = true;
+         
       } 
     }
        
