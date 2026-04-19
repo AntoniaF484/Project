@@ -65,6 +65,9 @@ public class PlayerController : NetworkBehaviour
    private float interpolationBackTime = 0.15f; 
   private int predictedJumpCount = 0;
    private float predictedJumpMultiplier = 5f;
+   private bool predictedGrounded;
+   private Vector3 predictedVelocity;
+   
   
     private struct Snapshot
     {
@@ -110,6 +113,7 @@ public class PlayerController : NetworkBehaviour
                // snapshots.Enqueue(new Snapshot(newVal, Time.time));
                snapshots.Add(new Snapshot(newVal, Time.time,serverVelocity.Value));
                snapshots.Sort((a, b) => a.time.CompareTo(b.time));
+               ReconcilePrediction(newVal);
 
                 while (snapshots.Count > 50)
                 {
@@ -120,8 +124,22 @@ public class PlayerController : NetworkBehaviour
 
 
         }
+       
 
       
+    }
+    void ReconcilePrediction(Vector3 serverPos)
+    {
+        float error = Vector3.Distance(transform.position, serverPos);
+
+        if (error > 0.5f) // threshold
+        {
+          
+            transform.position = Vector3.Lerp(transform.position, serverPos, 0.5f);
+
+            predictedJumpCount = jumpCount;
+            predictedGrounded = isOnGround;
+        }
     }
     private void OnAllReadyChanged(bool oldValue, bool newValue)
     {
@@ -158,9 +176,11 @@ public class PlayerController : NetworkBehaviour
 
     void Update()
     {
-
-        
-        if (!enableMovement) return;
+        predictedGrounded = Physics.OverlapSphere(
+            groundCheck.position,
+            groundCheckWidth,
+            whatIsGround
+        ).Length > 0; if (!enableMovement) return;
 
         if (IsOwner)
         {
@@ -175,13 +195,16 @@ public class PlayerController : NetworkBehaviour
             bool jumpHeld = Input.GetKey(KeyCode.Space);
             bool jumpReleased = Input.GetKeyUp(KeyCode.Space);
 
-         /*   if (jumpPressed && predictedJumpCount<maxJumps)
+           if (jumpPressed && predictedJumpCount<maxJumps && predictedGrounded)
             {
                 predictedJumpCount++;
 
-                transform.position += Vector3.up * predictedJumpMultiplier;
+                predictedVelocity.y = jumpForce;
+                predictedGrounded = false;
+                transform.position += Vector3.up * 0.1f;
+               // transform.position += Vector3.up * predictedJumpMultiplier;
 
-            }*/
+            }
 
             SendInputServerRpc(jumpPressed, jumpHeld, jumpReleased);
           
@@ -261,6 +284,7 @@ public class PlayerController : NetworkBehaviour
         if (!enableMovement) return;
 
         isOnGround = Physics.OverlapSphere(groundCheck.position, groundCheckWidth, whatIsGround).Length > 0;
+        
         if (transform.position.x > speedIncreaseCount)
 
         {
