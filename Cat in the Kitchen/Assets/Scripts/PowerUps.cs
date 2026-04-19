@@ -30,24 +30,24 @@ public class PowerUps : MonoBehaviour
     {
         if (!NetworkManager.Singleton.IsServer) return;
         IndividualPlayerStats playerStats = other.GetComponentInParent<IndividualPlayerStats>();
-
-        if (playerStats != null)
+        if (other.CompareTag("Player"))
         {
-            if (doublePoints)
+            if (playerStats != null)
             {
-                powerUpManager.ActivateDoubleScore(playerStats, powerUpLength);
+                if (doublePoints)
+                {
+                    powerUpManager.ActivateDoubleScore(playerStats, powerUpLength);
+                }
+
+                if (takeOtherLives)
+                {
+                    powerUpManager.ActivateTakeOtherLives(playerStats);
+                }
+
             }
 
-            if (takeOtherLives)
-            {
-                powerUpManager.ActivateTakeOtherLives(playerStats);
-            }
-            
+            gameObject.SetActive(false);
         }
-        
-        gameObject.SetActive(false);
-
-       
-        
     }
+    
 }
