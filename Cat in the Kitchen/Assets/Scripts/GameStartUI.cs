@@ -4,10 +4,12 @@ using Unity.Netcode;
 public class GameStartUI : NetworkBehaviour
 {
     public TMP_InputField nameText;
+    private bool hasClickedReady;
 
     public void OnReadyClicked() // when player presses ready button
     {
-        var playerObj = NetworkManager.Singleton.LocalClient.PlayerObject; // get the players player object from the network manager
+       if (hasClickedReady) return; 
+       var playerObj = NetworkManager.Singleton.LocalClient.PlayerObject; // get the players player object from the network manager
 
         if (playerObj == null) // if the player object hasnt spawned yet, stop. 
         {
@@ -21,6 +23,7 @@ public class GameStartUI : NetworkBehaviour
         {
             return;
         }
+        hasClickedReady = true;
 
         stats.SetPlayerNameServerRpc(nameText.text); // sets the players inputted name. Update network varialbe so everyone can see it
         stats.SetReadyServerRpc(true); // sets the player as ready
