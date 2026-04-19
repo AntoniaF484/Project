@@ -2,7 +2,7 @@
 using UnityEngine;
 
 public class FollowPlayer : MonoBehaviour
-{
+{// camera will follow player at below defined offset
     private Vector3 offset = new Vector3(0,22,-28);
     private Transform target;
         public GameObject player;

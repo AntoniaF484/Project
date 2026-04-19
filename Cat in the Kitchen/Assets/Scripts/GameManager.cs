@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
+
 using UnityEngine.UI;
 using Unity.Netcode;
 
@@ -129,37 +129,29 @@ public class GameManager : NetworkBehaviour
 
     public void GameOver() // when the game is over, this brings up the game over message and stops the players movement
     {
-        Debug.Log("all players dead");
-       // gameOverText.gameObject.SetActive(true);
         replayButton.gameObject.SetActive(true);
         isGameActive = false;
 
         GameOverClientRpc(); 
-
-
-
+        
     }
     [ClientRpc(RequireOwnership = false)] 
     public void GameOverClientRpc()
     {
-        Debug.Log("Dead");
         gameOverCanvas.gameObject.SetActive(true);
-
-       
+        
     }
 
     public void PlayerDead(IndividualPlayerStats playerStats)
     { 
-        Debug.Log("Player Dead");
-        PlayerController player = playerStats.GetComponentInChildren<PlayerController>();
-        player.enableMovement = false;
+     
+        PlayerController player = playerStats.GetComponentInChildren<PlayerController>();// get players stats
+        player.enableMovement = false; // disable player movement
         Rigidbody playerRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
-        playerRb.linearVelocity = Vector3.zero;
-        deadPlayers.Value++;
-        Debug.Log("Total Dead " + deadPlayers.Value); 
-            
-            Debug.Log ("Total expected "+readyPlayers);
-       Camera playerCamera = player.GetCamera();
+        playerRb.linearVelocity = Vector3.zero; // stops player movement
+        deadPlayers.Value++; // adds one to dead players count
+        
+       Camera playerCamera = player.GetCamera(); // stops players camera, stops following player
         playerCamera.transform.SetParent(null);
 
         FollowPlayer follow = playerCamera.GetComponent<FollowPlayer>();
@@ -167,7 +159,7 @@ public class GameManager : NetworkBehaviour
         {
             follow.enabled = false;
         }
-       if (deadPlayers.Value>= readyPlayers)
+       if (deadPlayers.Value>= readyPlayers) // if dead players equals the same amount of players who pressed ready, then the game is over as theyre all dead
        {
          GameOver();
          gameOver.Value = true;

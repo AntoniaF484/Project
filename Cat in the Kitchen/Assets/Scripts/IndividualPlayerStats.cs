@@ -57,9 +57,8 @@ public class IndividualPlayerStats : NetworkBehaviour
 
         if (IsOwner) // the owner (relevant player) sends a request to the server to update score
         {
-           int finalScore = scoreToAdd*scoreMultiplyer.Value;
+           int finalScore = scoreToAdd*scoreMultiplyer.Value;// score food is worth*multiplier value (increases if player has scorepowerup)
            AddScoreServerRpc(finalScore);
-           Debug.Log(finalScore);
         }
 
     }
@@ -117,10 +116,8 @@ public class IndividualPlayerStats : NetworkBehaviour
     [ClientRpc(RequireOwnership = false)] 
     public void DeadClientRpc()
     {
-        Debug.Log("Dead");
-        deadText.gameObject.SetActive(true);
-
-       
+        deadText.gameObject.SetActive(true); // activates death UI for relevant player
+  
     }
     [ServerRpc(RequireOwnership = false)]// server sets ready status for player
     public void SetReadyServerRpc(bool ready)
@@ -130,7 +127,7 @@ public class IndividualPlayerStats : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void SetScoreMultiplyerServerRpc(int value)
     {
-        scoreMultiplyer.Value = value;
+        scoreMultiplyer.Value = value; //multiplyer value set by powerup manager based on if player has score powerup or not
     }
 
    

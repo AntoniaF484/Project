@@ -35,7 +35,7 @@ public class DetectCollisions : MonoBehaviour
    
     }
 
-  private void OnCollisionEnter(Collision collision)
+  private void OnCollisionEnter(Collision collision) // if player collides with the floor, they will instantly die
     {
         
         IndividualPlayerStats playerStats = GetComponentInParent<IndividualPlayerStats>();

@@ -19,7 +19,7 @@ public class GameStartUI : NetworkBehaviour
 
         var stats = playerObj.GetComponent<IndividualPlayerStats>(); // get this players inputted stats (name and ready status in this case)
 
-        if (stats == null)
+        if (stats == null) // if no stats yet, stop
         {
             return;
         }

@@ -32,7 +32,7 @@ public class DestroyOutOfBounds : MonoBehaviour
         if (players.Length == 0) return null;
 
         Transform slowest = players[0].transform;//find player in last place (least far along x)
-        foreach (var p in players)
+        foreach (PlayerController  p in players)
         {
             if (p.transform.position.x < slowest.position.x)
                 slowest = p.transform;

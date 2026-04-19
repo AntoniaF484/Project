@@ -62,16 +62,5 @@ public class RepeatBackground : MonoBehaviour
         }
       
     }
-   /* Transform GetLeadingPlayer(PlayerController[] players)
-    {
-        if (players.Length == 0) return null;
-
-        Transform leading = players[0].transform;
-        foreach (var p in players)
-        {
-            if (p.transform.position.x > leading.position.x)
-                leading = p.transform;
-        }
-        return leading;
-    }*/
+  
 }

@@ -9,7 +9,6 @@ public class PlayerNameUI : NetworkBehaviour
     public TextMeshProUGUI playerNameText;
     public IndividualPlayerStats playerStats;
     
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,8 +25,8 @@ public class PlayerNameUI : NetworkBehaviour
     void UpdateNameTag()
     {
         
-        if (playerStats == null) return;
-       playerNameText.text = playerStats.playerName.Value.ToString();
+        if (playerStats == null) return; // dont run if there is no playerStats assigned yet
+       playerNameText.text = playerStats.playerName.Value.ToString(); // text will be the text input at ready screen
 
     }
 }
