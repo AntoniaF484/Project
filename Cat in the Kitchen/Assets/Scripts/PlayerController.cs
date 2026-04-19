@@ -57,8 +57,9 @@ public class PlayerController : NetworkBehaviour
 
    [SerializeField] private Camera playerCamera;
 
-   private float interpolationBackTime = 0.001f; 
-   
+   private float interpolationBackTime = 0.1f; 
+   private int predictedJumpCount = 0;
+   private float predictedJumpMultiplier = 5f;
   
     private struct Snapshot
     {
@@ -100,7 +101,7 @@ public class PlayerController : NetworkBehaviour
             {
                 snapshots.Enqueue(new Snapshot(newVal, Time.time));
 
-                while (snapshots.Count > 20)
+                while (snapshots.Count > 50)
                 {
                     snapshots.Dequeue();
                 }
@@ -162,6 +163,15 @@ public class PlayerController : NetworkBehaviour
             bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
             bool jumpHeld = Input.GetKey(KeyCode.Space);
             bool jumpReleased = Input.GetKeyUp(KeyCode.Space);
+
+            if (jumpPressed && predictedJumpCount<maxJumps)
+            {
+                predictedJumpCount++;
+
+                transform.position += Vector3.up * predictedJumpMultiplier;
+
+            }
+
             SendInputServerRpc(jumpPressed, jumpHeld, jumpReleased);
           
         }
@@ -230,7 +240,9 @@ public class PlayerController : NetworkBehaviour
             jumpTimeCounter = jumpTime; // resets jump time
             isHoldingJump = true;
             isOnGround = false;
+            ConfirmJumpClientRpc();
             PlayJumpClientRpc();
+            
         }
 
         playerRb.linearVelocity = velocity;
@@ -267,6 +279,14 @@ public class PlayerController : NetworkBehaviour
 
                 if (playerAudio != null && jumpSound != null)
                     playerAudio.PlayOneShot(jumpSound, 1.0f);
+            }
+            [ClientRpc]
+            void ConfirmJumpClientRpc()
+            {
+                if (IsOwner)
+                {
+                    predictedJumpCount = 0;
+                }
             }
           
         }
