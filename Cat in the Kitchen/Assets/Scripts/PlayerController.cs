@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using Unity.Netcode;
 using System.Collections.Generic;
-using System.Linq;
+
 
 public class PlayerController : NetworkBehaviour
 {
@@ -55,20 +55,25 @@ public class PlayerController : NetworkBehaviour
     private Vector2 input;
     private float inputSendInterval = 1f / 60f;
     private float inputSendTimer;
-   // private Queue<Snapshot> snapshots = new();
     
-    private List<Snapshot> snapshots = new();
+    private List<Snapshot> snapshots = new(); // snapshot used for interpolation on cleints
    
 
    [SerializeField] private Camera playerCamera;
 
-   private float interpolationBackTime = 0.15f; 
-  private int predictedJumpCount = 0;
+   private float interpolationBackTime = 0.15f; // to smooth jitter in the client view, time to render far back
+  
+   
+   // below are for client side to predict jump. client side view predicts the server will allow jump - makes view of jump more quick that waiting for server
+   private int predictedJumpCount = 0;
    private float predictedJumpMultiplier = 5f;
    private bool predictedGrounded;
    private Vector3 predictedVelocity;
    
-  
+   void Awake()// stabilize gme framerate
+   {
+       Application.targetFrameRate = 60;
+   }
     private struct Snapshot
     {
         public Vector3 pos;
@@ -76,7 +81,7 @@ public class PlayerController : NetworkBehaviour
         public Vector3 velocity;
         
 
-        public Snapshot(Vector3 p, float t, Vector3 v)
+        public Snapshot(Vector3 p, float t, Vector3 v)// snapshot of server state that will be sent to the client
         {
             pos = p;
             time = t;
@@ -93,10 +98,8 @@ public class PlayerController : NetworkBehaviour
             gameManager.allReady.OnValueChanged += OnAllReadyChanged;
         }
         Physics.gravity = Vector3.down * 9.8f * gravityModifier;
-        if (IsServer)
+        if (IsServer) // server controls generating the paths and other objects, client just views what the server generates
         {
-
-
             PathGenerator generator = FindObjectOfType<PathGenerator>();
 
 
@@ -106,18 +109,17 @@ public class PlayerController : NetworkBehaviour
             }
         }
 
-        if (IsClient)
+        if (IsClient) // here client recieves server updates
         {
             serverPosition.OnValueChanged += (oldVal, newVal) =>
             {
-               // snapshots.Enqueue(new Snapshot(newVal, Time.time));
-               snapshots.Add(new Snapshot(newVal, Time.time,serverVelocity.Value));
-               snapshots.Sort((a, b) => a.time.CompareTo(b.time));
-               ReconcilePrediction(newVal);
+             
+               snapshots.Add(new Snapshot(newVal, Time.time,serverVelocity.Value));// store snapshot
+               snapshots.Sort((a, b) => a.time.CompareTo(b.time));// keep snapshots in order
+               ReconcilePrediction(newVal); // used to fix discrpancies between client/server side
 
                 while (snapshots.Count > 50)
                 {
-                   // snapshots.Dequeue();
                    snapshots.RemoveAt(0);
                 }
             };
@@ -130,18 +132,18 @@ public class PlayerController : NetworkBehaviour
     }
     void ReconcilePrediction(Vector3 serverPos)
     {
-        float error = Vector3.Distance(transform.position, serverPos);
+        float error = Vector3.Distance(transform.position, serverPos);// distance between predicted pos and true server pos
 
-        if (error > 0.5f) // threshold
+        if (error > 0.5f) // threshold, only correct if prediction is over this much off from true server pos
         {
           
-            transform.position = Vector3.Lerp(transform.position, serverPos, 0.5f);
+            transform.position = Vector3.Lerp(transform.position, serverPos, 0.5f);// smooth correction to avoid snapping
 
-            predictedJumpCount = jumpCount;
+            predictedJumpCount = jumpCount; // reset to match server
             predictedGrounded = isOnGround;
         }
     }
-    private void OnAllReadyChanged(bool oldValue, bool newValue)
+    private void OnAllReadyChanged(bool oldValue, bool newValue)// once all players are ready, enable their movement after small wait
     {
         if (newValue)
         {
@@ -167,7 +169,7 @@ public class PlayerController : NetworkBehaviour
 
     }
 
-    private IEnumerator EnableMovement(float wait)
+    private IEnumerator EnableMovement(float wait) // enable movement after wait
     {
         yield return new WaitForSeconds(wait);
         enableMovement = true;
@@ -176,17 +178,14 @@ public class PlayerController : NetworkBehaviour
 
     void Update()
     {
-        predictedGrounded = Physics.OverlapSphere(
-            groundCheck.position,
-            groundCheckWidth,
-            whatIsGround
-        ).Length > 0; if (!enableMovement) return;
+        predictedGrounded = Physics.OverlapSphere(groundCheck.position, groundCheckWidth, whatIsGround).Length > 0; // client view ground prediction
+        if (!enableMovement) return;
 
         if (IsOwner)
         {
             inputSendTimer += Time.deltaTime;
 
-            if (inputSendTimer >= inputSendInterval)
+            if (inputSendTimer >= inputSendInterval)// ground check sync
             {
                 inputSendTimer = 0f;
                 isOnGround = Physics.OverlapSphere(groundCheck.position, groundCheckWidth, whatIsGround).Length > 0;
@@ -195,24 +194,25 @@ public class PlayerController : NetworkBehaviour
             bool jumpHeld = Input.GetKey(KeyCode.Space);
             bool jumpReleased = Input.GetKeyUp(KeyCode.Space);
 
-           if (jumpPressed && predictedJumpCount<maxJumps && predictedGrounded)
+          // client side appears to jump before server has allowed it - makes movement seem less lagged
+            if (jumpPressed && predictedJumpCount<maxJumps && predictedGrounded)
             {
                 predictedJumpCount++;
 
                 predictedVelocity.y = jumpForce;
                 predictedGrounded = false;
                 transform.position += Vector3.up * 0.1f;
-               // transform.position += Vector3.up * predictedJumpMultiplier;
+              
 
             }
 
-            SendInputServerRpc(jumpPressed, jumpHeld, jumpReleased);
+            SendInputServerRpc(jumpPressed, jumpHeld, jumpReleased);// send jump input to the server
           
         }
         
 
 
-        if (!IsServer && snapshots.Count >= 2)
+        if (!IsServer && snapshots.Count >= 2) // only clients other than the server need to interpolate
 
             Interpolate();
 
@@ -220,26 +220,13 @@ public class PlayerController : NetworkBehaviour
 
     void Interpolate()
     {
-        if (snapshots.Count < 2) return;
-        float renderTime = Time.time - interpolationBackTime;
+        if (snapshots.Count < 2) return; // need at least 2 pts to interpolate between
+        float renderTime = Time.time - interpolationBackTime; // dont try to show real time, try to show slightly before (helps with jitter)
         Snapshot from = default;
         Snapshot to = default;
        
 
-   //Snapshot from = snapshots.Peek();
-  //   Snapshot to = snapshots.ElementAt(1);
-
-    /* float duration = to.time - from.time;
-     if (duration <= 0f) return;
-
-     float renderTime = Time.time - interpolationBackTime;
-     float elapsed = renderTime - from.time;
-     float t = Mathf.Clamp01(elapsed / duration);
-
-     transform.position = Vector3.Lerp(from.pos, to.pos, t);
-
-     if (t >= 1f) snapshots.Dequeue();*/
-    for (int i = 0; i < snapshots.Count - 1; i++)
+    for (int i = 0; i < snapshots.Count - 1; i++) // find snapshots asround rendertime
     {
         if (snapshots[i].time <= renderTime && snapshots[i + 1].time >= renderTime)
         {
@@ -249,23 +236,23 @@ public class PlayerController : NetworkBehaviour
         }
     }
     
-    if (from.time == 0 || to.time == 0) return;
+    if (from.time == 0 || to.time == 0) return;// skip if no pair of snapshots found
 
-    float duration = to.time - from.time;
-    if (duration <= 0f) return;
+    float duration = to.time - from.time; // how far between snapshots
+    if (duration <= 0f) return; //if it takes no time, return
 
-    float t = (renderTime - from.time) / duration;
+    float t = (renderTime - from.time) / duration; // how far progress between snapshots
 
     Vector3 predictedFrom =
-        from.pos + from.velocity * (renderTime - from.time);
+        from.pos + from.velocity * (renderTime - from.time); // predict where from should be now (if player keeps moving at the velocity) as player will keep moving 
 
     Vector3 predictedTo =
-        to.pos + to.velocity * (renderTime - to.time);
+        to.pos + to.velocity * (renderTime - to.time);// predict where to should be now 
     
-    transform.position = Vector3.Lerp(predictedFrom, predictedTo, t);
-    while (snapshots.Count > 2 && snapshots[0].time < renderTime - interpolationBackTime * 2f)
+    transform.position = Vector3.Lerp(predictedFrom, predictedTo, t); // use above time corrected positions
+    while (snapshots.Count > 2 && snapshots[0].time < renderTime - interpolationBackTime * 2f) // keep at least 2 snapshots, but keep deleting based on oldst first
     {
-        snapshots.RemoveAt(0);
+        snapshots.RemoveAt(0); // remove old snapshots
     }
      
  }
@@ -348,14 +335,7 @@ public class PlayerController : NetworkBehaviour
                 if (playerAudio != null && jumpSound != null)
                     playerAudio.PlayOneShot(jumpSound, 1.0f);
             }
-          /*  [ClientRpc]
-            void ConfirmJumpClientRpc()
-            {
-                if (IsOwner)
-                {
-                    predictedJumpCount = 0;
-                }
-            }*/
+        
           
         }
 

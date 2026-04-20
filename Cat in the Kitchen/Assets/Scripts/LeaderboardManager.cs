@@ -6,18 +6,18 @@ public class LeaderboardManager : NetworkBehaviour // handles the leaderboard
 
     public List<PlayerLeaderboard> leaderboardEntries; // UI elements to display the leaderboard
     public IndividualPlayerStats playerStats;
-
+    private GameManager gameManager;
+    public List<FinalLeaderBoardPlayer> finalLeaderboardEntries;
     void Start()
     {
         playerStats = GetComponent<IndividualPlayerStats>(); // need player stats script as this is what is used for the clients name input
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
         UpdateLeaderboard();
     }
-
- 
 
     void UpdateLeaderboard()
 
@@ -44,21 +44,43 @@ public class LeaderboardManager : NetworkBehaviour // handles the leaderboard
 
         allPlayers.Sort((a, b) => b.score.Value.CompareTo(a.score.Value));// Sort players by high to low score
 
-        for (int i = 0; i < leaderboardEntries.Count; i++)
+        if (!gameManager.gameOver.Value)
         {
-            if (i < allPlayers.Count) //update UI with playername and score
+
+            for (int i = 0; i < leaderboardEntries.Count; i++)
             {
-                leaderboardEntries[i].SetEntry(
-                    allPlayers[i].playerName.Value.ToString(),
-                    allPlayers[i].score.Value, allPlayers[i].lives.Value
-                );
-                leaderboardEntries[i].gameObject.SetActive(true); // make the used leaderboard entry visible
+                if (i < allPlayers.Count) //update UI with playername and score
+                {
+                    leaderboardEntries[i].SetEntry(
+                        allPlayers[i].playerName.Value.ToString(),
+                        allPlayers[i].score.Value, allPlayers[i].lives.Value
+                    );
+                    leaderboardEntries[i].gameObject.SetActive(true); // make the used leaderboard entry visible
+                }
+                else
+                {
+                    leaderboardEntries[i].gameObject.SetActive(false); // hide unused entries
+                }
             }
-            else
+        }
+        else
+        {
+            for (int i = 0; i < finalLeaderboardEntries.Count; i++)
             {
-                leaderboardEntries[i].gameObject.SetActive(false); // hide unused entries
+                if (i < allPlayers.Count) //update UI with playername and score
+                {
+                    finalLeaderboardEntries[i].SetEntry(
+                        allPlayers[i].playerName.Value.ToString(),
+                        allPlayers[i].score.Value);
+                    finalLeaderboardEntries[i].gameObject.SetActive(true); // make the used leaderboard entry visible
+                }
+                else
+                {
+                    finalLeaderboardEntries[i].gameObject.SetActive(false); // hide unused entries
+                }
             }
         }
     }
+   
 }
 
