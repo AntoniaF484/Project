@@ -5282,7 +5282,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 400, y: 234.04909}
-  m_SizeDelta: {x: 800, y: 468.09818}
+  m_SizeDelta: {x: 800, y: 468.0982}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &828427006
 GameObject:
@@ -5570,8 +5570,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.8795, y: -24}
-  m_SizeDelta: {x: 805.76, y: 172.0903}
+  m_AnchoredPosition: {x: 2.8795, y: -4.7469}
+  m_SizeDelta: {x: 777.4583, y: 133.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &919380504
 MonoBehaviour:
@@ -5598,7 +5598,7 @@ MonoBehaviour:
     \nCollect food to get as much points as possible before you die!\nIf you hit
     a star, you will get double points for every piece of food you collect, and if
     you hit a lightning bolt you will take a life from your competitors.\nDon't fall
-    on the ground, on you will die instantly"
+    on the ground, or you will die instantly"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
@@ -12453,8 +12453,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.291}
-  m_AnchoredPosition: {x: 5.7590027, y: 3.4325867}
-  m_SizeDelta: {x: 11.5179, y: 6.8653}
+  m_AnchoredPosition: {x: -0.000030517578, y: 3.432602}
+  m_SizeDelta: {x: -0.000061035, y: 6.8652}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2116937590
 MonoBehaviour:
