@@ -67,14 +67,13 @@ public class PlayerController : NetworkBehaviour
 
     // below are for client side to predict jump. client side view predicts the server will allow jump - makes view of jump more quick that waiting for server
     private int predictedJumpCount = 0;
-    private float predictedJumpMultiplier = 5f;
     private bool predictedGrounded;
     private Vector3 predictedVelocity;
     private bool predictedHoldingJump;
     private float predictedJumpTimeCounter;
     private bool jumpStartedThisFrame;
 
-    void Awake() // stabilize gme framerate
+    void Awake() // stabilize game framerate
     {
         Application.targetFrameRate = 60;
     }
@@ -107,8 +106,7 @@ public class PlayerController : NetworkBehaviour
         if (IsServer) // server controls generating the paths and other objects, client just views what the server generates
         {
             PathGenerator generator = FindObjectOfType<PathGenerator>();
-
-
+            
             if (generator != null)
             {
                 generator.StartGeneration(); // Enable path generation on server
@@ -123,19 +121,14 @@ public class PlayerController : NetworkBehaviour
                 snapshots.Add(new Snapshot(newVal, Time.time, serverVelocity.Value)); // store snapshot
                 snapshots.Sort((a, b) => a.time.CompareTo(b.time)); // keep snapshots in order
                
-               ReconcilePrediction(newVal); // used to fix discrpancies between client/server side
+               ReconcilePrediction(newVal); // used to fix discrepancies between client/server side
 
                 while (snapshots.Count > 50)
                 {
                     snapshots.RemoveAt(0);
                 }
             };
-
-
         }
-
-
-
     }
 
     void ReconcilePrediction(Vector3 serverPos)
@@ -193,10 +186,11 @@ public class PlayerController : NetworkBehaviour
             0; // client view ground prediction
         if (!enableMovement) return;
 
-        if (IsOwner)
+        if (IsOwner) // below is client view prediction - it is not the actual position in the game, which is set by the server, but was used to attempt to minimise lag/jittering between the two
         {
-       predictedVelocity.y += Physics.gravity.y * Time.deltaTime;
+       
             transform.position += predictedVelocity * Time.deltaTime;
+            predictedVelocity.y += Physics.gravity.y * Time.deltaTime;
             if (predictedGrounded && predictedVelocity.y < 0)
             {
                 predictedVelocity.y = 0;
@@ -214,22 +208,16 @@ public class PlayerController : NetworkBehaviour
             bool jumpHeld = Input.GetKey(KeyCode.Space);
             bool jumpReleased = Input.GetKeyUp(KeyCode.Space);
 
-            // client side appears to jump before server has allowed it - makes movement seem less lagged
+            // client side appears to jump before server has allowed it - makes movement seem less lagged. Uses similar code to server jump (actual in game true position)
             if (jumpPressed && predictedJumpCount < maxJumps && predictedGrounded)
             {
-                predictedJumpCount++;
-
+                predictedJumpCount++; 
                 predictedVelocity.y = jumpForce;
-               
-                transform.position += Vector3.up * 0.1f;
                predictedHoldingJump = true;
                predictedJumpTimeCounter = jumpTime;
                predictedGrounded = false;
-               
                jumpStartedThisFrame = true;
-               
-
-            
+           
             }
             if (jumpHeld && predictedHoldingJump && predictedJumpTimeCounter > 0f)
             {
@@ -242,8 +230,7 @@ public class PlayerController : NetworkBehaviour
                 predictedHoldingJump = false;
                 predictedJumpTimeCounter = 0f;
             }
-
-
+            
             SendInputServerRpc(jumpPressed, jumpHeld, jumpReleased); // send jump input to the server
 
         }
@@ -252,14 +239,12 @@ public class PlayerController : NetworkBehaviour
 
         if (!IsServer && snapshots.Count >= 2) // only clients other than the server need to interpolate
 
-            if (IsOwner && jumpStartedThisFrame)
+            if (IsOwner && jumpStartedThisFrame) // slows interpolation starting to make jump more visible for client
             {
-                // Skip interpolation to show instant jump
                 jumpStartedThisFrame = false; // reset flag
             }
             else
             {
-                // Normal interpolation
                 Interpolate();
             } 
 
@@ -272,12 +257,12 @@ public class PlayerController : NetworkBehaviour
         float
             renderTime =
                 Time.time -
-                interpolationBackTime; // dont try to show real time, try to show slightly before (helps with jitter)
+                interpolationBackTime; // dont try to show real time, try to show slightly before
         Snapshot from = default;
         Snapshot to = default;
 
 
-        for (int i = 0; i < snapshots.Count - 1; i++) // find snapshots asround rendertime
+        for (int i = 0; i < snapshots.Count - 1; i++) // find snapshots around rendertime
         {
             if (snapshots[i].time <= renderTime && snapshots[i + 1].time >= renderTime)
             {
@@ -317,14 +302,8 @@ public class PlayerController : NetworkBehaviour
     {
         return playerCamera;
     }
-    
-   
-   
-
-
-
-
-    [ServerRpc(RequireOwnership = false)]
+ 
+    [ServerRpc(RequireOwnership = false)]// Server is sent input and makes the ingame moves for the client's player
     void SendInputServerRpc(bool jumpPressed, bool jumpHeld, bool jumpReleased, ServerRpcParams rpcParams = default)
     {
         if (!enableMovement) return;
@@ -380,13 +359,13 @@ public class PlayerController : NetworkBehaviour
             isHoldingJump = false;
         }
 
-        serverPosition.Value = transform.position;
-        serverVelocity.Value = playerRb.linearVelocity;
+        serverPosition.Value = transform.position; // reflect transform position of server player for the client
+        serverVelocity.Value = playerRb.linearVelocity; // reflect transform velocity of server player for the client
 
     }
 
 
-    [ClientRpc]
+    [ClientRpc] // Client hears own audio for jumping
     void PlayJumpClientRpc()
     {
 
