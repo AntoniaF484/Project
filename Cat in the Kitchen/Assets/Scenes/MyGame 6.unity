@@ -2064,6 +2064,7 @@ RectTransform:
   - {fileID: 942103422}
   - {fileID: 1672393914}
   - {fileID: 1317393662}
+  - {fileID: 816839017}
   m_Father: {fileID: 449918704}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2945,7 +2946,6 @@ RectTransform:
   m_Children:
   - {fileID: 449918704}
   - {fileID: 940444194}
-  - {fileID: 816839017}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4393,7 +4393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 2100000, guid: d8eba3c8ed1254df9ac9aa4cda7644fb, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -4401,7 +4401,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 98865205, guid: 967843194024244c0b43ea8df3fad6e9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e0b418f974696420885ef7e639f567a4, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5271,16 +5271,16 @@ RectTransform:
   m_GameObject: {fileID: 816839012}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.155, y: 1.155, z: 1.155}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2059846830}
   - {fileID: 2116937589}
-  m_Father: {fileID: 515928540}
+  m_Father: {fileID: 431142724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 400, y: 234.04909}
+  m_AnchoredPosition: {x: 462, y: 264}
   m_SizeDelta: {x: 800, y: 468.0982}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &828427006
@@ -5569,7 +5569,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.8795, y: -0}
+  m_AnchoredPosition: {x: 2.8795, y: 88}
   m_SizeDelta: {x: 777.4583, y: 133.59}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &919380504
@@ -5599,8 +5599,8 @@ MonoBehaviour:
     you hit a lightning bolt you will take a life from your competitors.\nDon't fall
     on the ground, or you will die instantly"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: c9adb1f542a93ae489bacfeae21e8394, type: 2}
-  m_sharedMaterial: {fileID: -8643439910342830561, guid: c9adb1f542a93ae489bacfeae21e8394, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8528,7 +8528,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000032424927}
+  m_AnchoredPosition: {x: 0, y: -0.000038146973}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1279007305
@@ -12452,8 +12452,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.291}
-  m_AnchoredPosition: {x: -0.000030517578, y: 3.432602}
-  m_SizeDelta: {x: -0.000061035, y: 6.8652}
+  m_AnchoredPosition: {x: 0.000030517578, y: -97.628525}
+  m_SizeDelta: {x: 0.000061035, y: 178.1221}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2116937590
 MonoBehaviour:
