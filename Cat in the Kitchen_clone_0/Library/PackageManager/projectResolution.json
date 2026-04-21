@@ -1,0 +1,710 @@
+{
+  "context": {
+    "projectPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Packages",
+    "unityVersion": "6000.3.8f1"
+  },
+  "inputs": [
+    "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Packages/manifest.json",
+    "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Packages/packages-lock.json",
+    "/Applications/Unity/Hub/Editor/6000.3.8f1/Unity.app/Contents/Resources/PackageManager/BuiltInPackages/BuiltInPackagesCombined.sha1"
+  ],
+  "outputs": {
+    "com.unity.2d.sprite@1.0.0": {
+      "name": "com.unity.2d.sprite",
+      "displayName": "2D Sprite",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.2d.sprite@08e067ec1643",
+      "fingerprint": "08e067ec16439baf6179e7b573789fe56478f7e0",
+      "editorCompatibility": "2019.2.0a1",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.2d.tilemap@1.0.0": {
+      "name": "com.unity.2d.tilemap",
+      "displayName": "2D Tilemap Editor",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.2d.tilemap@2394479dc113",
+      "fingerprint": "2394479dc113a2fb5870334479f2547950908691",
+      "editorCompatibility": "2019.2.0a1",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.2d.tilemap.extras@6.0.1": {
+      "name": "com.unity.2d.tilemap.extras",
+      "displayName": "2D Tilemap Extras",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.2d.tilemap.extras@3dde84bf3867",
+      "fingerprint": "3dde84bf38677b4165ad5f568b353d4ba942d63c",
+      "editorCompatibility": "6000.3.0a2",
+      "version": "6.0.1",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.collab-proxy@2.11.4": {
+      "name": "com.unity.collab-proxy",
+      "displayName": "Unity Version Control",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.collab-proxy@a5329f833fa8",
+      "fingerprint": "a5329f833fa805a96ac8b0a1eb09dc64c076b032",
+      "editorCompatibility": "2021.3.0f1",
+      "version": "2.11.4",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.connect.share@4.2.4": {
+      "name": "com.unity.connect.share",
+      "displayName": "WebGL Publisher",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.connect.share@26544eac5181",
+      "fingerprint": "26544eac51818212e7dbbc6c65611a4ae8fdfc69",
+      "editorCompatibility": "2019.3.0a1",
+      "version": "4.2.4",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.feature.development@1.0.2": {
+      "name": "com.unity.feature.development",
+      "displayName": "Engineering",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.feature.development@767aadbc6eb7",
+      "fingerprint": "767aadbc6eb72681a4ca807c8fa248e0230a0cef",
+      "version": "1.0.2",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.multiplayer.center@1.0.1": {
+      "name": "com.unity.multiplayer.center",
+      "displayName": "Multiplayer Center",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.multiplayer.center@f01f4ba8d00a",
+      "fingerprint": "f01f4ba8d00afa4e957bddf0fcd1612a564401ff",
+      "editorCompatibility": "6000.0.0a1",
+      "version": "1.0.1",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.multiplayer.tools@2.2.8": {
+      "name": "com.unity.multiplayer.tools",
+      "displayName": "Multiplayer Tools",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.multiplayer.tools@acc3b25185bb",
+      "fingerprint": "acc3b25185bbd5d2a4ae1619a4a7904ccaa25b9a",
+      "editorCompatibility": "6000.0.0a1",
+      "version": "2.2.8",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.netcode.gameobjects@2.11.0": {
+      "name": "com.unity.netcode.gameobjects",
+      "displayName": "Netcode for GameObjects",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.netcode.gameobjects@60c1d83693e8",
+      "fingerprint": "60c1d83693e8918c1f1bc9c5fcfa8005d40a2b7f",
+      "editorCompatibility": "6000.0.0a1",
+      "version": "2.11.0",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.postprocessing@3.5.4": {
+      "name": "com.unity.postprocessing",
+      "displayName": "Post Processing",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.postprocessing@141166b789e3",
+      "fingerprint": "141166b789e3df4d2a816ea0dc441d73da8db3e6",
+      "editorCompatibility": "2019.4.19f1",
+      "version": "3.5.4",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.render-pipelines.universal@17.3.0": {
+      "name": "com.unity.render-pipelines.universal",
+      "displayName": "Universal Render Pipeline",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.render-pipelines.universal@a6e30d1f59f5",
+      "fingerprint": "a6e30d1f59f5364f0f32d5b542626a3743ae75b6",
+      "editorCompatibility": "6000.3.0a1",
+      "version": "17.3.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.services.multiplayer@2.2.1": {
+      "name": "com.unity.services.multiplayer",
+      "displayName": "Multiplayer Services",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.services.multiplayer@7c91ae1e57ac",
+      "fingerprint": "7c91ae1e57acbe8aeb9bc1dea27af9875214b530",
+      "editorCompatibility": "2022.3.0a1",
+      "version": "2.2.1",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.timeline@1.8.12": {
+      "name": "com.unity.timeline",
+      "displayName": "Timeline",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.timeline@8cd8509afae5",
+      "fingerprint": "8cd8509afae5d2655af4657a214db1b563c28425",
+      "editorCompatibility": "2022.3.0a1",
+      "version": "1.8.12",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.visualscripting@1.9.11": {
+      "name": "com.unity.visualscripting",
+      "displayName": "Visual Scripting",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.visualscripting@8bed5ad90189",
+      "fingerprint": "8bed5ad901895f10b7d0e524c4738cab14cef692",
+      "editorCompatibility": "2021.3.0a1",
+      "version": "1.9.11",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.modules.accessibility@1.0.0": {
+      "name": "com.unity.modules.accessibility",
+      "displayName": "Accessibility",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.accessibility",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.adaptiveperformance@1.0.0": {
+      "name": "com.unity.modules.adaptiveperformance",
+      "displayName": "Adaptive Performance",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.adaptiveperformance",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.ai@1.0.0": {
+      "name": "com.unity.modules.ai",
+      "displayName": "AI",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.ai",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.androidjni@1.0.0": {
+      "name": "com.unity.modules.androidjni",
+      "displayName": "Android JNI",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.androidjni",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.animation@1.0.0": {
+      "name": "com.unity.modules.animation",
+      "displayName": "Animation",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.animation",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.assetbundle@1.0.0": {
+      "name": "com.unity.modules.assetbundle",
+      "displayName": "Asset Bundle",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.assetbundle",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.audio@1.0.0": {
+      "name": "com.unity.modules.audio",
+      "displayName": "Audio",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.audio",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.cloth@1.0.0": {
+      "name": "com.unity.modules.cloth",
+      "displayName": "Cloth",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.cloth",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.director@1.0.0": {
+      "name": "com.unity.modules.director",
+      "displayName": "Director",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.director",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.imageconversion@1.0.0": {
+      "name": "com.unity.modules.imageconversion",
+      "displayName": "Image Conversion",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.imageconversion",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.imgui@1.0.0": {
+      "name": "com.unity.modules.imgui",
+      "displayName": "IMGUI",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.imgui",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.jsonserialize@1.0.0": {
+      "name": "com.unity.modules.jsonserialize",
+      "displayName": "JSONSerialize",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.jsonserialize",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.particlesystem@1.0.0": {
+      "name": "com.unity.modules.particlesystem",
+      "displayName": "Particle System",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.particlesystem",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.physics@1.0.0": {
+      "name": "com.unity.modules.physics",
+      "displayName": "Physics",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.physics",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.physics2d@1.0.0": {
+      "name": "com.unity.modules.physics2d",
+      "displayName": "Physics 2D",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.physics2d",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.screencapture@1.0.0": {
+      "name": "com.unity.modules.screencapture",
+      "displayName": "Screen Capture",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.screencapture",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.terrain@1.0.0": {
+      "name": "com.unity.modules.terrain",
+      "displayName": "Terrain",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.terrain",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.terrainphysics@1.0.0": {
+      "name": "com.unity.modules.terrainphysics",
+      "displayName": "Terrain Physics",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.terrainphysics",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.tilemap@1.0.0": {
+      "name": "com.unity.modules.tilemap",
+      "displayName": "Tilemap",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.tilemap",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.ui@1.0.0": {
+      "name": "com.unity.modules.ui",
+      "displayName": "UI",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.ui",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.uielements@1.0.0": {
+      "name": "com.unity.modules.uielements",
+      "displayName": "UIElements",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.uielements",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.umbra@1.0.0": {
+      "name": "com.unity.modules.umbra",
+      "displayName": "Umbra",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.umbra",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.unityanalytics@1.0.0": {
+      "name": "com.unity.modules.unityanalytics",
+      "displayName": "Unity Analytics",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.unityanalytics",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.unitywebrequest@1.0.0": {
+      "name": "com.unity.modules.unitywebrequest",
+      "displayName": "Unity Web Request",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.unitywebrequest",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.unitywebrequestassetbundle@1.0.0": {
+      "name": "com.unity.modules.unitywebrequestassetbundle",
+      "displayName": "Unity Web Request Asset Bundle",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.unitywebrequestassetbundle",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.unitywebrequestaudio@1.0.0": {
+      "name": "com.unity.modules.unitywebrequestaudio",
+      "displayName": "Unity Web Request Audio",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.unitywebrequestaudio",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.unitywebrequesttexture@1.0.0": {
+      "name": "com.unity.modules.unitywebrequesttexture",
+      "displayName": "Unity Web Request Texture",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.unitywebrequesttexture",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.unitywebrequestwww@1.0.0": {
+      "name": "com.unity.modules.unitywebrequestwww",
+      "displayName": "Unity Web Request WWW",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.unitywebrequestwww",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.vectorgraphics@1.0.0": {
+      "name": "com.unity.modules.vectorgraphics",
+      "displayName": "Vector Graphics",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.vectorgraphics",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.vehicles@1.0.0": {
+      "name": "com.unity.modules.vehicles",
+      "displayName": "Vehicles",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.vehicles",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.video@1.0.0": {
+      "name": "com.unity.modules.video",
+      "displayName": "Video",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.video",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.vr@1.0.0": {
+      "name": "com.unity.modules.vr",
+      "displayName": "VR",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.vr",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.wind@1.0.0": {
+      "name": "com.unity.modules.wind",
+      "displayName": "Wind",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.wind",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.xr@1.0.0": {
+      "name": "com.unity.modules.xr",
+      "displayName": "XR",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.xr",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.subsystems@1.0.0": {
+      "name": "com.unity.modules.subsystems",
+      "displayName": "Subsystems",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.subsystems",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.modules.hierarchycore@1.0.0": {
+      "name": "com.unity.modules.hierarchycore",
+      "displayName": "Hierarchy Core",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.modules.hierarchycore",
+      "version": "1.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.ugui@2.0.0": {
+      "name": "com.unity.ugui",
+      "displayName": "uGUI",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.ugui@bb329a87fcdc",
+      "fingerprint": "bb329a87fcdc5d55e815f3d804764d676674047e",
+      "editorCompatibility": "2019.2.0a1",
+      "version": "2.0.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.transport@2.6.0": {
+      "name": "com.unity.transport",
+      "displayName": "Unity Transport",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.transport@6e74a0e6481d",
+      "fingerprint": "6e74a0e6481d0f4d298b271a4172b7d880d164e1",
+      "editorCompatibility": "2022.3.0a1",
+      "version": "2.6.0",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.collections@2.6.2": {
+      "name": "com.unity.collections",
+      "displayName": "Collections",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.collections@aea9d3bd5e19",
+      "fingerprint": "aea9d3bd5e19f2a90fc3a39919974a5f3613a159",
+      "editorCompatibility": "2022.3.20f1",
+      "version": "2.6.2",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.services.qos@1.4.1": {
+      "name": "com.unity.services.qos",
+      "displayName": "QoS",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.services.qos@03d4b52d4980",
+      "fingerprint": "03d4b52d498041d0dedc2697d693fe564371675c",
+      "editorCompatibility": "2021.3.0a1",
+      "version": "1.4.1",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.services.core@1.16.0": {
+      "name": "com.unity.services.core",
+      "displayName": "Services Core",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.services.core@8ba50f624741",
+      "fingerprint": "8ba50f62474188022a50a78f721a5d30dfba0c3e",
+      "editorCompatibility": "2022.3.0a1",
+      "version": "1.16.0",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.services.wire@1.4.3": {
+      "name": "com.unity.services.wire",
+      "displayName": "Wire",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.services.wire@d50817c0adab",
+      "fingerprint": "d50817c0adab73c8bf1e6e2185c48e55d34b1593",
+      "editorCompatibility": "2021.3.0a1",
+      "version": "1.4.3",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.services.deployment@1.7.1": {
+      "name": "com.unity.services.deployment",
+      "displayName": "Deployment",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.services.deployment@2ec29314f9ba",
+      "fingerprint": "2ec29314f9ba604525e42da930bbc4b4202689f2",
+      "editorCompatibility": "2021.3.0a1",
+      "version": "1.7.1",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.nuget.newtonsoft-json@3.2.2": {
+      "name": "com.unity.nuget.newtonsoft-json",
+      "displayName": "Newtonsoft Json",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.nuget.newtonsoft-json@4dfd81071c64",
+      "fingerprint": "4dfd81071c6475bb9c114f920bfb4e3fc5e28c6a",
+      "editorCompatibility": "2018.4.0a1",
+      "version": "3.2.2",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.services.authentication@3.6.0": {
+      "name": "com.unity.services.authentication",
+      "displayName": "Authentication",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.services.authentication@862f5b816622",
+      "fingerprint": "862f5b816622565a7390d220aedd6fffee951028",
+      "editorCompatibility": "2021.3.0a1",
+      "version": "3.6.0",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.render-pipelines.core@17.3.0": {
+      "name": "com.unity.render-pipelines.core",
+      "displayName": "Scriptable Render Pipeline Core",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.render-pipelines.core@d6dfd1e235d5",
+      "fingerprint": "d6dfd1e235d5156d31265ad0c7f00bd8d46c5154",
+      "editorCompatibility": "6000.3.0a1",
+      "version": "17.3.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.shadergraph@17.3.0": {
+      "name": "com.unity.shadergraph",
+      "displayName": "Shader Graph",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.shadergraph@d44b48771ebb",
+      "fingerprint": "d44b48771ebbf9479f0179b89a001f76788f52dc",
+      "editorCompatibility": "6000.3.0a1",
+      "version": "17.3.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.render-pipelines.universal-config@17.0.3": {
+      "name": "com.unity.render-pipelines.universal-config",
+      "displayName": "Universal Render Pipeline Config",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.render-pipelines.universal-config@8dc1aab4af1d",
+      "fingerprint": "8dc1aab4af1d718781689a36ed5231a35ad1a524",
+      "editorCompatibility": "6000.0.0a1",
+      "version": "17.0.3",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.nuget.mono-cecil@1.11.6": {
+      "name": "com.unity.nuget.mono-cecil",
+      "displayName": "Mono Cecil",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.nuget.mono-cecil@ecb9724e46ff",
+      "fingerprint": "ecb9724e46fff855c46a4f37f0a3377a3cfffc06",
+      "editorCompatibility": "2019.4.0a1",
+      "version": "1.11.6",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.burst@1.8.27": {
+      "name": "com.unity.burst",
+      "displayName": "Burst",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.burst@973857688024",
+      "fingerprint": "973857688024e0c6019b60f7a3b403e8e467c4d0",
+      "editorCompatibility": "2022.3.0a1",
+      "version": "1.8.27",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.mathematics@1.3.3": {
+      "name": "com.unity.mathematics",
+      "displayName": "Mathematics",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.mathematics@19a9377c4ffa",
+      "fingerprint": "19a9377c4ffa59370edad3e6a34e4445529badde",
+      "editorCompatibility": "2021.3.0a1",
+      "version": "1.3.3",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.profiling.core@1.0.3": {
+      "name": "com.unity.profiling.core",
+      "displayName": "Unity Profiling Core API",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.profiling.core@8a49f7027d06",
+      "fingerprint": "8a49f7027d0618e2cb86aa9e4ed5fb4392e8121a",
+      "editorCompatibility": "2020.1.0a1",
+      "version": "1.0.3",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.ide.visualstudio@2.0.26": {
+      "name": "com.unity.ide.visualstudio",
+      "displayName": "Visual Studio Editor",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.ide.visualstudio@a99d56dec63f",
+      "fingerprint": "a99d56dec63ffb3a911a5a9bce9b77ba862a601c",
+      "editorCompatibility": "2021.3.0a1",
+      "version": "2.0.26",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.ide.rider@3.0.39": {
+      "name": "com.unity.ide.rider",
+      "displayName": "JetBrains Rider Editor",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.ide.rider@4504839d03f7",
+      "fingerprint": "4504839d03f7a5a4495357084a0ffd6e439892cf",
+      "editorCompatibility": "2021.3.0a1",
+      "version": "3.0.39",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.editorcoroutines@1.0.1": {
+      "name": "com.unity.editorcoroutines",
+      "displayName": "Editor Coroutines",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.editorcoroutines@54394ed3283c",
+      "fingerprint": "54394ed3283c1d492d6a80602b05b04bd0863f8b",
+      "editorCompatibility": "2018.1.0a1",
+      "version": "1.0.1",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.performance.profile-analyzer@1.3.1": {
+      "name": "com.unity.performance.profile-analyzer",
+      "displayName": "Profile Analyzer",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.performance.profile-analyzer@311968ce4be7",
+      "fingerprint": "311968ce4be7b8c45e37a6c865e744fb1b7a7b3e",
+      "editorCompatibility": "2021.3.0a1",
+      "version": "1.3.1",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.test-framework@1.6.0": {
+      "name": "com.unity.test-framework",
+      "displayName": "Test Framework",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.test-framework@0b7a23ab2e1d",
+      "fingerprint": "0b7a23ab2e1d74441a5afdffa63f417929756957",
+      "editorCompatibility": "6000.0.44f1",
+      "version": "1.6.0",
+      "source": "builtin",
+      "testable": false
+    },
+    "com.unity.testtools.codecoverage@1.3.0": {
+      "name": "com.unity.testtools.codecoverage",
+      "displayName": "Code Coverage",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.testtools.codecoverage@19a841221620",
+      "fingerprint": "19a8412216200955baa50132d98cb9fe4770e401",
+      "editorCompatibility": "2021.3.0a1",
+      "version": "1.3.0",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.settings-manager@2.1.1": {
+      "name": "com.unity.settings-manager",
+      "displayName": "Settings Manager",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.settings-manager@0b8638c5ce86",
+      "fingerprint": "0b8638c5ce86009d785da17b17aaf629047f64ce",
+      "editorCompatibility": "2022.3.0a1",
+      "version": "2.1.1",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.services.deployment.api@1.1.3": {
+      "name": "com.unity.services.deployment.api",
+      "displayName": "Deployment API",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.services.deployment.api@9becf6da0f1a",
+      "fingerprint": "9becf6da0f1ab8679d1ec6f21c02255fb119db4f",
+      "editorCompatibility": "2021.3.0a1",
+      "version": "1.1.3",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.test-framework.performance@3.2.0": {
+      "name": "com.unity.test-framework.performance",
+      "displayName": "Performance testing API",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.test-framework.performance@0840f58e4562",
+      "fingerprint": "0840f58e45624f7677679a0f8b6a5137689e607f",
+      "editorCompatibility": "2020.3.0a1",
+      "version": "3.2.0",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.searcher@4.9.4": {
+      "name": "com.unity.searcher",
+      "displayName": "Searcher",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.searcher@d45a78918735",
+      "fingerprint": "d45a78918735dd5b1de2247c6e3567c60aa24115",
+      "editorCompatibility": "2019.1.0a1",
+      "version": "4.9.4",
+      "source": "registry",
+      "testable": false
+    },
+    "com.unity.ext.nunit@2.0.5": {
+      "name": "com.unity.ext.nunit",
+      "displayName": "Custom NUnit",
+      "resolvedPath": "/Users/antoniaforsythe/Documents/GitHub/Project/Cat in the Kitchen/Library/PackageCache/com.unity.ext.nunit@d8c07649098d",
+      "fingerprint": "d8c07649098d3936da4c8ab500960c1776b44592",
+      "editorCompatibility": "2019.4.0a1",
+      "version": "2.0.5",
+      "source": "builtin",
+      "testable": false
+    }
+  }
+}

@@ -6,19 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/MyGame.unity
+    path: Assets/Scenes/Previous Scenes/MyGame.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 0
-    path: Assets/Scenes/BonusLevel.unity
+    path: Assets/Scenes/Previous Scenes/BonusLevel.unity
     guid: 0227e534b44644362a01152e2c469728
   - enabled: 0
-    path: Assets/Scenes/EndGame.unity
+    path: Assets/Scenes/Previous Scenes/EndGame.unity
     guid: 0a9bf4b79eae3427d8dd4a989531376d
   - enabled: 0
     path: Assets/Scenes/Test.unity
     guid: 3e42c3c8484404f14a40532f0744a14d
-  - enabled: 1
-    path: Assets/Scenes/MyGame 2.unity
+  - enabled: 0
+    path: Assets/Scenes/Previous Scenes/MyGame 2.unity
     guid: abad6aefb77d6421ca76525cb9966071
   - enabled: 1
     path: Assets/Scenes/MyGame 6.unity
