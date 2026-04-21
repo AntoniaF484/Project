@@ -31,7 +31,7 @@ public class BonusLevelPlayerController : MonoBehaviour
         verticalInput = Input.GetAxis("Vertical");
         Vector3 forward = transform.forward * verticalInput * catPower; // moves the player based on vertical input
         
-        playerRb.velocity = forward;
+        playerRb.linearVelocity = forward;
         
         // all below keeps the player within the bounds of the game
 

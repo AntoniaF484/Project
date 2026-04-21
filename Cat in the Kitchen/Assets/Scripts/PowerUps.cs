@@ -1,12 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
+using Unity.Netcode;
 using UnityEngine;
 
 public class PowerUps : MonoBehaviour
 {
    
-    public bool easyPath;
+    
+    public bool doublePoints;
+    public bool takeOtherLives;
    
 
     public float powerUpLength;
@@ -27,19 +28,26 @@ public class PowerUps : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) //on collision with powerup, parameters are sent to power up manager and powerup is deactivated
     {
-        if (other.name == "Player" && gameManager. returnFromBonusLevel)
+        if (!NetworkManager.Singleton.IsServer) return;
+        IndividualPlayerStats playerStats = other.GetComponentInParent<IndividualPlayerStats>();
+        if (other.CompareTag("Player"))
         {
-            bonusLevelPowerUpManager.ActivatePowerUp(easyPath, powerUpLength);
-            gameObject.SetActive(false);
-        }
-        
-        else 
-        {
-            powerUpManager.ActivatePowerUp(easyPath, powerUpLength);
-            gameObject.SetActive(false);
-        }
+            if (playerStats != null)
+            {
+                if (doublePoints)
+                {
+                    powerUpManager.ActivateDoubleScore(playerStats, powerUpLength);
+                }
 
-       
-        
+                if (takeOtherLives)
+                {
+                    powerUpManager.ActivateTakeOtherLives(playerStats);
+                }
+
+            }
+
+            gameObject.SetActive(false);
+        }
     }
+    
 }

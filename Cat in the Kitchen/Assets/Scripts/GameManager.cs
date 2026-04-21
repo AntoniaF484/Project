@@ -1,238 +1,217 @@
-using System.Collections;
+
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+using UnityEngine.UI;
+using Unity.Netcode;
+
+
+public class GameManager : NetworkBehaviour
 
 {
+    
+    //UI
+        //UI For players own view
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
+    
+        //UI For world view
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI hiScoreText;
     public Button replayButton;
     public GameObject titleScreen;
 
+   
+        //Start game UI
+        public TMP_Dropdown expectedPlayersDropdown;
+        // Scoreboard
+        public TextMeshProUGUI firstPlaceScore;
+        private int firstScore;
+        public TextMeshProUGUI secondPlaceScore;
+        private int secondScore;
+        public TextMeshProUGUI thirdPlaceScore;
+        private int thirdScore;
+        
+//Other scripts
     private PlayerController playerController;
     private PathGenerator pathGenerator;
+    private PowerUpManager powerUpManager;
 
    
 
-
+// Player movement
     private int score;
     public static int totalScore;
     public int addedScore;
+//player stats
     public int lives;
     public static int totalLives;
     public int hiScore;
-
-    public bool isGameActive;
+    
+    //Path generation/game setup
+   public bool isGameActive;
     public Transform PathGenerator;
+    public int autoDifficulty = 3;
 
-    //Distance Between Path Variables
+         //Distance Between Path Variables
     private float distanceBetweenMinPath1;
     private float distanceBetweenMinPath2;
 
     private float distanceBetweenMaxPath1;
     private float distanceBetweenMaxPath2;
 
-
-    // PowerUps
-    private PowerUpManager powerUpManager;
-    
-    public TextMeshProUGUI firstPlaceScore;
-    private int firstScore;
-    public TextMeshProUGUI secondPlaceScore;
-    private int secondScore;
-    public TextMeshProUGUI thirdPlaceScore;
-    private int thirdScore;
-
-
-    public bool returnFromBonusLevel;
-   
-    public int autoDifficulty = 3;
-    
-    
-   // private DifficultyButton difficultyButton;
     private float originalDistanceMax; 
     private float originalDistanceMin;
+   
 
+
+   // Player joining
+    [SerializeField] private GameObject [] playerPrefab; //possible cat prefabs to spawn when the player joins
+    private List<GameObject> availableCats; // list of available prefabs (not yet spawned)
+    
+    public NetworkVariable<bool> allReady = new(readPerm: NetworkVariableReadPermission.Everyone,
+        writePerm: NetworkVariableWritePermission.Server); //bool to mark if all the players in the game are ready for it to start
+
+    public int defaultExpectedPlayers=4;// pre-setting default players to 4 (max possible) allows other players to join before the host has set expected players. Not concerned with too many joining as expected players is to make sure the game doesnt start before all players have joined and are ready
+    private int readyPlayers; // total plays who have pressed ready button
+    public GameObject joinScreen; //join screen which will be deactivated once the game starts
+
+    private int spawnedCats = 0; //number of players who have joined the game
+    public NetworkVariable<int> expectedPlayers = new(4, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server);//number of players expected
+//players dying
+    public NetworkVariable<int> deadPlayers = new(readPerm: NetworkVariableReadPermission.Everyone,
+        writePerm: NetworkVariableWritePermission.Server);
+
+    public GameObject gameOverCanvas;
+    
+    public NetworkVariable<bool> gameOver = new NetworkVariable<bool>(false);
     void Start()
+    
     {
+        if (NetworkManager.Singleton.IsServer)
+        {
+            expectedPlayers.Value = defaultExpectedPlayers; // at the start of the game, expected players is set by the server as the default expected players
+        }
+        
+        availableCats =new List<GameObject>(playerPrefab); // list of available cat prefabs
+        if (NetworkManager.Singleton != null)
+        {
+            NetworkManager.Singleton.OnClientConnectedCallback += SpawnCatForClient; // cat is spawned when a player connects
+        }
         
         pathGenerator = FindObjectOfType<PathGenerator>();
-      
-        
-
-
-
-        if (!returnFromBonusLevel)
-        {
-            lives = 9;
-            totalLives = lives;
-            livesText.text = "Lives: " + lives;
-        }
-
-        else
-        {
-           lives=totalLives;
-           livesText.text = "Lives: " + lives;
-            
-        } 
         powerUpManager = FindObjectOfType<PowerUpManager>();
+     
+    }
+    public void OnPlayerCountChanged(int index) // linked to player count dropdown
+    {
+        if (!NetworkManager.Singleton.IsServer) return; // expected players is only set by the server
 
-            if (PlayerPrefs.HasKey("HighScore"))
-            {
-                hiScore = PlayerPrefs.GetInt("HighScore");
-
-            }
-            else
-            {
-                hiScore = 0;
-            }
-
-            if (PlayerPrefs.HasKey("SecondPlace"))
-            {
-                secondScore = PlayerPrefs.GetInt("SecondPlace");
-            }
-
-            if (PlayerPrefs.HasKey("ThirdPlace"))
-            {
-                thirdScore = PlayerPrefs.GetInt("ThirdPlace");
-            }
-
-           if (returnFromBonusLevel)
-            {
-               
-                StartGame(autoDifficulty);
-                
-                   
-                score = totalScore;
-                lives = totalLives;
-
-            }
-
-          
-           
+        expectedPlayers.Value = index; // sets expected players. Index corresponds to the position of the number of players in the dropdown list
     }
 
-    public void StartGame (int difficulty) // distance between generated paths increases with difficulty selected
+    public void StartGame (int difficulty) // distance between generated paths increases with difficulty set 
     {
-        
-        
-        UpdateScore(totalScore);
-        
         isGameActive = true;
         pathGenerator=FindObjectOfType<PathGenerator> ();
-        
-       
-        
+  
      pathGenerator.distanceBetweenMinPath1 *= difficulty;
      pathGenerator.distanceBetweenMaxPath1 *= difficulty;
-      
-     
+  
      pathGenerator.distanceBetweenMinPath2 *= difficulty; 
-     pathGenerator.distanceBetweenMaxPath2 *= difficulty;
+     pathGenerator.distanceBetweenMaxPath2 *= difficulty; 
      
+     titleScreen.gameObject.SetActive(false);
      
-        StartCoroutine(StartGeneratingPaths());
-        titleScreen.gameObject.SetActive(false);
-     
-    }
-
- 
-   IEnumerator StartGeneratingPaths() //calls path generator while the game is active
-   {
-   
-       while (isGameActive) 
-       {
-           yield return new WaitForSeconds(0.1f);
-           
-           pathGenerator.GeneratePath1();
-          pathGenerator.GeneratePath2();
-
-          yield return new WaitForSeconds(0.1f);
-       }
-   }
-
-   public void UpdateScore(int scoreToAdd)
-   {
-
-      
-       score += scoreToAdd;
-        scoreText.text = "Score: " + score;
-        totalScore = score;
-     
-        if (score > hiScore)
-        {
-            hiScore = score;
-            PlayerPrefs.SetInt("HighScore",hiScore);
-        }
-        
-        
-
-        hiScoreText.text = "High Score: " + hiScore;
-        UpdateLeaderBoardScores();
-
-   }
-
-   public void UpdateLeaderBoardScores()
-   {
-       firstScore = hiScore; 
-       
-       if (score>secondScore&&score<firstScore)
-       {
-           thirdScore = secondScore; 
-           secondScore= score;
-           PlayerPrefs.SetInt("SecondPlace", secondScore);
-           
-       }
-       if (score > thirdScore && score < secondScore)
-       {
-           thirdScore = score;
-           PlayerPrefs.SetInt("ThirdPlace", thirdScore);
-           
-       }
-       
-       firstPlaceScore.text = firstScore.ToString();
-       secondPlaceScore.text = secondScore.ToString();
-
-       thirdPlaceScore.text = thirdScore.ToString();
-   }
-
-
-
-   
-    public void UpdateLives(int livesToTake)
-    {
-        Debug.Log($"Lives from Start Level: {lives}, Total Lives: {totalLives}");
-        lives += livesToTake;
-        livesText.text = "Lives: " + lives;
-        totalLives = lives;
-        
-    }
-
-    public void GameOver()
-    {
-        gameOverText.gameObject.SetActive(true);
-        replayButton.gameObject.SetActive(true);
-        isGameActive = false;
-        
-        Rigidbody playerRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
-        playerRb.velocity = Vector3.zero;
-        playerRb.isKinematic = true;
-       
-
-    }
-
-    public void RestartGame()
-    {
-        isGameActive = true;
-        SceneManager.LoadScene("MyGame");
-        totalScore = 0;
     }
     
+
+    public void GameOver() // when the game is over, this brings up the game over message and stops the players movement
+    {
+        replayButton.gameObject.SetActive(true);
+        isGameActive = false;
+
+        GameOverClientRpc(); 
+        
+    }
+    [ClientRpc(RequireOwnership = false)] 
+    public void GameOverClientRpc()
+    {
+        gameOverCanvas.gameObject.SetActive(true);
+        
+    }
+
+    public void PlayerDead(IndividualPlayerStats playerStats)
+    { 
+     
+        PlayerController player = playerStats.GetComponentInChildren<PlayerController>();// get players stats
+        player.enableMovement = false; // disable player movement
+        Rigidbody playerRb = FindObjectOfType<PlayerController>().GetComponent<Rigidbody>();
+        playerRb.linearVelocity = Vector3.zero; // stops player movement
+        deadPlayers.Value++; // adds one to dead players count
+        
+       Camera playerCamera = player.GetCamera(); // stops players camera, stops following player
+        playerCamera.transform.SetParent(null);
+
+        FollowPlayer follow = playerCamera.GetComponent<FollowPlayer>();
+        if (follow != null)
+        {
+            follow.enabled = false;
+        }
+       if (deadPlayers.Value>= readyPlayers) // if dead players equals the same amount of players who pressed ready, then the game is over as theyre all dead
+       {
+         GameOver();
+         gameOver.Value = true;
+       } 
+    }
+    
+    void Update()
+    {
+        if (allReady.Value){ joinScreen.gameObject.SetActive(false);} // if all players are ready, deactivate the join game screen
+    }
+    private void SpawnCatForClient(ulong clientId)
+    {
+        if (!NetworkManager.Singleton.IsServer) return; //only server can spawn cats
+        if (spawnedCats >= expectedPlayers.Value) // do not spawn more cats if expected players is exceeded
+        {
+            return;
+        }
+
+        spawnedCats++;// spawns a new cat
+        int prefabIndex = Random.Range(0, availableCats.Count); //pick number at random based on number of cat prefabs
+        GameObject prefabToSpawn = availableCats [prefabIndex]; //corresponding cat to be spawned
+        availableCats.RemoveAt(prefabIndex); // remove spawned cat from list
+        GameObject playerInstance = Instantiate(prefabToSpawn); //in server/host the prefab is instantiated
+        NetworkObject netObj = playerInstance.GetComponent<NetworkObject>(); //get the nework object on the spawned cat (to synch with Client)
+        netObj.SpawnAsPlayerObject(clientId, true); //Client owns this playerobject
+        
+        IndividualPlayerStats playerStats = playerInstance.GetComponent<IndividualPlayerStats>();
+        if (playerStats != null) // sets the players starting lives and score
+        {
+            playerStats.lives.Value = playerStats.startingLives;
+            playerStats.score.Value = 0;
+        }
+        
+    }
+    
+    [ServerRpc(RequireOwnership = false)]
+    public void PlayerReadyServerRpc() // when a player clicks that they are ready, add one to ready players. When readyplayers matches expected players, everyone is ready (allready=true)
+    {
+        readyPlayers++ ; 
+
+        if (readyPlayers >= expectedPlayers.Value)
+        {
+            allReady.Value = true;
+           
+        }
+    }
+    public override void OnNetworkSpawn()
+    {
+        if (NetworkManager.Singleton != null)
+        {
+            expectedPlayersDropdown.gameObject.SetActive(NetworkManager.Singleton.IsHost);// only the host can see the expected player number dropdown
+        }
+        
+    }
 }

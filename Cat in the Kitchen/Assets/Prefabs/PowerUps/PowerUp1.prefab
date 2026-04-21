@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 305575371951222427}
   - component: {fileID: 3283269900941246203}
   - component: {fileID: 9003822786629850481}
+  - component: {fileID: 5303215034162496511}
   m_Layer: 0
   m_Name: PowerUp1
   m_TagString: ExtraLife
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.55501, y: 12.056181, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5414415481929882685}
@@ -62,6 +63,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -83,9 +89,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &305575371951222427
 BoxCollider:
@@ -106,8 +114,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2681236, y: 2.340619, z: 1}
-  m_Center: {x: -0.37887096, y: 0.44881582, z: 0}
+  m_Size: {x: 1.6846094, y: 2.5141754, z: 1}
+  m_Center: {x: -0.30945063, y: 0.535594, z: 0}
 --- !u!114 &3283269900941246203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestructionPoint: {fileID: 0}
+  offsetX: -200
 --- !u!114 &9003822786629850481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,10 +143,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doublePoints: 0
-  extraLife: 1
-  easyPath: 0
-  livesValue: 1
-  powerUpLength: 3
+  takeOtherLives: 1
+  powerUpLength: 10
+--- !u!114 &5303215034162496511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8873983100217070245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 2287342842
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1001 &5524059997626121174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -199,7 +231,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -1461304994638716399, guid: d95a8588cfcd14760bbb9ed0b8fbf4e2, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1b01388fd5bcf457791caea2fd341c71, type: 2}
     - target: {fileID: 919132149155446097, guid: d95a8588cfcd14760bbb9ed0b8fbf4e2, type: 3}

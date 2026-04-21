@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 
@@ -15,32 +14,42 @@ public class DetectCollisions : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-      
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == ("Player")) //when the player collides with an object, relevant scores added and object deactivates
+        
+        IndividualPlayerStats playerStats = other.GetComponentInParent<IndividualPlayerStats>();
+        if (other.CompareTag("Player")) //when the player collides with an object, relevant scores added and object deactivates
         {
-            gameManager.UpdateScore(scoreValue);
-            gameManager.UpdateLives(livesValue);
+           
+            if (playerStats != null)
+            {
+                playerStats.UpdateScore(scoreValue);
+                playerStats.UpdateLives(livesValue);
+            }
+
             gameObject.SetActive(false);
         }
         
    
     }
 
-  private void OnCollisionEnter(Collision collision)
+  private void OnCollisionEnter(Collision collision) // if player collides with the floor, they will instantly die
     {
         
-      
-      if (gameManager.lives <= 0 ||collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
-      {
-         
-          gameManager.GameOver();
-          isOnFloor = true;
-      } 
+        IndividualPlayerStats playerStats = GetComponentInParent<IndividualPlayerStats>();
+
+        if (playerStats != null && playerStats.lives.Value <= 0 ||
+            collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        {
+            playerStats.Dead(); 
+            gameManager.PlayerDead(playerStats); 
+            isOnFloor = true;
+        }
+        
     }
+    
        
  
 

@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
 public class PathGenerator : MonoBehaviour
 {
@@ -56,6 +56,10 @@ public class PathGenerator : MonoBehaviour
     //Position of Path 2 platforms
     private Vector3 path2Position;
 
+    
+    
+    private bool generationEnabled = false;
+    float offsetDistance = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -90,7 +94,53 @@ public class PathGenerator : MonoBehaviour
         objGenerator = FindObjectOfType<FoodObstaclePowerupGenerator>();
 
     }
+    public void StartGeneration()
+    {
+        if (!generationEnabled)
+        {
+            generationEnabled = true;
+            if (NetworkManager.Singleton != null && NetworkManager.Singleton.IsServer)
+            {
+                StartCoroutine(StartGeneratingPaths());
+            }
+        }
+    }
+    void Update()
+    {
+        if (NetworkManager.Singleton == null) return;  // Prevent null reference
+        if (!NetworkManager.Singleton.IsServer) return; //only server can generate paths
+        if (generationPoint == null) return;
+        
+        PlayerController[] players = FindObjectsOfType<PlayerController>(); //Get all players in the scene, if there are no players then no action
+        if (players.Length == 0) return;
 
+        Transform leader = players[0].transform; //find player in the lead (furthest along x)
+        foreach (var p in players)
+        {
+            if (p.transform.position.x > leader.position.x)
+                leader = p.transform;
+        }
+        
+        Vector3 newPos = generationPoint.position; //update generation point so always ahead of leading player
+        newPos.x = Mathf.Max(newPos.x, leader.position.x + offsetDistance); // returns larger of newPos.x and the leader pos + offset to prevent generation point moving back
+        generationPoint.position = newPos;
+
+
+      
+    }
+     IEnumerator StartGeneratingPaths() //calls path generator while the game is active
+     {
+
+         while (generationEnabled)
+         {
+             yield return new WaitForSeconds(0.1f);
+
+             GeneratePath1();
+             GeneratePath2();
+
+            yield return new WaitForSeconds(0.1f);
+         }
+     }
     public void GeneratePath1()
     {
         
@@ -130,15 +180,22 @@ public class PathGenerator : MonoBehaviour
                 newPlatform.transform.rotation = transform.rotation;
                 newPlatform.SetActive(true); //setting platform as active in above named position
 
-                
+                NetworkObject netObj = newPlatform.GetComponent<NetworkObject>();//get networkobject attached to prefab
+                if (netObj != null && !netObj.IsSpawned)//if the object has a network object attached and has not spawned yet
+                {
+                    netObj.Spawn(); //spawns on network
+                }
 
                 int RandomNumberPath1 = Random.Range(0, 100);
                 if (RandomNumberPath1 > 60)
                 {
+                    
                     objGenerator.SpawnFood(new Vector3(
                         path1Position.x + Random.Range(-(platformWidths1[platformSelector1] / 2),
                             (platformWidths1[platformSelector1] / 2)), path1Position.y + 4f,
                         path1Position.z)); // Generates food on the generated platform
+                    
+                   
                 }
 
                 else if (RandomNumberPath1 > 40)
@@ -196,15 +253,14 @@ public class PathGenerator : MonoBehaviour
                 newPlatform.transform.position = path2Position;
                 newPlatform.transform.rotation = transform.rotation;
                 newPlatform.SetActive(true); // setting platform as active in above named position
-
+                NetworkObject netObj = newPlatform.GetComponent<NetworkObject>();//get networkobject attached to prefab
+                if (netObj != null && !netObj.IsSpawned) //if the object has a network object attached and has not spawned yet
+                {
+                    netObj.Spawn(); //spawn on network 
+                }
                 int RandomNumber = Random.Range(0, 100);
 
-                if (RandomNumber >= 95 && (!gameManager.returnFromBonusLevel))
-                {
-                    objGenerator.SpawnBonus((new Vector3(path2Position.x + Random.Range(
-                        -(platformWidths2[platformSelector2] / 2),
-                        (platformWidths2[platformSelector2] / 2)), path2Position.y + 4f, path2Position.z)));
-                }
+             
 
                 if (RandomNumber > 50 && RandomNumber < 95)
                 {
