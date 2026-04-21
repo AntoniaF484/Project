@@ -187,50 +187,56 @@ public class PlayerController : NetworkBehaviour
         if (!enableMovement) return;
 
         if (IsOwner) // below is client view prediction - it is not the actual position in the game, which is set by the server, but was used to attempt to minimise lag/jittering between the two
-        {
-       
-            transform.position += predictedVelocity * Time.deltaTime;
-            predictedVelocity.y += Physics.gravity.y * Time.deltaTime;
-            if (predictedGrounded && predictedVelocity.y < 0)
-            {
-                predictedVelocity.y = 0;
-            }
-      
-            inputSendTimer += Time.deltaTime;
-
-            if (inputSendTimer >= inputSendInterval) // ground check sync
-            {
-                inputSendTimer = 0f;
-                isOnGround = Physics.OverlapSphere(groundCheck.position, groundCheckWidth, whatIsGround).Length > 0;
-            }
-
-            bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
+        { bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
             bool jumpHeld = Input.GetKey(KeyCode.Space);
             bool jumpReleased = Input.GetKeyUp(KeyCode.Space);
+            if (!IsServer)
+            {
+                transform.position += predictedVelocity * Time.deltaTime;
+                predictedVelocity.y += Physics.gravity.y * Time.deltaTime;
+                if (predictedGrounded && predictedVelocity.y < 0)
+                {
+                    predictedVelocity.y = 0;
+                }
 
-            // client side appears to jump before server has allowed it - makes movement seem less lagged. Uses similar code to server jump (actual in game true position)
-            if (jumpPressed && predictedJumpCount < maxJumps && predictedGrounded)
-            {
-                predictedJumpCount++; 
-                predictedVelocity.y = jumpForce;
-               predictedHoldingJump = true;
-               predictedJumpTimeCounter = jumpTime;
-               predictedGrounded = false;
-               jumpStartedThisFrame = true;
-           
+                inputSendTimer += Time.deltaTime;
+
+                if (inputSendTimer >= inputSendInterval) // ground check sync
+                {
+                    inputSendTimer = 0f;
+                    isOnGround = Physics.OverlapSphere(groundCheck.position, groundCheckWidth, whatIsGround).Length > 0;
+                }
+
+               
+
+
+
+                // client side appears to jump before server has allowed it - makes movement seem less lagged. Uses similar code to server jump (actual in game true position)
+                if (jumpPressed && predictedJumpCount < maxJumps && predictedGrounded)
+                {
+                    predictedJumpCount++;
+                    predictedVelocity.y = jumpForce;
+                    predictedHoldingJump = true;
+                    predictedJumpTimeCounter = jumpTime;
+                    predictedGrounded = false;
+                    jumpStartedThisFrame = true;
+
+                }
+
+                if (jumpHeld && predictedHoldingJump && predictedJumpTimeCounter > 0f)
+                {
+                    predictedVelocity.y += jumpForce * Time.deltaTime;
+                    predictedJumpTimeCounter -= Time.deltaTime;
+                }
+
+                if (jumpReleased)
+                {
+                    predictedHoldingJump = false;
+                    predictedJumpTimeCounter = 0f;
+                }
+
             }
-            if (jumpHeld && predictedHoldingJump && predictedJumpTimeCounter > 0f)
-            {
-                predictedVelocity.y += jumpForce * Time.deltaTime;
-                predictedJumpTimeCounter -= Time.deltaTime;
-            }
-            
-            if (jumpReleased)
-            {
-                predictedHoldingJump = false;
-                predictedJumpTimeCounter = 0f;
-            }
-            
+
             SendInputServerRpc(jumpPressed, jumpHeld, jumpReleased); // send jump input to the server
 
         }
